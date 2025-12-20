@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="120" viewBox="0 0 220 120" role="img" aria-label="Model2Vec">
+  <rect x="8" y="12" width="204" height="96" rx="18" fill="#ffffff" stroke="#0f766e" stroke-width="4"/>
+  <g fill="#0f766e">
+    <circle cx="46" cy="48" r="6"/>
+    <circle cx="66" cy="60" r="6"/>
+    <circle cx="46" cy="72" r="6"/>
+    <circle cx="28" cy="60" r="6"/>
+  </g>
+  <g stroke="#06b6d4" stroke-width="4" stroke-linecap="round">
+    <path d="M32 60h24"/>
+    <path d="M46 52v16"/>
+    <path d="M36 54l20 12"/>
+    <path d="M56 54L36 66"/>
+  </g>
+  <text x="80" y="64" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="800" fill="#0f172a">Model2Vec</text>
+</svg>
+

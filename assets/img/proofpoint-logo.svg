@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="64" viewBox="0 0 220 64" role="img" aria-label="Proofpoint">
+  <rect width="220" height="64" rx="12" fill="#ffffff"/>
+  <circle cx="28" cy="32" r="10" fill="#e11d48"/>
+  <circle cx="28" cy="32" r="4" fill="#ffffff"/>
+  <text x="50" y="40" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif" font-size="24" font-weight="700" fill="#0f172a">Proofpoint</text>
+</svg>
+

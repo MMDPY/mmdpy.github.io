@@ -28,7 +28,18 @@
   right: 0;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Poiret+One);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #f8fafc;
+  --text: #0f172a;
+  --muted: #475569;
+  --card: #ffffff;
+  --brand: #0f766e;
+  --brand-2: #06b6d4;
+  --accent: #e11d48;
+  --shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+}
 .social {
   margin: 0 auto;
   width: auto;
@@ -82,24 +93,24 @@
 /* Buttons - Read Me, Contact Us */
 
 .readme {
-  background-color: #FBEEE2;
-  border: 0px solid #422800;
-  border-radius: 30px;
-  box-shadow: #422800 3px 3px 0 0;
-  color: #422800;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 10px 22px rgba(15, 118, 110, 0.25);
+  color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-weight: 600;
-  font-size: 18px;
-  padding: 0 18px;
-  line-height: 50px;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px 18px;
+  line-height: 1;
   text-align: center;
   text-decoration: none;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  padding: 6px 18px;
   margin-left: 6px;
+  transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
   /* position: relative;
   padding: 11px 35px;
   background: #fff;
@@ -112,6 +123,12 @@
   display: inline-block;
   border-radius: 24px; */
   /* -webkit-border-radius: 5px; */
+}
+
+.readme:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.02);
+  box-shadow: 0 14px 28px rgba(15, 118, 110, 0.28);
 }
 
 /* .readme:hover{
@@ -143,8 +160,11 @@
 /* body-color */
 
 body {
-  color: #333;
-  font-size: 18px;
+  color: var(--text);
+  background: var(--bg);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
 }
 
 /* body {
@@ -159,7 +179,7 @@ body {
 } */
 
 a {
-  color: #004d40;
+  color: var(--brand);
 }
 
 /* main blockqoute */
@@ -256,7 +276,7 @@ ul.side-nav li {
 
 ul.side-nav.fixed a {
   box-sizing: content-box;
-  color: rgb(16, 202, 56);
+  color: var(--brand);
   display: block;
   line-height: 100%;
   padding: 10px 0 12px;
@@ -392,6 +412,15 @@ h3 {
 
 .card {
   margin-bottom: 60px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.16);
 }
 
 .card .role {
@@ -569,7 +598,7 @@ small {
 /* main .teal-text */
 
 .teal-text {
-  color: #008073 !important;
+  color: var(--brand) !important;
 }
 
 /* .teal-text {
@@ -579,7 +608,18 @@ small {
 /* .teal */
 
 .teal {
-  background-color: #008073 !important;
+  background-color: var(--brand) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .readme {
+    transition: none;
+  }
+  .card:hover,
+  .readme:hover {
+    transform: none;
+  }
 }
 
 /* .teal {
