@@ -12,154 +12,221 @@
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mohammad Karimi — Staff AI Engineer</title>
+  <title>Mohammad Karimi (mmdpy) — Staff AI Engineer</title>
   <meta name="description" content="Mohammad Karimi, Staff AI Engineer at Proofpoint. Agentic systems, speech agents, RAG, and cost-efficient LLM inference in production at 20M+ messages per day." />
-  <meta name="theme-color" content="#07090c" />
+  <meta name="theme-color" content="#06080b" />
+  <link rel="icon" href="/assets/img/profile.jpeg" />
 
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Mohammad Karimi — Staff AI Engineer" />
   <meta property="og:description" content="Agentic systems · Speech agents · RAG · Production LLM inference" />
   <meta property="og:url" content="https://mmdpy.github.io/" />
-  <meta property="og:site_name" content="Mohammad Karimi" />
+  <meta property="og:site_name" content="mmdpy" />
   <meta property="og:image" content="https://mmdpy.github.io/examples/preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="google-site-verification" content="_qxK8tePiU2fhnwlwnJ7pkDFnj1k2EiKq_cYGy1Cb84" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
 
   <style>
+    @property --a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+
     :root {
-      --bg: #07090c;
-      --panel: #0c1016;
-      --line: #1a212b;
+      --bg: #06080b;
+      --panel: rgba(12, 16, 22, .72);
+      --line: rgba(255, 255, 255, .07);
+      --line-2: rgba(255, 255, 255, .12);
       --fg: #c9d1d9;
       --dim: #6b7684;
       --accent: #3ddc97;
       --accent-2: #5fb3ff;
+      --hot: #ff8a3d;
       --warn: #ffb454;
       --err: #ff6b6b;
       --glow: rgba(61, 220, 151, .35);
       --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
-    body.amber { --accent: #ffb000; --accent-2: #ffd37a; --glow: rgba(255,176,0,.35); }
+    body.amber { --accent: #ffb000; --accent-2: #ff7a59; --glow: rgba(255,176,0,.35); }
     body.ice   { --accent: #7cc7ff; --accent-2: #c3a6ff; --glow: rgba(124,199,255,.35); }
-    body.mono  { --accent: #e6e6e6; --accent-2: #a0a0a0; --glow: rgba(255,255,255,.18); }
+    body.mono  { --accent: #f2f2f2; --accent-2: #9aa0a6; --glow: rgba(255,255,255,.18); }
 
     * { box-sizing: border-box; }
     html, body { height: 100%; }
     body {
-      margin: 0;
-      background:
-        radial-gradient(1200px 600px at 80% -10%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 60%),
-        radial-gradient(900px 500px at -10% 110%, color-mix(in srgb, var(--accent-2) 8%, transparent), transparent 60%),
-        var(--bg);
-      color: var(--fg);
-      font: 14.5px/1.6 var(--mono);
+      margin: 0; background: var(--bg); color: var(--fg);
+      font: 14px/1.65 var(--mono);
       -webkit-font-smoothing: antialiased;
       overflow: hidden;
     }
     ::selection { background: var(--accent); color: var(--bg); }
-    a { color: var(--accent-2); text-decoration: none; border-bottom: 1px dashed color-mix(in srgb, var(--accent-2) 50%, transparent); }
-    a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    a { color: var(--accent-2); text-decoration: none; }
+    a:hover { color: var(--accent); }
 
+    /* ---------- background ---------- */
+    .aurora { position: fixed; inset: -20%; z-index: 0; pointer-events: none; filter: blur(80px) saturate(140%); opacity: .55; }
+    .aurora i { position: absolute; border-radius: 50%; mix-blend-mode: screen; animation: drift 26s ease-in-out infinite alternate; }
+    .aurora i:nth-child(1) { width: 46vw; height: 46vw; left: 55%; top: 0%;  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 55%, transparent), transparent 65%); }
+    .aurora i:nth-child(2) { width: 40vw; height: 40vw; left: 0%;  top: 55%; background: radial-gradient(circle, color-mix(in srgb, var(--accent-2) 50%, transparent), transparent 65%); animation-duration: 32s; }
+    .aurora i:nth-child(3) { width: 30vw; height: 30vw; left: 20%; top: 5%;  background: radial-gradient(circle, rgba(255, 138, 61, .35), transparent 65%); animation-duration: 38s; }
+    @keyframes drift { to { transform: translate(-8vw, 6vh) scale(1.15); } }
     #grid {
-      position: fixed; inset: 0; pointer-events: none; opacity: .5;
-      background-image:
-        linear-gradient(var(--line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: radial-gradient(ellipse at center, #000 20%, transparent 75%);
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .6;
+      background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 10%, transparent 80%);
     }
-    #scan {
-      position: fixed; inset: 0; pointer-events: none; z-index: 50;
-      background: repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 1px, transparent 1px 3px);
+    #noise {
+      position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: .05;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
     }
+    #scan { position: fixed; inset: 0; z-index: 61; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(255,255,255,.016) 0 1px, transparent 1px 3px); }
+    #matrix { position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: 0; transition: opacity .6s; }
+    #matrix.on { opacity: .55; }
 
-    .wrap { height: 100%; display: flex; align-items: center; justify-content: center; padding: 28px; }
-    .term {
-      width: min(1100px, 100%);
-      height: min(820px, 100%);
-      display: flex; flex-direction: column;
-      background: color-mix(in srgb, var(--panel) 92%, transparent);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      box-shadow: 0 0 0 1px rgba(0,0,0,.4), 0 30px 80px rgba(0,0,0,.6), 0 0 60px -20px var(--glow);
-      backdrop-filter: blur(8px);
-      overflow: hidden;
+    /* ---------- layout ---------- */
+    .wrap {
+      position: relative; z-index: 1;
+      height: 100%; max-width: 1400px; margin: 0 auto;
+      display: grid; grid-template-columns: 330px minmax(0, 1fr); gap: 22px;
+      padding: 26px;
     }
-    .bar {
-      display: flex; align-items: center; gap: 14px;
-      padding: 10px 14px; border-bottom: 1px solid var(--line);
-      background: linear-gradient(#10151c, #0c1016);
-      user-select: none;
+    .glass {
+      background: var(--panel);
+      border: 1px solid var(--line-2);
+      border-radius: 18px;
+      backdrop-filter: blur(18px) saturate(140%);
+      -webkit-backdrop-filter: blur(18px) saturate(140%);
+      box-shadow: 0 30px 80px -20px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.05);
     }
-    .dots { display: flex; gap: 8px; }
-    .dots i { width: 12px; height: 12px; border-radius: 50%; display: block; }
-    .dots i:nth-child(1) { background: #ff5f57; }
-    .dots i:nth-child(2) { background: #febc2e; }
-    .dots i:nth-child(3) { background: #28c840; }
-    .title { flex: 1; text-align: center; color: var(--dim); font-size: 12.5px; }
-    .status { color: var(--dim); font-size: 12px; display: flex; gap: 10px; align-items: center; }
-    .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); animation: pulse 2s infinite; }
+    .glow-border { position: relative; }
+    .glow-border::before {
+      content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
+      background: conic-gradient(from var(--a), transparent 0 60%, var(--accent) 75%, var(--accent-2) 85%, transparent 95%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      animation: spin 7s linear infinite; opacity: .8;
+    }
+    @keyframes spin { to { --a: 360deg; } }
+
+    /* ---------- identity card ---------- */
+    .id { display: flex; flex-direction: column; padding: 22px; gap: 18px; overflow-y: auto; scrollbar-width: none; animation: rise .8s cubic-bezier(.2,.8,.2,1) both; }
+    .id::-webkit-scrollbar { display: none; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+
+    .ph { position: relative; aspect-ratio: 1; border-radius: 16px; padding: 2px; isolation: isolate; }
+    .ph::before {
+      content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1;
+      background: conic-gradient(from var(--a), var(--accent), var(--accent-2), var(--hot), var(--accent));
+      animation: spin 6s linear infinite; filter: drop-shadow(0 0 18px var(--glow));
+    }
+    .ph .frame { position: relative; width: 100%; height: 100%; border-radius: 14px; overflow: hidden; background: #000; }
+    .ph img, .ph .ch { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .ph img { transition: transform .6s cubic-bezier(.2,.8,.2,1), filter .6s; filter: saturate(1.05) contrast(1.05); }
+    .ph .ch { background: var(--src) center/cover; mix-blend-mode: screen; opacity: 0; }
+    .ph .ch.r { filter: url(#r); }
+    .ph .ch.c { filter: url(#c); }
+    .ph .lines { position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px); pointer-events: none; }
+    .ph .vig { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55)); pointer-events: none; }
+    .ph:hover img { transform: scale(1.04); }
+    .ph:hover .ch { opacity: .9; }
+    .ph:hover .ch.r { animation: gl1 1.2s steps(2) infinite; }
+    .ph:hover .ch.c { animation: gl2 1.2s steps(2) infinite; }
+    @keyframes gl1 { 0% { transform: translate(-3px,0); clip-path: inset(10% 0 70% 0); } 25% { transform: translate(3px,1px); clip-path: inset(55% 0 20% 0); } 50% { transform: translate(-2px,-1px); clip-path: inset(30% 0 45% 0); } 75% { transform: translate(4px,0); clip-path: inset(80% 0 5% 0); } 100% { transform: translate(-3px,0); clip-path: inset(10% 0 70% 0); } }
+    @keyframes gl2 { 0% { transform: translate(3px,0); clip-path: inset(60% 0 15% 0); } 25% { transform: translate(-3px,-1px); clip-path: inset(5% 0 80% 0); } 50% { transform: translate(2px,1px); clip-path: inset(40% 0 35% 0); } 75% { transform: translate(-4px,0); clip-path: inset(20% 0 60% 0); } 100% { transform: translate(3px,0); clip-path: inset(60% 0 15% 0); } }
+    .ph .tag-live {
+      position: absolute; left: 12px; top: 12px; z-index: 2;
+      font-size: 10.5px; letter-spacing: .12em; color: #fff;
+      background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.15); border-radius: 999px;
+      padding: 2px 9px 2px 8px; backdrop-filter: blur(6px); display: flex; align-items: center; gap: 6px;
+    }
+    .ph .tag-live i { width: 6px; height: 6px; border-radius: 50%; background: #ff4d4d; box-shadow: 0 0 8px #ff4d4d; animation: pulse 1.6s infinite; }
+    .ph .handle { position: absolute; right: 12px; bottom: 10px; z-index: 2; font-size: 11px; color: rgba(255,255,255,.85); text-shadow: 0 1px 6px rgba(0,0,0,.8); }
+
+    .who h1 { margin: 0; font-size: 22px; line-height: 1.2; font-weight: 800; letter-spacing: -.02em; color: #fff; }
+    .who h1 .grad { background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .who .role { margin-top: 6px; color: var(--fg); }
+    .who .role b { color: var(--accent); font-weight: 500; }
+    .who .loc { color: var(--dim); font-size: 12.5px; margin-top: 2px; }
+
+    .status-pill {
+      display: flex; align-items: center; gap: 10px; font-size: 12.5px;
+      border: 1px solid var(--line-2); border-radius: 12px; padding: 9px 12px;
+      background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent);
+    }
+    .status-pill .dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: pulse 2s infinite; }
+    .status-pill .rot { color: #fff; }
     @keyframes pulse { 50% { opacity: .35; } }
 
-    .chips {
-      display: flex; flex-wrap: wrap; gap: 6px;
-      padding: 8px 14px; border-bottom: 1px solid var(--line);
-      background: #0a0d12;
-    }
-    .chip {
-      font: 12px var(--mono); color: var(--dim);
-      background: transparent; border: 1px solid var(--line); border-radius: 6px;
-      padding: 3px 9px; cursor: pointer; transition: .15s;
-    }
-    .chip:hover, .chip:focus-visible { color: var(--bg); background: var(--accent); border-color: var(--accent); outline: none; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .stat { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; background: rgba(255,255,255,.02); transition: border-color .2s, transform .2s; }
+    .stat:hover { border-color: color-mix(in srgb, var(--accent) 60%, transparent); transform: translateY(-2px); }
+    .stat .n { font-size: 20px; font-weight: 800; color: #fff; line-height: 1.15; letter-spacing: -.02em; }
+    .stat .n em { font-style: normal; color: var(--accent); text-shadow: 0 0 14px var(--glow); }
+    .stat .l { font-size: 11px; color: var(--dim); line-height: 1.35; margin-top: 2px; }
 
-    #screen {
-      flex: 1; overflow-y: auto; padding: 18px 22px 10px;
-      scroll-behavior: smooth;
-      scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+    .links { display: flex; gap: 8px; }
+    .links a {
+      flex: 1; display: grid; place-items: center; height: 40px; border-radius: 11px;
+      border: 1px solid var(--line-2); color: var(--fg); background: rgba(255,255,255,.02); transition: .2s;
     }
+    .links a:hover { color: var(--bg); background: var(--accent); border-color: var(--accent); box-shadow: 0 8px 24px -8px var(--glow); transform: translateY(-2px); }
+    .links svg { width: 18px; height: 18px; fill: currentColor; }
+    .cta {
+      display: flex; align-items: center; justify-content: center; gap: 8px; height: 44px; border-radius: 12px;
+      color: var(--bg); font-weight: 700; letter-spacing: .02em;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2)); box-shadow: 0 10px 30px -10px var(--glow); transition: .2s;
+    }
+    .cta:hover { color: var(--bg); transform: translateY(-2px); filter: brightness(1.08); }
+    .id .foot { margin-top: auto; color: var(--dim); font-size: 11px; display: flex; justify-content: space-between; }
+
+    /* ---------- terminal ---------- */
+    .term { display: flex; flex-direction: column; min-height: 0; overflow: hidden; animation: rise .8s .12s cubic-bezier(.2,.8,.2,1) both; }
+    .bar { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-bottom: 1px solid var(--line); user-select: none; }
+    .dots { display: flex; gap: 8px; }
+    .dots i { width: 12px; height: 12px; border-radius: 50%; display: block; }
+    .dots i:nth-child(1) { background: #ff5f57; } .dots i:nth-child(2) { background: #febc2e; } .dots i:nth-child(3) { background: #28c840; }
+    .title { flex: 1; text-align: center; color: var(--dim); font-size: 12px; }
+    .status { color: var(--dim); font-size: 12px; display: flex; gap: 10px; align-items: center; }
+    .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); animation: pulse 2s infinite; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 16px; border-bottom: 1px solid var(--line); }
+    .chip { font: 12px var(--mono); color: var(--dim); background: rgba(255,255,255,.02); border: 1px solid var(--line-2); border-radius: 8px; padding: 4px 10px; cursor: pointer; transition: .15s; }
+    .chip::before { content: "./"; opacity: .5; }
+    .chip:hover, .chip:focus-visible { color: var(--bg); background: var(--accent); border-color: var(--accent); outline: none; box-shadow: 0 6px 18px -6px var(--glow); }
+
+    #screen { flex: 1; overflow-y: auto; padding: 20px 24px 12px; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
     #screen:focus { outline: none; }
-    .ln { white-space: pre-wrap; word-break: break-word; min-height: 1.6em; }
-    .dim { color: var(--dim); }
-    .ac { color: var(--accent); }
-    .ac2 { color: var(--accent-2); }
-    .warn { color: var(--warn); }
-    .err { color: var(--err); }
-    .b { font-weight: 700; color: #fff; }
+    .ln { white-space: pre-wrap; word-break: break-word; min-height: 1.65em; }
+    .dim { color: var(--dim); } .ac { color: var(--accent); } .ac2 { color: var(--accent-2); }
+    .warn { color: var(--warn); } .err { color: var(--err); } .b { font-weight: 700; color: #fff; }
     .glow { text-shadow: 0 0 12px var(--glow); }
 
     .ascii {
-      color: var(--accent); text-shadow: 0 0 14px var(--glow);
-      font-size: clamp(6px, 1.25vw, 13px); line-height: 1.15; white-space: pre; overflow: hidden;
-      margin: 4px 0 10px;
+      font-size: clamp(7px, 1.15vw, 14px); line-height: 1.12; white-space: pre; overflow: hidden; margin: 6px 0 12px; font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2) 60%, var(--hot));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      filter: drop-shadow(0 0 14px var(--glow));
     }
 
-    .prompt-line { display: flex; align-items: baseline; gap: 0; }
     .ps1 { white-space: nowrap; }
-    .ps1 .u { color: var(--accent); }
-    .ps1 .h { color: var(--accent-2); }
-    .ps1 .p { color: var(--warn); }
+    .ps1 .u { color: var(--accent); font-weight: 700; }
+    .ps1 .p { color: var(--accent-2); }
     #input-row { display: flex; align-items: baseline; }
-    #cmd {
-      flex: 1; background: transparent; border: 0; outline: 0; color: #fff;
-      font: inherit; caret-color: var(--accent); padding: 0 0 0 .6ch; min-width: 0;
-    }
-    .ghost { color: var(--dim); opacity: .6; pointer-events: none; }
+    #input-row[hidden] { display: none; }
+    #cmd { flex: 1; background: transparent; border: 0; outline: 0; color: #fff; font: inherit; caret-color: var(--accent); padding: 0 0 0 .6ch; min-width: 0; }
 
     .kv { display: grid; grid-template-columns: 16ch 1fr; gap: 0 2ch; }
     .kv > :nth-child(odd) { color: var(--accent); }
 
-    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin: 10px 0 6px; }
-    .metric { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: rgba(255,255,255,.015); }
-    .metric .n { font-size: 22px; font-weight: 700; color: var(--accent); text-shadow: 0 0 14px var(--glow); line-height: 1.2; }
-    .metric .l { color: var(--dim); font-size: 12px; }
+    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 12px 0 8px; }
+    .metric { border: 1px solid var(--line-2); border-radius: 12px; padding: 12px 14px; background: linear-gradient(180deg, rgba(255,255,255,.03), transparent); }
+    .metric .n { font-size: 24px; font-weight: 800; color: var(--accent); text-shadow: 0 0 16px var(--glow); line-height: 1.15; letter-spacing: -.02em; }
+    .metric .l { color: var(--dim); font-size: 11.5px; }
 
-    .card { border-left: 2px solid var(--accent); padding: 2px 0 2px 14px; margin: 10px 0 14px; }
+    .card { border-left: 2px solid var(--accent); padding: 2px 0 2px 16px; margin: 12px 0 16px; }
     .card .hd { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; }
     .card .role { color: #fff; font-weight: 700; }
     .card .where { color: var(--accent-2); }
@@ -167,66 +234,122 @@
     .card ul { margin: 6px 0 0; padding: 0; list-style: none; }
     .card li { padding-left: 2.2ch; text-indent: -2.2ch; }
     .card li::before { content: "› "; color: var(--accent); }
-    .tag { display: inline-block; font-size: 11.5px; color: var(--dim); border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; margin: 4px 4px 0 0; }
+    .tag { display: inline-block; font-size: 11px; color: var(--dim); border: 1px solid var(--line-2); border-radius: 6px; padding: 0 7px; margin: 6px 4px 0 0; }
 
-    .proj { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; margin: 8px 0 12px; }
+    .proj { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin: 10px 0 14px; }
     .pc {
-      border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
-      background: linear-gradient(180deg, rgba(255,255,255,.02), transparent);
-      transition: border-color .2s, transform .2s, box-shadow .2s;
+      position: relative; display: block; color: inherit; overflow: hidden;
+      border: 1px solid var(--line-2); border-radius: 14px; padding: 14px 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.01));
+      transition: border-color .25s, transform .25s, box-shadow .25s;
     }
-    .pc:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 10px 30px -15px var(--glow); }
-    .pc .t { color: #fff; font-weight: 700; }
-    .pc .k { color: var(--accent); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; }
-    .pc .m { color: var(--accent); font-weight: 700; }
-    .pc .d { color: var(--fg); opacity: .9; margin-top: 4px; }
+    .pc::after { content: ""; position: absolute; inset: 0; background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--accent) 14%, transparent), transparent 40%); opacity: 0; transition: opacity .3s; pointer-events: none; }
+    .pc:hover { border-color: color-mix(in srgb, var(--accent) 70%, transparent); transform: translateY(-3px); box-shadow: 0 16px 40px -18px var(--glow); color: inherit; }
+    .pc:hover::after { opacity: 1; }
+    .pc .k { color: var(--dim); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; }
+    .pc .t { color: #fff; font-weight: 700; margin-top: 2px; }
+    .pc .m { display: inline-block; margin-top: 6px; font-weight: 800; font-size: 15px; color: var(--accent); text-shadow: 0 0 14px var(--glow); }
+    .pc .d { color: var(--fg); opacity: .85; margin-top: 6px; font-size: 13px; }
 
-    .bars { display: grid; grid-template-columns: 22ch 1fr; gap: 2px 2ch; }
+    .bars { display: grid; grid-template-columns: 20ch 1fr; gap: 3px 2ch; }
     .bars .bar-v { color: var(--accent); letter-spacing: -1px; }
 
-    .neo { display: grid; grid-template-columns: auto 1fr; gap: 0 4ch; align-items: start; }
-    .neo pre { margin: 0; color: var(--accent); text-shadow: 0 0 12px var(--glow); line-height: 1.2; }
-    .swatch { display: inline-block; width: 2.2ch; height: 1em; vertical-align: middle; }
+    .neo { display: grid; grid-template-columns: auto 1fr; gap: 0 4ch; align-items: center; margin: 6px 0; }
+    .neo .art, .portrait { position: relative; line-height: 0; }
+    .portrait { margin: 8px 0; display: inline-block; }
+    .led { display: block; filter: saturate(1.15) drop-shadow(0 0 18px rgba(255, 138, 61, .18)); }
+    .swatch { display: inline-block; width: 2.4ch; height: 1em; vertical-align: middle; }
 
-    .cursor { display: inline-block; width: .6ch; background: var(--accent); animation: blink 1s steps(1) infinite; }
-    @keyframes blink { 50% { opacity: 0; } }
+    footer.mini { padding: 8px 16px; border-top: 1px solid var(--line); color: var(--dim); font-size: 11px; display: flex; justify-content: space-between; gap: 10px; }
+    kbd { font: inherit; color: var(--fg); border: 1px solid var(--line-2); border-bottom-width: 2px; border-radius: 4px; padding: 0 4px; }
 
-    footer.mini { padding: 6px 14px; border-top: 1px solid var(--line); color: var(--dim); font-size: 11.5px; display: flex; justify-content: space-between; gap: 10px; background: #0a0d12; }
-    footer.mini span:last-child { text-align: right; }
-
-    #matrix { position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: 0; transition: opacity .6s; }
-    #matrix.on { opacity: .55; }
-
-    @media (max-width: 640px) {
-      body { font-size: 13px; }
-      .wrap { padding: 0; }
-      .term { height: 100%; border-radius: 0; border: 0; }
-      .status .hide-sm, .title { display: none; }
-      .kv { grid-template-columns: 12ch 1fr; }
-      .bars { grid-template-columns: 14ch 1fr; }
+    @media (max-width: 960px) {
+      body { overflow: auto; }
+      .wrap { grid-template-columns: 1fr; height: auto; padding: 14px; gap: 14px; }
+      .id { display: grid; grid-template-columns: 112px 1fr; gap: 14px 16px; padding: 16px; overflow: visible; }
+      .id .ph { grid-row: span 2; }
+      .id .who h1 { font-size: 19px; }
+      .id .stats { grid-column: 1 / -1; grid-template-columns: repeat(4, 1fr); }
+      .id .links, .id .cta, .id .status-pill { grid-column: 1 / -1; }
+      .id .foot { display: none; }
+      .ph .tag-live, .ph .handle { display: none; }
+      .term { height: 82vh; }
+    }
+    @media (max-width: 560px) {
+      body { font-size: 12.5px; }
+      .id .stats { grid-template-columns: 1fr 1fr; }
+      .title, .status .hide-sm { display: none; }
+      .kv { grid-template-columns: 11ch 1fr; }
+      .bars { grid-template-columns: 1fr; }
       .neo { grid-template-columns: 1fr; }
-      .neo pre { display: none; }
+      .neo .art { display: none; }
+      #screen { padding: 14px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
     }
-
-    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-    noscript .static { padding: 24px; max-width: 860px; margin: auto; overflow: auto; height: 100%; }
+    noscript .static { position: relative; z-index: 2; padding: 24px; max-width: 860px; margin: auto; }
   </style>
 </head>
 
 <body>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
   <div id="grid"></div>
+  <div id="noise"></div>
   <div id="scan"></div>
   <canvas id="matrix"></canvas>
 
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="r"><feColorMatrix type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"/></filter>
+    <filter id="c"><feColorMatrix type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/></filter>
+  </svg>
+
   <div class="wrap">
-    <div class="term" role="application" aria-label="Interactive terminal portfolio of Mohammad Karimi">
+    <!-- identity -->
+    <aside class="id glass glow-border" aria-label="About Mohammad Karimi">
+      <div class="ph" style="--src:url('/assets/img/profile.jpeg')">
+        <div class="frame">
+          <img src="/assets/img/profile.jpeg" alt="Mohammad Karimi" width="800" height="800" />
+          <div class="ch r"></div><div class="ch c"></div>
+          <div class="lines"></div><div class="vig"></div>
+          <span class="tag-live"><i></i>LIVE · TORONTO</span>
+          <span class="handle">@mmdpy</span>
+        </div>
+      </div>
+
+      <div class="who">
+        <h1>Mohammad <span class="grad">Karimi</span></h1>
+        <div class="role"><b>Staff AI Engineer</b> @ Proofpoint</div>
+        <div class="loc">Toronto, ON · M.Sc. CS, UAlberta</div>
+      </div>
+
+      <div class="status-pill"><span class="dot"></span><span>now: <span class="rot" id="rot">sub-second speech agents</span></span></div>
+
+      <div class="stats">
+        <div class="stat"><div class="n"><em>20M+</em></div><div class="l">messages / day in production</div></div>
+        <div class="stat"><div class="n">&lt;<em>1s</em></div><div class="l">speech-to-speech latency</div></div>
+        <div class="stat"><div class="n"><em>122×</em></div><div class="l">cheaper than AWS Guardrails</div></div>
+        <div class="stat"><div class="n"><em>94%</em></div><div class="l">top-5 recall, archive RAG</div></div>
+      </div>
+
+      <div class="links">
+        <a href="https://github.com/mmdpy" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+        <a href="https://www.linkedin.com/in/mohammad-karimi-abdolmaleki/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
+        <a href="mailto:mmdkarimi96@gmail.com" aria-label="Email" title="Email"><svg viewBox="0 0 24 24"><path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.3-.5 7.7 6.3L19.7 5H4.3ZM20 6.6l-7.37 6.03a1 1 0 0 1-1.26 0L4 6.6v11.9c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V6.6Z"/></svg></a>
+        <a href="https://doi.org/10.1007/s40593-025-00468-8" target="_blank" rel="noopener" aria-label="Publication" title="Publication (IJAIED 2025)"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm8 1.5V8h4.5L14 3.5ZM7 12v1.5h10V12H7Zm0 3.5V17h10v-1.5H7Zm0-7V10h5V8.5H7Z"/></svg></a>
+      </div>
+
+      <a class="cta" href="/assets/resume/MohammadKarimi_Resume.pdf" target="_blank" rel="noopener">↓ resume.pdf</a>
+
+      <div class="foot"><span>© <span id="yr"></span> mmdpy</span><span id="clock"></span></div>
+    </aside>
+
+    <!-- terminal -->
+    <section class="term glass" role="application" aria-label="Interactive terminal">
       <div class="bar">
         <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="title">mohammad@toronto: ~ — zsh — 120×40</div>
-        <div class="status"><span class="pulse" aria-hidden="true"></span><span>online</span><span class="hide-sm" id="clock"></span></div>
+        <div class="title">mmdpy — zsh — ~/portfolio</div>
+        <div class="status"><span class="pulse" aria-hidden="true"></span><span>online</span></div>
       </div>
       <nav class="chips" aria-label="Quick commands">
         <button class="chip" data-cmd="about">about</button>
@@ -235,31 +358,27 @@
         <button class="chip" data-cmd="skills">skills</button>
         <button class="chip" data-cmd="research">research</button>
         <button class="chip" data-cmd="neofetch">neofetch</button>
-        <button class="chip" data-cmd="resume">resume</button>
         <button class="chip" data-cmd="contact">contact</button>
         <button class="chip" data-cmd="help">help</button>
       </nav>
       <div id="screen" tabindex="0" aria-live="polite">
         <div id="out"></div>
-        <div id="input-row" class="prompt-line" hidden>
-          <span class="ps1"><span class="u">mohammad</span><span class="dim">@</span><span class="h">toronto</span> <span class="p">~</span> <span class="ac">❯</span></span>
+        <div id="input-row" hidden>
+          <span class="ps1"><span class="u">mmdpy</span> <span class="p">~</span> <span class="ac">❯</span></span>
           <input id="cmd" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Type a command, or type help" />
         </div>
       </div>
       <footer class="mini">
-        <span>tab ⇥ autocomplete · ↑↓ history · ctrl+l clear</span>
-        <span>type <span class="ac">help</span> to begin</span>
+        <span><kbd>tab</kbd> complete · <kbd>↑</kbd><kbd>↓</kbd> history · <kbd>ctrl</kbd>+<kbd>l</kbd> clear</span>
+        <span class="hide-sm">try <span class="ac">sudo hire-me</span></span>
       </footer>
-    </div>
+    </section>
   </div>
 
   <noscript>
     <div class="static">
       <h1>Mohammad Karimi — Staff AI Engineer, Proofpoint (Toronto)</h1>
-      <p>I architect and ship agentic systems, speech agents, RAG, and cost-efficient LLM inference in production — 20M+ messages per day.</p>
-      <h2>Experience</h2>
-      <p><b>Staff AI Engineer, Proofpoint</b> (Jul 2025 – present): Proofpoint Automate ML/LLM models at 20M+ messages/day; sub-second speech-to-speech agent for Compliance Investigator; agentic decisioning layer (~15× cheaper than AWS Bedrock); RAG archive search (94% top-5 recall, −65% search time); 20+ open-weight models on vLLM (10× cheaper); Redaction API (122× cheaper than AWS Guardrail).</p>
-      <p><b>Senior Data Scientist, KPMG Lighthouse</b> (Jun 2023 – Jul 2025) · <b>Associate ML Developer, AltaML</b> (Sep 2022 – May 2023) · <b>Data Scientist &amp; NLP Researcher, University of Alberta</b> (Jan 2021 – Aug 2022) · <b>Software Engineer, Iranian National Robotics Team</b> (Sep 2018 – Jan 2020)</p>
+      <p>I architect and ship multi-agent, RAG, and document-intelligence systems end to end — from research prototype to Kubernetes services handling 20M+ messages per day — with LLM inference 10–122× cheaper than managed AWS services.</p>
       <p>Email <a href="mailto:mmdkarimi96@gmail.com">mmdkarimi96@gmail.com</a> · <a href="https://www.linkedin.com/in/mohammad-karimi-abdolmaleki/">LinkedIn</a> · <a href="https://github.com/mmdpy">GitHub</a> · <a href="/assets/resume/MohammadKarimi_Resume.pdf">Resume (PDF)</a></p>
     </div>
   </noscript>
@@ -267,6 +386,7 @@
   <script>
   (() => {
     const RESUME = "/assets/resume/MohammadKarimi_Resume.pdf";
+    const PHOTO = "/assets/img/profile.jpeg";
     const EMAIL = "mmdkarimi96@gmail.com";
     const LINKS = {
       github: "https://github.com/mmdpy",
@@ -282,6 +402,7 @@
     const sleep = ms => new Promise(r => setTimeout(r, reduced ? 0 : ms));
     const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
     const scroll = () => { screen.scrollTop = screen.scrollHeight; };
+    const PS1 = `<span class="ps1"><span class="u">mmdpy</span> <span class="p">~</span> <span class="ac">❯</span></span>`;
 
     function print(html = "", cls = "ln") {
       const d = document.createElement("div");
@@ -305,37 +426,73 @@
       d.innerHTML = html;
       return d;
     }
-    function echoCmd(c) {
-      return print(`<span class="ps1"><span class="u">mohammad</span><span class="dim">@</span><span class="h">toronto</span> <span class="p">~</span> <span class="ac">❯</span></span> <span class="b">${esc(c)}</span>`);
+    const echoCmd = c => print(`${PS1} <span class="b">${esc(c)}</span>`);
+
+    // ---- LED-matrix portrait from the real photo ----
+    const photo = new Image();
+    photo.src = PHOTO;
+    const photoReady = new Promise(r => { photo.onload = r; photo.onerror = r; });
+    async function portrait(cols, cell) {
+      await photoReady;
+      const canvas = document.createElement("canvas");
+      canvas.className = "led";
+      if (!photo.naturalWidth) return canvas;
+      const s = photo.naturalWidth / 800;
+      const [sx, sy, sw, sh] = [130 * s, 10 * s, 540 * s, 620 * s];
+      const rows = Math.round(cols * sh / sw);
+      const src = document.createElement("canvas");
+      src.width = cols; src.height = rows;
+      const sctx = src.getContext("2d", { willReadFrequently: true });
+      sctx.drawImage(photo, sx, sy, sw, sh, 0, 0, cols, rows);
+      const px = sctx.getImageData(0, 0, cols, rows).data;
+      const dpr = Math.min(2, devicePixelRatio || 1);
+      canvas.width = cols * cell * dpr; canvas.height = rows * cell * dpr;
+      canvas.style.width = `${cols * cell}px`; canvas.style.height = `${rows * cell}px`;
+      const x = canvas.getContext("2d");
+      x.scale(dpr, dpr);
+      const gap = Math.max(1, cell * 0.18), r = cell * 0.22;
+      const drawRow = j => {
+        for (let i = 0; i < cols; i++) {
+          const k = (j * cols + i) * 4;
+          const dx = (i / (cols - 1) - .5) / .5, dy = (j / (rows - 1) - .5) / .5;
+          const a = Math.max(0, Math.min(1, (1.05 - Math.hypot(dx * .95, dy)) / .28));
+          if (!a) continue;
+          x.fillStyle = `rgba(${px[k]},${px[k + 1]},${px[k + 2]},${a})`;
+          x.beginPath();
+          x.roundRect(i * cell + gap / 2, j * cell + gap / 2, cell - gap, cell - gap, r);
+          x.fill();
+        }
+      };
+      if (reduced) { for (let j = 0; j < rows; j++) drawRow(j); }
+      else (async () => { for (let j = 0; j < rows; j++) { drawRow(j); if (j % 2) await sleep(12); } })();
+      return canvas;
     }
 
     const BANNER = String.raw`
- ███╗   ███╗ ██████╗ ██╗  ██╗ █████╗ ███╗   ███╗███╗   ███╗ █████╗ ██████╗
- ████╗ ████║██╔═══██╗██║  ██║██╔══██╗████╗ ████║████╗ ████║██╔══██╗██╔══██╗
- ██╔████╔██║██║   ██║███████║███████║██╔████╔██║██╔████╔██║███████║██║  ██║
- ██║╚██╔╝██║██║   ██║██╔══██║██╔══██║██║╚██╔╝██║██║╚██╔╝██║██╔══██║██║  ██║
- ██║ ╚═╝ ██║╚██████╔╝██║  ██║██║  ██║██║ ╚═╝ ██║██║ ╚═╝ ██║██║  ██║██████╔╝
- ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═════╝
-                          K  A  R  I  M  I`;
+ ███╗   ███╗███╗   ███╗██████╗ ██████╗ ██╗   ██╗
+ ████╗ ████║████╗ ████║██╔══██╗██╔══██╗╚██╗ ██╔╝
+ ██╔████╔██║██╔████╔██║██║  ██║██████╔╝ ╚████╔╝
+ ██║╚██╔╝██║██║╚██╔╝██║██║  ██║██╔═══╝   ╚██╔╝
+ ██║ ╚═╝ ██║██║ ╚═╝ ██║██████╔╝██║        ██║
+ ╚═╝     ╚═╝╚═╝     ╚═╝╚═════╝ ╚═╝        ╚═╝`;
 
     const EXPERIENCE = [
       {
         role: "Staff AI Engineer", where: "Proofpoint", loc: "Toronto, ON", when: "Jul 2025 — present",
         items: [
-          `Own <span class="ac">Proofpoint Automate</span> ML + LLM models across multiple enterprise customers — <span class="b">20M+ messages/day</span> in production`,
-          `Architected a <span class="b">sub-second speech-to-speech agent</span> for Compliance Investigator; context layer fuses messages, documents, entities, context graphs, classifier outputs, and LLM subagent reasoning`,
-          `Built an <span class="ac">agentic decisioning layer</span> for Supervision — LLM reasoning + classical models + tool use + human-in-the-loop — <span class="b">~15× cheaper</span> than AWS Bedrock`,
-          `Single LLM-based classifier that beats a commercial vendor model on the golden compliance set at <span class="b">10× lower cost</span>; +40% F1 on AWS Nova via function calling + GEPA`,
-          `RAG over email archives in plain English — semantic chunking, embeddings, LLM re-ranker — <span class="b">94% top-5 recall</span>, <span class="b">−65%</span> search time`,
-          `Serve <span class="b">20+ open-weight models</span> on Kubernetes with vLLM (10× cheaper) and a BERT + rules Redaction API (<span class="b">122× cheaper</span> than AWS Guardrail)`,
-          `Fine-tuned Longformer for long documents (90%+ F1) with Integrated Gradients for auditable decisions`,
+          `Architected <span class="ac">Proofpoint Automate</span>'s production LLM inference platform on Kubernetes (<span class="b">20M+ messages/day</span>) — 20+ open-weight models on vLLM with AWQ, prefix/KV caching, and continuous batching at <span class="b">10–15×</span> lower cost than AWS Bedrock`,
+          `Built a <span class="b">sub-second speech-to-speech multi-agent system</span> for Compliance Investigator — a unified context layer over knowledge graphs, entity resolution, and parallel LLM subagents for real-time investigative Q&amp;A`,
+          `Engineered a cascaded <span class="ac">agentic decisioning pipeline</span> for Supervision — classical ML filters → tool-calling LLMs → human-in-the-loop active learning — cutting false-positive escalations <span class="b">45%</span>`,
+          `Distilled frontier-model reasoning into a <span class="ac">QLoRA</span>-tuned open-weight LLM that beat commercial compliance baselines on golden evals; <span class="b">+40%</span> AWS Nova F1 via structured function calling + DSPy/GEPA`,
+          `Designed a petabyte-scale <span class="ac">hybrid RAG</span> engine over millions of archived emails — dense embeddings + BM25 + cross-encoder re-ranker — <span class="b">94% top-5 recall</span>, <span class="b">−65%</span> query latency`,
+          `Fine-tuned Longformer in PyTorch for regulated long documents (<span class="b">90%+ F1</span>) with token-level Integrated Gradients for audit trails, plus a hybrid BERT PII Redaction API <span class="b">122× cheaper</span> than AWS Guardrails`,
         ],
-        tags: ["agents", "speech", "RAG", "vLLM", "Kubernetes", "AWS", "PyTorch"],
+        tags: ["multi-agent", "speech", "hybrid RAG", "vLLM", "QLoRA", "Kubernetes", "AWS", "PyTorch"],
       },
       {
         role: "Senior Data Scientist", where: "KPMG Lighthouse", loc: "Toronto, ON", when: "Jun 2023 — Jul 2025",
         items: [
-          `Migrated a global insurer from on-prem to <span class="ac">GCP</span>, adding agentic LLMs + RAG for context-aware database queries`,
+          `Migrated <span class="b">Prudential Financial</span> from on-prem to <span class="ac">GCP</span>, adding agentic LLMs + RAG for context-aware database queries`,
           `Generative SOC-report system with instruction-tuned local LLMs — <span class="b">92%+</span> retrieval accuracy`,
           `Nine production churn pipelines for Bell on Vertex AI, orchestrated with Cloud Composer, Pub/Sub, BigQuery`,
         ],
@@ -357,17 +514,17 @@
       {
         role: "Software Engineer", where: "Iranian National Robotics Team", loc: "Tehran", when: "Sep 2018 — Jan 2020",
         items: [`Imagery data pipeline + Faster R-CNN object recognition for robots`],
-        tags: ["CV", "ROS", "C++"],
+        tags: ["computer vision", "Faster R-CNN"],
       },
     ];
 
     const SYSTEMS = [
-      { k: "production · proofpoint", t: "voice-investigator", m: "< 1s", d: "Speech-to-speech compliance agent. Real-time context layer over messages, docs, entities, graphs, classifiers, and LLM subagents." },
-      { k: "production · proofpoint", t: "agentic-decisioning", m: "~15× cheaper", d: "LLM reasoning + classical models + tools + human feedback, routing high-precision supervision decisions." },
-      { k: "production · proofpoint", t: "automate-models", m: "20M+ msgs/day", d: "ML + LLM classification models I develop, deploy, and keep healthy across enterprise customers." },
-      { k: "production · proofpoint", t: "archive-rag", m: "94% recall@5", d: "Ask millions of archived emails in plain English. Semantic chunking, embeddings, LLM re-ranking. −65% search time." },
-      { k: "production · proofpoint", t: "llm-serving", m: "10× cheaper", d: "20+ open-weight models on Kubernetes with vLLM, KV caching, quantization, and CPU offload." },
-      { k: "production · proofpoint", t: "redaction-api", m: "122× cheaper", d: "Hybrid BERT + rules PII masking on Kubernetes vs. AWS Guardrail, at high precision." },
+      { k: "prod · proofpoint", t: "voice-investigator", m: "< 1s", d: "Speech-to-speech multi-agent system. Unified context layer over knowledge graphs, entity resolution, and parallel LLM subagents." },
+      { k: "prod · proofpoint", t: "automate-inference", m: "20M+ msgs/day", d: "20+ open-weight models on Kubernetes · vLLM · AWQ · prefix/KV caching · continuous batching. 10–15× cheaper than Bedrock." },
+      { k: "prod · proofpoint", t: "agentic-decisioning", m: "−45% false positives", d: "Cascade: classical ML filters → tool-calling LLMs → human-in-the-loop active learning." },
+      { k: "prod · proofpoint", t: "hybrid-rag", m: "94% recall@5", d: "Petabyte-scale search over millions of archived emails. Dense + BM25 + cross-encoder re-ranker. −65% query latency." },
+      { k: "prod · proofpoint", t: "distilled-compliance-llm", m: "beats commercial baselines", d: "Frontier-model reasoning distilled into a QLoRA-tuned open-weight LLM, measured on golden evals." },
+      { k: "prod · proofpoint", t: "redaction-api", m: "122× cheaper", d: "Hybrid BERT PII redaction vs. AWS Guardrails, alongside Longformer classification with Integrated Gradients." },
     ];
     const OSS = [
       { t: "Commonsense-Validation-and-Explanation", m: "SemEval 2020", d: "Task 4 — can a model tell sense from nonsense, and explain why?", u: "Commonsense-Validation-and-Explanation" },
@@ -379,14 +536,14 @@
     ];
 
     const SKILLS = [
-      ["LLM systems", 98, "agents · subagents · tool use · RAG · evals"],
-      ["Inference", 96, "vLLM · KV cache · batching · quantization"],
-      ["Python / PyTorch", 97, "HF Transformers · Unsloth · DSPy · LangChain"],
-      ["NLP / doc-intel", 95, "Longformer · BERT · classification · redaction"],
-      ["Speech agents", 88, "speech-to-speech · sub-second latency"],
+      ["LLM systems", 98, "multi-agent · LangGraph · tool use · hybrid RAG"],
+      ["Inference", 96, "vLLM · AWQ · prefix/KV cache · continuous batching"],
+      ["Fine-tuning", 95, "PyTorch · QLoRA · Unsloth · distillation · DSPy"],
+      ["NLP / doc-intel", 95, "Longformer · BERT · Integrated Gradients · PII"],
+      ["Speech agents", 90, "speech-to-speech · sub-second latency"],
       ["MLOps", 92, "Kubernetes · Docker · Airflow · CI/CD"],
       ["Cloud", 92, "AWS (Bedrock) · GCP (Vertex) · Azure"],
-      ["Classical ML", 90, "XGBoost · sklearn · time series"],
+      ["Classical ML", 90, "XGBoost · scikit-learn · spaCy"],
     ];
 
     const FILES = {
@@ -395,6 +552,7 @@
       "projects/": () => cmds.projects(),
       "skills.json": () => cmds.skills(),
       "research.bib": () => cmds.research(),
+      "selfie.jpg": () => cmds.selfie(),
       "resume.pdf": () => cmds.resume(),
       "contact.vcf": () => cmds.contact(),
       ".secrets": () => print(`<span class="err">permission denied:</span> nice try. try <span class="ac">sudo hire-me</span>`),
@@ -409,6 +567,7 @@
           ["skills", "what I'm dangerous at"],
           ["research", "publication + teaching"],
           ["neofetch", "system info, but it's me"],
+          ["selfie", "my face on an LED matrix, rendered live"],
           ["resume", "open the PDF"],
           ["contact", "email, LinkedIn, GitHub"],
           ["ls / cat", "poke around the filesystem"],
@@ -419,19 +578,18 @@
         print(`<span class="dim">psst — there are a few easter eggs.</span>`);
       },
       about() {
-        print(`<span class="b">Mohammad Karimi</span> <span class="dim">—</span> <span class="ac">Staff AI Engineer @ Proofpoint</span> <span class="dim">· Toronto</span>`);
+        print(`<span class="b">Mohammad Karimi</span> <span class="dim">(mmdpy) —</span> <span class="ac">Staff AI Engineer @ Proofpoint</span> <span class="dim">· Toronto</span>`);
         print(``);
         print(`I build AI systems that hold up in production: <span class="ac">agents</span> that reason and use tools,`);
         print(`a <span class="ac">speech agent</span> that answers in under a second, <span class="ac">RAG</span> over millions of messages,`);
         print(`and inference stacks that run <span class="b">10–122× cheaper</span> than managed cloud services.`);
-        print(``);
         print(`<div class="metrics">
           <div class="metric"><div class="n">20M+</div><div class="l">messages / day in prod</div></div>
           <div class="metric"><div class="n">&lt;1s</div><div class="l">speech-to-speech latency</div></div>
-          <div class="metric"><div class="n">122×</div><div class="l">cheaper than AWS Guardrail</div></div>
-          <div class="metric"><div class="n">94%</div><div class="l">top-5 recall, archive RAG</div></div>
+          <div class="metric"><div class="n">−45%</div><div class="l">false-positive escalations</div></div>
+          <div class="metric"><div class="n">20+</div><div class="l">open-weight models served</div></div>
         </div>`, "");
-        print(`<span class="dim">8+ years · M.Sc. CS (UAlberta) · published NLP researcher · ML instructor · GCP ML Engineer + Azure AI Engineer certified</span>`);
+        print(`<span class="dim">M.Sc. CS (UAlberta) · published NLP researcher · ML instructor · GCP ML Engineer + Azure AI Engineer certified</span>`);
       },
       whoami() { cmds.about(); },
       experience() {
@@ -445,10 +603,10 @@
         print(`<span class="ac">❯</span> <span class="b">production systems</span> <span class="dim">— built at work; descriptions only, code is proprietary</span>`);
         print(`<div class="proj">${SYSTEMS.map(p => `<div class="pc"><div class="k">${p.k}</div><div class="t">${p.t}</div><div class="m">${p.m}</div><div class="d">${p.d}</div></div>`).join("")}</div>`, "");
         print(`<span class="ac">❯</span> <span class="b">open source</span> <span class="dim">— github.com/mmdpy</span>`);
-        print(`<div class="proj">${OSS.map(p => `<a class="pc" style="border-bottom:1px solid var(--line);display:block;color:inherit" href="${LINKS.github}/${p.u}" target="_blank" rel="noopener"><div class="k">repo ↗</div><div class="t">${p.t}</div><div class="m">${p.m}</div><div class="d">${p.d}</div></a>`).join("")}</div>`, "");
+        print(`<div class="proj">${OSS.map(p => `<a class="pc" href="${LINKS.github}/${p.u}" target="_blank" rel="noopener"><div class="k">repo ↗</div><div class="t">${p.t}</div><div class="m">${p.m}</div><div class="d">${p.d}</div></a>`).join("")}</div>`, "");
       },
       skills() {
-        const bar = n => { const w = 28, f = Math.round(n / 100 * w); return "█".repeat(f) + `<span class="dim">${"░".repeat(w - f)}</span>`; };
+        const bar = n => { const w = 26, f = Math.round(n / 100 * w); return "█".repeat(f) + `<span class="dim">${"░".repeat(w - f)}</span>`; };
         print(`<div class="bars">${SKILLS.map(([k, n, d]) => `<span class="ac2">${k}</span><span><span class="bar-v">${bar(n)}</span> <span class="dim">${d}</span></span>`).join("")}</div>`, "");
       },
       research() {
@@ -457,33 +615,38 @@
         print(``);
         print(`<span class="b">Teaching</span>`);
         print(`ML Instructor, Alberta AI Association — advanced ML course (NLP + MLOps) for 15+ students.`);
-        print(`Guest speaker on ML for Action for Healthy Communities.`);
       },
-      neofetch() {
-        const logo = String.raw`      ▄▄▄▄▄▄▄
-    ▄█▀▀   ▀▀█▄
-   ██  ▄█ █▄  ██
-   ██  ██▀██  ██
-   ██  ▀▀ ▀▀  ██
-    ▀█▄▄   ▄▄█▀
-      ▀▀▀▀▀▀▀`;
-        const up = Math.floor((Date.now() - new Date("2018-09-01")) / (365.25 * 864e5));
+      async neofetch() {
+        const holder = print(`<span class="dim">rendering…</span>`, "");
+        const art = await portrait(44, 6);
         const info = [
-          [`<span class="ac b">mohammad</span><span class="dim">@</span><span class="ac2 b">toronto</span>`],
-          [`<span class="dim">─────────────────</span>`],
-          ["OS", "Human 1.0 (Toronto, ON)"],
+          [`<span class="ac b">mmdpy</span><span class="dim">@</span><span class="ac2 b">proofpoint</span>`],
+          [`<span class="dim">──────────────────</span>`],
+          ["Name", "Mohammad Karimi"],
+          ["OS", "Human 1.0 · Toronto, ON"],
           ["Host", "Proofpoint · Staff AI Engineer"],
-          ["Uptime", `${up}+ years shipping ML`],
+          ["Uptime", "Jul 2025 — present @ Proofpoint"],
           ["Kernel", "PyTorch · vLLM · Transformers"],
-          ["Shell", "agents + subagents + tools"],
+          ["Shell", "multi-agent · parallel subagents"],
           ["Throughput", "20M+ messages/day"],
           ["Latency", "< 1s speech-to-speech"],
           ["Cost", "10–122× under managed cloud"],
-          ["Memory", "RAG · 94% recall@5"],
-          ["Locale", "en_CA · fa_IR"],
+          ["Memory", "hybrid RAG · 94% recall@5"],
+          ["Certs", "GCP ML Engineer · Azure AI Engineer"],
         ];
-        const sw = ["#ff5f57", "#febc2e", "#28c840", "var(--accent)", "var(--accent-2)", "#c3a6ff", "#fff"].map(c => `<span class="swatch" style="background:${c}"></span>`).join("");
-        print(`<div class="neo"><pre>${logo}</pre><div>${info.map(r => r.length === 1 ? `<div>${r[0]}</div>` : `<div><span class="ac">${r[0]}</span>: ${r[1]}</div>`).join("")}<div style="margin-top:6px">${sw}</div></div></div>`, "");
+        const sw = ["#ff5f57", "#febc2e", "#28c840", "var(--accent)", "var(--accent-2)", "var(--hot)", "#c3a6ff", "#fff"].map(c => `<span class="swatch" style="background:${c}"></span>`).join("");
+        holder.innerHTML = `<div class="neo"><div class="art"></div><div>${info.map(r => r.length === 1 ? `<div>${r[0]}</div>` : `<div><span class="ac">${r[0]}</span>: ${r[1]}</div>`).join("")}<div style="margin-top:8px">${sw}</div></div></div>`;
+        holder.querySelector(".art").appendChild(art);
+        scroll();
+      },
+      async selfie() {
+        const holder = print(`<span class="dim">pointing webcam at a jpeg…</span>`, "");
+        const cell = innerWidth < 560 ? 4 : 6;
+        const cols = Math.max(48, Math.min(96, Math.floor((screen.clientWidth - 60) / cell)));
+        const art = await portrait(cols, cell);
+        holder.innerHTML = `<div class="portrait"></div><span class="dim">rendered client-side from </span><a href="${PHOTO}" target="_blank">selfie.jpg</a><span class="dim"> · ${cols}×${Math.round(cols * 620 / 540)} px matrix</span>`;
+        holder.querySelector(".portrait").appendChild(art);
+        scroll();
       },
       resume() {
         print(`opening <span class="ac">resume.pdf</span> in a new tab… <span class="dim">(if nothing happens: <a href="${RESUME}" target="_blank" rel="noopener">click here</a>)</span>`);
@@ -501,16 +664,17 @@
       github() { window.open(LINKS.github, "_blank", "noopener"); print(`→ <a href="${LINKS.github}" target="_blank">github.com/mmdpy</a>`); },
       linkedin() { window.open(LINKS.linkedin, "_blank", "noopener"); print(`→ <a href="${LINKS.linkedin}" target="_blank">LinkedIn</a>`); },
       ls(arg) {
-        if (arg && arg.startsWith("-a")) return print(Object.keys(FILES).map(f => f.endsWith("/") ? `<span class="ac2">${f}</span>` : f.startsWith(".") ? `<span class="dim">${f}</span>` : f).join("   "));
-        print(Object.keys(FILES).filter(f => !f.startsWith(".")).map(f => f.endsWith("/") ? `<span class="ac2">${f}</span>` : f).join("   "));
+        const show = Object.keys(FILES).filter(f => arg && arg.startsWith("-a") || !f.startsWith("."));
+        print(show.map(f => f.endsWith("/") ? `<span class="ac2">${f}</span>` : f.startsWith(".") ? `<span class="dim">${f}</span>` : f).join("   "));
       },
       cat(arg) {
         if (!arg) return print(`<span class="err">cat:</span> missing file. try <span class="ac">ls</span>`);
         const f = FILES[arg] || FILES[arg + "/"];
         f ? f() : print(`<span class="err">cat: ${esc(arg)}: No such file or directory</span>`);
       },
+      open(arg) { arg === "selfie.jpg" ? cmds.selfie() : arg === "resume.pdf" ? cmds.resume() : print(`<span class="dim">usage: open selfie.jpg | resume.pdf</span>`); },
       cd(arg) { arg && FILES[arg.replace(/\/?$/, "/")] ? cmds.projects() : print(`<span class="dim">you're already home.</span>`); },
-      pwd() { print("/home/mohammad"); },
+      pwd() { print("/home/mmdpy/portfolio"); },
       date() { print(new Date().toString()); },
       echo(...a) { print(esc(a.join(" "))); },
       history() { hist.forEach((h, i) => print(`<span class="dim">${String(i + 1).padStart(4)}</span>  ${esc(h)}`)); },
@@ -532,7 +696,7 @@
           }, reduced ? 0 : 700);
           return;
         }
-        print(`<span class="err">mohammad is not in the sudoers file.</span> this incident will be reported. <span class="dim">(try: sudo hire-me)</span>`);
+        print(`<span class="err">mmdpy is not in the sudoers file.</span> this incident will be reported. <span class="dim">(try: sudo hire-me)</span>`);
       },
       "hire-me"() { cmds.sudo("hire-me"); },
       matrix() { matrix(4000); print(`<span class="ac">wake up, neo…</span>`); },
@@ -543,14 +707,9 @@
       coffee() { print(`☕ brewing… throughput +12%`); },
       ping() { print(`PONG — latency <span class="ac">&lt; 1s</span>, as promised.`); },
     };
-    cmds.exp = cmds.experience;
-    cmds.work = cmds.experience;
-    cmds.proj = cmds.projects;
-    cmds.cv = cmds.resume;
-    cmds.man = cmds.help;
-    cmds["?"] = cmds.help;
+    Object.assign(cmds, { exp: cmds.experience, work: cmds.experience, proj: cmds.projects, cv: cmds.resume, man: cmds.help, "?": cmds.help, ascii: cmds.selfie });
 
-    const VISIBLE = ["help", "about", "experience", "projects", "skills", "research", "neofetch", "resume", "contact", "email", "github", "linkedin", "ls", "cat", "theme", "clear", "history", "sudo"];
+    const VISIBLE = ["help", "about", "experience", "projects", "skills", "research", "neofetch", "selfie", "resume", "contact", "email", "github", "linkedin", "ls", "cat", "open", "theme", "clear", "history", "sudo"];
 
     const hist = [];
     let hIdx = 0;
@@ -559,31 +718,32 @@
       const line = raw.trim();
       const head = echoCmd(line);
       if (!line) return;
-      requestAnimationFrame(() => {
+      hist.push(line); hIdx = hist.length;
+      if (window.gtag) gtag("event", "terminal_command", { command: line.split(/\s+/)[0] });
+      const [name, ...args] = line.split(/\s+/);
+      const fn = cmds[name.toLowerCase()];
+      const pin = () => requestAnimationFrame(() => {
         const top = head.getBoundingClientRect().top - screen.getBoundingClientRect().top + screen.scrollTop - 12;
         if (screen.scrollHeight - top > screen.clientHeight) screen.scrollTop = top;
       });
-      hist.push(line); hIdx = hist.length;
-      gtag && gtag("event", "terminal_command", { command: line.split(/\s+/)[0] });
-      const [name, ...args] = line.split(/\s+/);
-      const fn = cmds[name.toLowerCase()];
-      if (fn) fn(...args);
+      if (fn) Promise.resolve(fn(...args)).then(() => { print(""); pin(); });
       else {
         const guess = VISIBLE.find(c => c.startsWith(name.toLowerCase().slice(0, 2)));
         print(`<span class="err">zsh: command not found:</span> ${esc(name)}${guess ? ` <span class="dim">— did you mean</span> <span class="ac">${guess}</span><span class="dim">?</span>` : ""}`);
+        print("");
       }
-      print("");
+      pin();
     }
 
     input.addEventListener("keydown", e => {
-      if (e.key === "Enter") { run(input.value); input.value = ""; scroll(); }
+      if (e.key === "Enter") { run(input.value); input.value = ""; }
       else if (e.key === "ArrowUp") { e.preventDefault(); if (hIdx > 0) input.value = hist[--hIdx]; }
       else if (e.key === "ArrowDown") { e.preventDefault(); hIdx < hist.length - 1 ? input.value = hist[++hIdx] : (hIdx = hist.length, input.value = ""); }
       else if (e.key === "Tab") {
         e.preventDefault();
         const [first, ...rest] = input.value.split(" ");
-        if (rest.length && (first === "cat" || first === "theme")) {
-          const pool = first === "cat" ? Object.keys(FILES) : ["green", "amber", "ice", "mono"];
+        if (rest.length && ["cat", "open", "theme"].includes(first)) {
+          const pool = first === "theme" ? ["green", "amber", "ice", "mono"] : Object.keys(FILES);
           const m = pool.filter(f => f.startsWith(rest.join(" ")));
           if (m.length === 1) input.value = `${first} ${m[0]}`;
           else if (m.length) print(m.join("   "), "ln dim");
@@ -596,15 +756,33 @@
       else if (e.key === "l" && e.ctrlKey) { e.preventDefault(); cmds.clear(); }
     });
 
-    document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => { run(b.dataset.cmd); input.focus({ preventScroll: true }); }));
+    document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => { run(b.dataset.cmd); if (matchMedia("(pointer: fine)").matches) input.focus({ preventScroll: true }); }));
     screen.addEventListener("click", () => { if (!getSelection().toString()) input.focus({ preventScroll: true }); });
     document.addEventListener("keydown", e => {
-      if (document.activeElement !== input && !e.metaKey && !e.ctrlKey && e.key.length === 1 && !row.hidden) input.focus();
+      if (document.activeElement !== input && !e.metaKey && !e.ctrlKey && !e.altKey && e.key.length === 1 && !row.hidden) input.focus();
+    });
+    screen.addEventListener("pointermove", e => {
+      const card = e.target.closest(".pc");
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      card.style.setProperty("--my", `${e.clientY - r.top}px`);
     });
 
     const clock = document.getElementById("clock");
     const tick = () => clock.textContent = new Date().toLocaleTimeString("en-CA", { hour: "2-digit", minute: "2-digit", timeZone: "America/Toronto" }) + " ET";
     tick(); setInterval(tick, 30000);
+    document.getElementById("yr").textContent = new Date().getFullYear();
+
+    const rot = document.getElementById("rot");
+    const NOW = ["sub-second speech agents", "multi-agent context layers", "inference at 20M+ msgs/day", "petabyte-scale hybrid RAG"];
+    let ri = 0;
+    if (!reduced) setInterval(async () => {
+      ri = (ri + 1) % NOW.length;
+      const s = NOW[ri];
+      for (let i = rot.textContent.length; i >= 0; i--) { rot.textContent = rot.textContent.slice(0, i); await sleep(14); }
+      for (let i = 1; i <= s.length; i++) { rot.textContent = s.slice(0, i); await sleep(28); }
+    }, 4200);
 
     const saved = localStorage.getItem("theme");
     if (saved && saved !== "green") document.body.className = saved;
@@ -614,18 +792,18 @@
       const c = document.getElementById("matrix"), x = c.getContext("2d");
       c.width = innerWidth; c.height = innerHeight;
       const fs = 16, cols = Math.ceil(c.width / fs), drops = Array(cols).fill(0).map(() => Math.random() * -40);
-      const chars = "01アイウエオカキクケコサシスセソタチツテトAIMLLLMRAGvLLM";
+      const chars = "01アイウエオカキクケコサシスセソタチツテトAIMLLLMRAGvLLMmmdpy";
       const color = getComputedStyle(document.body).getPropertyValue("--accent").trim();
       c.classList.add("on");
-      let raf, start = performance.now();
+      const start = performance.now();
       (function draw(t) {
-        x.fillStyle = "rgba(7,9,12,.12)"; x.fillRect(0, 0, c.width, c.height);
+        x.fillStyle = "rgba(6,8,11,.12)"; x.fillRect(0, 0, c.width, c.height);
         x.fillStyle = color; x.font = `${fs}px JetBrains Mono, monospace`;
         drops.forEach((y, i) => {
           x.fillText(chars[Math.floor(Math.random() * chars.length)], i * fs, y * fs);
           drops[i] = y * fs > c.height && Math.random() > .975 ? 0 : y + 1;
         });
-        if (t - start < ms) raf = requestAnimationFrame(draw);
+        if (t - start < ms) requestAnimationFrame(draw);
         else { c.classList.remove("on"); setTimeout(() => x.clearRect(0, 0, c.width, c.height), 700); }
       })(start);
     }
@@ -633,21 +811,21 @@
     async function boot() {
       const steps = [
         ["loading kernel modules", "pytorch vllm transformers"],
-        ["mounting context layer", "messages · docs · entities · graphs"],
-        ["spawning subagents", "4/4 ready"],
-        ["warming KV cache", "hit-rate 0.97"],
+        ["mounting context layer", "knowledge graphs · entity resolution"],
+        ["spawning subagents", "parallel"],
+        ["warming prefix/KV cache", "AWQ · continuous batching"],
         ["checking latency budget", "&lt; 1s ✓"],
       ];
       for (const [a, b] of steps) {
         await type(`<span class="dim">[</span><span class="ac">  ok  </span><span class="dim">]</span> ${a} <span class="dim">… ${b}</span>`, 4);
-        await sleep(70);
+        await sleep(60);
       }
-      await sleep(150);
+      await sleep(120);
       print(BANNER, "ascii");
       await type(`<span class="b">Staff AI Engineer @ Proofpoint</span> <span class="dim">·</span> agentic systems <span class="dim">·</span> speech agents <span class="dim">·</span> RAG <span class="dim">·</span> production LLM inference`, 8);
-      print(`<span class="dim">type</span> <span class="ac">help</span> <span class="dim">or click a command above. try</span> <span class="ac">neofetch</span><span class="dim">.</span>`);
+      print(`<span class="dim">type</span> <span class="ac">help</span> <span class="dim">or click a command above. try</span> <span class="ac">neofetch</span> <span class="dim">or</span> <span class="ac">selfie</span><span class="dim">.</span>`);
       print("");
-      await sleep(250);
+      await sleep(200);
       echoCmd("about");
       cmds.about();
       print("");
