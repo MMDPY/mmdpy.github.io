@@ -38,16 +38,16 @@
       --hi: #f4f1e8;
       --dim: #7d796f;
       --rule: #2a2926;
-      --ink: #ff6a3d;
+      --ink: #8fd16a;
       --link: #d9d5ca;
-      --sel: #ff6a3d;
-      --bar: #d9d5ca;
+      --sel: #8fd16a;
+      --bar: var(--ink);
       --bar-fg: #0e0e0d;
       --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
     }
-    body.green { --ink: #8fd16a; --sel: #8fd16a; }
-    body.amber { --ink: #ffb000; --sel: #ffb000; --fg: #e8c88a; --hi: #ffe3a8; --dim: #8a7550; --link: #e8c88a; --bar: #ffb000; }
-    body.paper { --bg: #efebe1; --fg: #26241f; --hi: #000; --dim: #858073; --rule: #d3cdbf; --ink: #c2410c; --link: #26241f; --sel: #c2410c; --bar: #26241f; --bar-fg: #efebe1; }
+    body.orange { --ink: #ff6a3d; --sel: #ff6a3d; }
+    body.amber { --ink: #ffb000; --sel: #ffb000; --fg: #e8c88a; --hi: #ffe3a8; --dim: #8a7550; --link: #e8c88a; }
+    body.paper { --bg: #efebe1; --fg: #26241f; --hi: #000; --dim: #858073; --rule: #d3cdbf; --ink: #2f7d32; --link: #26241f; --sel: #2f7d32; --bar-fg: #efebe1; }
 
     * { box-sizing: border-box; }
     html, body { height: 100%; }
@@ -435,7 +435,7 @@
           ["recall@5", "94%"],
           ["certs", "GCP ML Eng, Azure AI Eng"],
         ];
-        const pal = ["#3a3935", "#ff6a3d", "#8fd16a", "#ffb000", "#6aa9ff", "#c792ea", "#5fd7d7", "#d9d5ca"];
+        const pal = ["#3a3935", "#8fd16a", "#ff6a3d", "#ffb000", "#6aa9ff", "#c792ea", "#5fd7d7", "#d9d5ca"];
         hold.innerHTML = `<div class="neo">${art}<div>${info.map(([k, v]) => k ? `<div><span class="ink">${k}</span>: ${v}</div>` : `<div>${v}</div>`).join("")}<div class="blocks" style="margin-top:.8em">${pal.map(c => `<span style="background:${c}"></span>`).join("")}</div></div></div>`;
         scroll();
       },
@@ -451,7 +451,7 @@
           ["man mmdpy", "the overview"], ["work", "where I've worked"], ["systems", "what I built at Proofpoint"],
           ["oss", "public repos"], ["skills", "the stack"], ["paper", "publication + teaching"],
           ["contact", "how to reach me"], ["resume", "the pdf"], ["neofetch", "you know"], ["selfie", "1-bit portrait"],
-          ["ls, cat", "poke around"], ["theme", "default | green | amber | paper"], ["clear", "ctrl+l works too"],
+          ["ls, cat", "poke around"], ["theme", "default | orange | amber | paper"], ["clear", "ctrl+l works too"],
         ];
         print(`<div class="kv" style="grid-template-columns:14ch 1fr">${rows.map(([a, b]) => `<span>${cmdLink(a.split(",")[0].split(" ")[0] === "man" ? "man mmdpy" : a.split(",")[0], a)}</span><span class="dim">${b}</span>`).join("")}</div>`, "");
       },
@@ -471,7 +471,7 @@
       echo(...a) { print(esc(a.join(" "))); },
       history() { hist.forEach((h, i) => print(`<span class="dim">${String(i + 1).padStart(5)}</span>  ${esc(h)}`)); },
       theme(arg) {
-        const t = ["default", "green", "amber", "paper"];
+        const t = ["default", "orange", "amber", "paper"];
         if (!t.includes(arg)) return print(`usage: theme ${t.join(" | ")}`);
         document.body.className = arg === "default" ? "" : arg;
         localStorage.setItem("theme", arg);
@@ -539,7 +539,7 @@
         e.preventDefault();
         const [first, ...rest] = input.value.split(" ");
         if (rest.length && ["cat", "open", "theme"].includes(first)) {
-          const pool = first === "theme" ? ["default", "green", "amber", "paper"] : Object.keys(FILES);
+          const pool = first === "theme" ? ["default", "orange", "amber", "paper"] : Object.keys(FILES);
           const m = pool.filter(f => f.startsWith(rest.join(" ")));
           if (m.length === 1) input.value = `${first} ${m[0]}`;
           else if (m.length) print(m.join("  "), "ln dim");
