@@ -1,6 +1,5 @@
-<!-- <!DOCTYPE html> -->
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-W8Z9M5G3TY"></script>
@@ -8,825 +7,656 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-W8Z9M5G3TY');
   </script>
 
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width initial-scale=1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mohammad Karimi — Staff AI Engineer</title>
+  <meta name="description" content="Mohammad Karimi, Staff AI Engineer at Proofpoint. Agentic systems, speech agents, RAG, and cost-efficient LLM inference in production at 20M+ messages per day." />
+  <meta name="theme-color" content="#07090c" />
 
-  <!-- Materialize - Compiled and minified CSS-->
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css" />
-  <!-- Font Awesome Icon - CSS-->
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
-  <!-- Custom Styles-->
-  <link rel="stylesheet" href="/assets/css/style.css" />
-  <title>Mohammad Karimi | Senior AI Engineer</title>
-
-  <!-- Open Graph-->
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Mohammad Karimi | Senior AI Engineer" />
-  <meta property="og:description" content="Senior AI Engineer • LLM Systems • Applied ML" />
+  <meta property="og:title" content="Mohammad Karimi — Staff AI Engineer" />
+  <meta property="og:description" content="Agentic systems · Speech agents · RAG · Production LLM inference" />
   <meta property="og:url" content="https://mmdpy.github.io/" />
-  <meta property="og:site_name" content="Mohammad Karimi | Senior AI Engineer | LLM Systems" />
-  <meta property="article:publisher" content="https://mmdpy.github.io/" />
+  <meta property="og:site_name" content="Mohammad Karimi" />
   <meta property="og:image" content="https://mmdpy.github.io/examples/preview.png" />
-  <!-- Google Site Verification for indexing  -->
- <meta name="google-site-verification" content="_qxK8tePiU2fhnwlwnJ7pkDFnj1k2EiKq_cYGy1Cb84" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="google-site-verification" content="_qxK8tePiU2fhnwlwnJ7pkDFnj1k2EiKq_cYGy1Cb84" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #07090c;
+      --panel: #0c1016;
+      --line: #1a212b;
+      --fg: #c9d1d9;
+      --dim: #6b7684;
+      --accent: #3ddc97;
+      --accent-2: #5fb3ff;
+      --warn: #ffb454;
+      --err: #ff6b6b;
+      --glow: rgba(61, 220, 151, .35);
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    body.amber { --accent: #ffb000; --accent-2: #ffd37a; --glow: rgba(255,176,0,.35); }
+    body.ice   { --accent: #7cc7ff; --accent-2: #c3a6ff; --glow: rgba(124,199,255,.35); }
+    body.mono  { --accent: #e6e6e6; --accent-2: #a0a0a0; --glow: rgba(255,255,255,.18); }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(1200px 600px at 80% -10%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 60%),
+        radial-gradient(900px 500px at -10% 110%, color-mix(in srgb, var(--accent-2) 8%, transparent), transparent 60%),
+        var(--bg);
+      color: var(--fg);
+      font: 14.5px/1.6 var(--mono);
+      -webkit-font-smoothing: antialiased;
+      overflow: hidden;
+    }
+    ::selection { background: var(--accent); color: var(--bg); }
+    a { color: var(--accent-2); text-decoration: none; border-bottom: 1px dashed color-mix(in srgb, var(--accent-2) 50%, transparent); }
+    a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+    #grid {
+      position: fixed; inset: 0; pointer-events: none; opacity: .5;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at center, #000 20%, transparent 75%);
+    }
+    #scan {
+      position: fixed; inset: 0; pointer-events: none; z-index: 50;
+      background: repeating-linear-gradient(0deg, rgba(255,255,255,.018) 0 1px, transparent 1px 3px);
+    }
+
+    .wrap { height: 100%; display: flex; align-items: center; justify-content: center; padding: 28px; }
+    .term {
+      width: min(1100px, 100%);
+      height: min(820px, 100%);
+      display: flex; flex-direction: column;
+      background: color-mix(in srgb, var(--panel) 92%, transparent);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.4), 0 30px 80px rgba(0,0,0,.6), 0 0 60px -20px var(--glow);
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+    }
+    .bar {
+      display: flex; align-items: center; gap: 14px;
+      padding: 10px 14px; border-bottom: 1px solid var(--line);
+      background: linear-gradient(#10151c, #0c1016);
+      user-select: none;
+    }
+    .dots { display: flex; gap: 8px; }
+    .dots i { width: 12px; height: 12px; border-radius: 50%; display: block; }
+    .dots i:nth-child(1) { background: #ff5f57; }
+    .dots i:nth-child(2) { background: #febc2e; }
+    .dots i:nth-child(3) { background: #28c840; }
+    .title { flex: 1; text-align: center; color: var(--dim); font-size: 12.5px; }
+    .status { color: var(--dim); font-size: 12px; display: flex; gap: 10px; align-items: center; }
+    .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); animation: pulse 2s infinite; }
+    @keyframes pulse { 50% { opacity: .35; } }
+
+    .chips {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      padding: 8px 14px; border-bottom: 1px solid var(--line);
+      background: #0a0d12;
+    }
+    .chip {
+      font: 12px var(--mono); color: var(--dim);
+      background: transparent; border: 1px solid var(--line); border-radius: 6px;
+      padding: 3px 9px; cursor: pointer; transition: .15s;
+    }
+    .chip:hover, .chip:focus-visible { color: var(--bg); background: var(--accent); border-color: var(--accent); outline: none; }
+
+    #screen {
+      flex: 1; overflow-y: auto; padding: 18px 22px 10px;
+      scroll-behavior: smooth;
+      scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+    }
+    #screen:focus { outline: none; }
+    .ln { white-space: pre-wrap; word-break: break-word; min-height: 1.6em; }
+    .dim { color: var(--dim); }
+    .ac { color: var(--accent); }
+    .ac2 { color: var(--accent-2); }
+    .warn { color: var(--warn); }
+    .err { color: var(--err); }
+    .b { font-weight: 700; color: #fff; }
+    .glow { text-shadow: 0 0 12px var(--glow); }
+
+    .ascii {
+      color: var(--accent); text-shadow: 0 0 14px var(--glow);
+      font-size: clamp(6px, 1.25vw, 13px); line-height: 1.15; white-space: pre; overflow: hidden;
+      margin: 4px 0 10px;
+    }
+
+    .prompt-line { display: flex; align-items: baseline; gap: 0; }
+    .ps1 { white-space: nowrap; }
+    .ps1 .u { color: var(--accent); }
+    .ps1 .h { color: var(--accent-2); }
+    .ps1 .p { color: var(--warn); }
+    #input-row { display: flex; align-items: baseline; }
+    #cmd {
+      flex: 1; background: transparent; border: 0; outline: 0; color: #fff;
+      font: inherit; caret-color: var(--accent); padding: 0 0 0 .6ch; min-width: 0;
+    }
+    .ghost { color: var(--dim); opacity: .6; pointer-events: none; }
+
+    .kv { display: grid; grid-template-columns: 16ch 1fr; gap: 0 2ch; }
+    .kv > :nth-child(odd) { color: var(--accent); }
+
+    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin: 10px 0 6px; }
+    .metric { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: rgba(255,255,255,.015); }
+    .metric .n { font-size: 22px; font-weight: 700; color: var(--accent); text-shadow: 0 0 14px var(--glow); line-height: 1.2; }
+    .metric .l { color: var(--dim); font-size: 12px; }
+
+    .card { border-left: 2px solid var(--accent); padding: 2px 0 2px 14px; margin: 10px 0 14px; }
+    .card .hd { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; }
+    .card .role { color: #fff; font-weight: 700; }
+    .card .where { color: var(--accent-2); }
+    .card .when { color: var(--dim); }
+    .card ul { margin: 6px 0 0; padding: 0; list-style: none; }
+    .card li { padding-left: 2.2ch; text-indent: -2.2ch; }
+    .card li::before { content: "› "; color: var(--accent); }
+    .tag { display: inline-block; font-size: 11.5px; color: var(--dim); border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; margin: 4px 4px 0 0; }
+
+    .proj { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; margin: 8px 0 12px; }
+    .pc {
+      border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), transparent);
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .pc:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 10px 30px -15px var(--glow); }
+    .pc .t { color: #fff; font-weight: 700; }
+    .pc .k { color: var(--accent); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; }
+    .pc .m { color: var(--accent); font-weight: 700; }
+    .pc .d { color: var(--fg); opacity: .9; margin-top: 4px; }
+
+    .bars { display: grid; grid-template-columns: 22ch 1fr; gap: 2px 2ch; }
+    .bars .bar-v { color: var(--accent); letter-spacing: -1px; }
+
+    .neo { display: grid; grid-template-columns: auto 1fr; gap: 0 4ch; align-items: start; }
+    .neo pre { margin: 0; color: var(--accent); text-shadow: 0 0 12px var(--glow); line-height: 1.2; }
+    .swatch { display: inline-block; width: 2.2ch; height: 1em; vertical-align: middle; }
+
+    .cursor { display: inline-block; width: .6ch; background: var(--accent); animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    footer.mini { padding: 6px 14px; border-top: 1px solid var(--line); color: var(--dim); font-size: 11.5px; display: flex; justify-content: space-between; gap: 10px; background: #0a0d12; }
+    footer.mini span:last-child { text-align: right; }
+
+    #matrix { position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: 0; transition: opacity .6s; }
+    #matrix.on { opacity: .55; }
+
+    @media (max-width: 640px) {
+      body { font-size: 13px; }
+      .wrap { padding: 0; }
+      .term { height: 100%; border-radius: 0; border: 0; }
+      .status .hide-sm, .title { display: none; }
+      .kv { grid-template-columns: 12ch 1fr; }
+      .bars { grid-template-columns: 14ch 1fr; }
+      .neo { grid-template-columns: 1fr; }
+      .neo pre { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    noscript .static { padding: 24px; max-width: 860px; margin: auto; overflow: auto; height: 100%; }
+  </style>
 </head>
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-W8Z9M5G3TY"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  
-  <!-- Navigation Menu-->
-  <!-- Nav class 1 -->
-  <nav class="hide-on-small-only">
-    <ul class="side-nav fixed section table-of-contents">
+  <div id="grid"></div>
+  <div id="scan"></div>
+  <canvas id="matrix"></canvas>
 
-      <li class="logo">
-        <a id="logo-container" aria-label="Navigate to the beginning of the page" href="#intro"
-          class="brand-logo grey-blue-text">
-          <img src="/assets/img/profile.jpeg" class="circle img-responsive profile-pic" alt="avatar">
-        </a>
-      </li>
-
-      <li class="bold">
-        <a aria-label="Navigate to the About section" href="#about" class="waves-effect waves-dark teal-text"><i
-            class="mdi-social-person small"></i><span>About</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Navigate to the Experience section" href="#experience"
-          class="waves-effect waves-dark teal-text"><i
-            class="mdi-action-trending-up small"></i><span>Experience</span></a>
-      </li>
-
-      <!-- <li class="bold"> -->
-        <!-- mdi-av-web small
-             mdi-av-my-library-books small-->
-        <!-- <a aria-label="Navigate to the Projects section" href="#projects" class="waves-effect waves-dark teal-text"><i
-            class="mdi-av-my-library-books small"></i><span>Projects</span></a>
-      </li> -->
-
-      <li class="bold">
-        <!--
-        ICONS:
-        mdi-action-assessment
-        mdi-social-poll
-        mdi-av-equalizer
-        -->
-        <a aria-label="Navigate to the Skills section" href="#skills" class="waves-effect waves-dark teal-text"><i
-            class="mdi-action-assessment small"></i><span>Skills</span></a>
-      </li>
-      
-      <li class="bold">
-        <!--
-        ICONS:
-        -->
-        <a aria-label="Navigate to the Education section" href="#education" class="waves-effect waves-dark teal-text"><i
-            class="mdi-social-school small"></i><span>Education</span></a>
-      </li>
-
-      <li class="bold">
-        <!-- 
-        1. mdi-communication-contacts
-        2. mdi-content-mail
-        3. mdi-communication-email
-        -->
-        <a aria-label="Navigate to the Contact section" href="#contact" class="waves-effect waves-dark teal-text"><i
-            class="mdi-content-mail small"></i><span>Contact</span></a>
-      </li>
-
-      <li class="bold">
-        <!--
-        ICONS:
-        1. mdi-action-description
-        2. mdi-file-folder
-        3. mdi-file-folder-open
-        4. mdi-file-attachment
-        5. mdi-file-folder-shared
-        -->
-        <a aria-label="Open Mohammad's resume in a new tab" href="/assets/resume/MohammadKarimi_Resume.pdf" target="_blank"
-        class="waves-effect waves-dark teal-text"><i class="mdi-file-folder-open small"></i><span>Resume</span></a>  
-      </li>
-
-    </ul>
-  </nav>
-
-  <!-- Nav class 2 -->
-  <nav class="hide-on-large only trigger z-depth-1">
-    <a aria-label="Toggle visibility of the mobile navbar" href="#" data-activates="slide-out"
-      class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-    <div class="name-title">
-      <a id="name" aria-label="Navigate to the beginning of the page" href="#" class="teal-text">Mohammad Karimi</a><span class="black-text">Senior AI Engineer</span>
+  <div class="wrap">
+    <div class="term" role="application" aria-label="Interactive terminal portfolio of Mohammad Karimi">
+      <div class="bar">
+        <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="title">mohammad@toronto: ~ — zsh — 120×40</div>
+        <div class="status"><span class="pulse" aria-hidden="true"></span><span>online</span><span class="hide-sm" id="clock"></span></div>
+      </div>
+      <nav class="chips" aria-label="Quick commands">
+        <button class="chip" data-cmd="about">about</button>
+        <button class="chip" data-cmd="experience">experience</button>
+        <button class="chip" data-cmd="projects">projects</button>
+        <button class="chip" data-cmd="skills">skills</button>
+        <button class="chip" data-cmd="research">research</button>
+        <button class="chip" data-cmd="neofetch">neofetch</button>
+        <button class="chip" data-cmd="resume">resume</button>
+        <button class="chip" data-cmd="contact">contact</button>
+        <button class="chip" data-cmd="help">help</button>
+      </nav>
+      <div id="screen" tabindex="0" aria-live="polite">
+        <div id="out"></div>
+        <div id="input-row" class="prompt-line" hidden>
+          <span class="ps1"><span class="u">mohammad</span><span class="dim">@</span><span class="h">toronto</span> <span class="p">~</span> <span class="ac">❯</span></span>
+          <input id="cmd" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Type a command, or type help" />
+        </div>
+      </div>
+      <footer class="mini">
+        <span>tab ⇥ autocomplete · ↑↓ history · ctrl+l clear</span>
+        <span>type <span class="ac">help</span> to begin</span>
+      </footer>
     </div>
-  </nav>
+  </div>
 
-  <!-- Nav class 3 -->
-  <nav class="hide-on-large only">
-    <ul id="slide-out" class="side-nav">
-      <li class="bold">
-        <a aria-label="Navigate to the About section" href="#about" class="waves-effect waves-dark teal-text"><i
-            class="mdi-social-person small"></i><span>About</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Navigate to the Experience section" href="#experience"
-          class="waves-effect waves-dark teal-text"><i
-            class="mdi-action-trending-up small"></i><span>Experience</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Navigate to the Projects section" href="#projects" class="waves-effect waves-dark teal-text"><i
-            class="mdi-av-my-library-books small"></i><span>Projects</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Navigate to the Skills section" href="#skills" class="waves-effect waves-dark teal-text"><i
-            class="mdi-action-assessment small"></i><span>Skills</span></a>
-      </li>
+  <noscript>
+    <div class="static">
+      <h1>Mohammad Karimi — Staff AI Engineer, Proofpoint (Toronto)</h1>
+      <p>I architect and ship agentic systems, speech agents, RAG, and cost-efficient LLM inference in production — 20M+ messages per day.</p>
+      <h2>Experience</h2>
+      <p><b>Staff AI Engineer, Proofpoint</b> (Jul 2025 – present): Proofpoint Automate ML/LLM models at 20M+ messages/day; sub-second speech-to-speech agent for Compliance Investigator; agentic decisioning layer (~15× cheaper than AWS Bedrock); RAG archive search (94% top-5 recall, −65% search time); 20+ open-weight models on vLLM (10× cheaper); Redaction API (122× cheaper than AWS Guardrail).</p>
+      <p><b>Senior Data Scientist, KPMG Lighthouse</b> (Jun 2023 – Jul 2025) · <b>Associate ML Developer, AltaML</b> (Sep 2022 – May 2023) · <b>Data Scientist &amp; NLP Researcher, University of Alberta</b> (Jan 2021 – Aug 2022) · <b>Software Engineer, Iranian National Robotics Team</b> (Sep 2018 – Jan 2020)</p>
+      <p>Email <a href="mailto:mmdkarimi96@gmail.com">mmdkarimi96@gmail.com</a> · <a href="https://www.linkedin.com/in/mohammad-karimi-abdolmaleki/">LinkedIn</a> · <a href="https://github.com/mmdpy">GitHub</a> · <a href="/assets/resume/MohammadKarimi_Resume.pdf">Resume (PDF)</a></p>
+    </div>
+  </noscript>
 
-      <li class="bold">
-        <a aria-label="Navigate to the Education section" href="#education" class="waves-effect waves-dark teal-text"><i
-            class="mdi-social-school small"></i><span>Education</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Navigate to the Contact section" href="#contact" class="waves-effect waves-dark teal-text"><i
-            class="mdi-content-mail small"></i><span>Contact</span></a>
-      </li>
-      <li class="bold">
-        <a aria-label="Open Mohammad's Resume in a new tab"
-          href="/assets/resume/MohammadKarimi_Resume.pdf" target="_blank"
-          class="waves-effect waves-dark teal-text"><i class="mdi-file-folder-open small"></i><span>Resume</span></a>
-      </li>
-    </ul>
-  </nav>
-
-  <!-- Main Content-->
-  <main>
-    <!-- First Section: Heading lines and image -->
-    <section id="intro" class="section scrollspy full-height">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="col-md-9">
-          <div class="content section-padding valign" style="margin-left: 10%; margin-top: 50px;">
-            <div class="caption">
-              <h2>Hi, I'm <span class="teal" style="background-color: #b1ddff !important;">Mohammad Karimi.</span></h2>
-              <h4 style="color:#000">A(n) <span class="typing" style="font-weight: 300; color:#06574f"></span></h4>
-              <!-- <h5 style="color:#00796b">A <span class="typing" style="font-weight: 300; color:#fff"></span></h5> -->
-              <h5>Senior AI Engineer focused on reliable, high-performance LLM systems and applied machine learning that moves real products.</h5>
-            </div>
-            <div class="social">
-              <a href="http://linkedin.com/in/mohammad-karimi-abdolmaleki" target="_blank">
-                <button class="icon-btn linkedin">
-                  <i class="fa fa-linkedin"></i>
-                </button>
-              </a>
-              <a href="https://github.com/mmdpy/" target="_blank">
-                <button class="icon-btn github">
-                  <i class="fa fa-github"></i>
-                </button>
-              </a>
-                  </span>
-              </a> -->
-            </div>
-            <br>
-            <div class='buttons'>
-              <a href="#about" class="readme">Read More</a>
-              <a href="#contact" class="readme">Contact Me</a>
-              <a aria-label="Open Mohammad's resume in a new tab" href="/assets/resume/MohammadKarimi_Resume.pdf" target="_blank" class="readme">Resume</a> 
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Second Section: About -->
-    <section id="about" class="section scrollspy">
-      <h3 class="page-title white-text teal">About</h3>
-      <div class="container flow-text">
-        <!-- <blockquote>
-          <h2>
-            A Data Scientist with a passion for Backend Development and Artificial Intelligence.
-
-          </h2>
-        </blockquote> -->        
-        <p>
-          I’m a Senior AI Engineer at Proofpoint with 8+ years of experience building end-to-end ML systems — from model development to production deployment. I focus on modern NLP/LLM systems (high-throughput inference, cost/performance optimization, and evaluation) and enjoy solving hard problems with pragmatic engineering.
-          
-          
-          
-                  </p>
-        <p>
-          <ul>
-            <li><b>Languages:</b> Python, SQL, C++, JavaScript, MATLAB, PHP, HTML/CSS</li>
-            <li><b>NLP:</b> NLTK, Spacy, Gensim, Hugging Face, Stanza</li>
-            <li><b>Databases:</b> MySQL, Microsoft SQL Server, SQLite, PostgreSQL, Pandas</li>
-            <li><b>Libraries:</b> Tensorflow, Pytorch, Keras, Sklearn, Trax, OpenCV, YOLO, Numpy</li>
-            <li><b>Tools:</b> Azure ML Studio, Linux, Bash, Git, Docker, Google Earth Engine, Google Street View, ROS</li>
-            <li><b>Soft Skills:</b> Teamwork, Leadership, Communication, Work Ethic, Time Management, Creativity</li>
-          </ul>
-          
-        </p>
-          
-        <!-- <p>
-          
-          Detail-oriented Data Scientist with professional experience in Backend Development, Machine Learning, Computer Vision. I am adept in Python, Django, Flask, SQL, Machine Learning, Computer Vision.           
-        </p> -->
-        <p>
-          I am seeking a challenging position that will enable me to combine my skills in Data Science and ML Development, while fostering professional growth, engaging experiences, and personal development.
-        </p>
-        <!-- <p>
-          Another Paragraph
-        </p>  -->
-        <!-- <p>
-        <strong>Current Focus</strong>:&nbsp;<a aria-label="Navigate to the Inclusive Design Patterns homepage"
-          href="https://www.smashingmagazine.com/inclusive-design-patterns/">Accessibility</a>&nbsp;//&nbsp;<a
-          aria-label="Navigate to the Full Stack React homepage"
-          href="https://www.fullstackreact.com/">React</a>&nbsp;//&nbsp;<a
-          aria-label='Navigate to the article "Scalable CSS"'
-          href="https://mrmrs.github.io/writing/2016/03/24/scalable-css/">Design Systems</a>
-        </p> -->
-      </div>
-    </section>
-
-
-    <!-- Third Section: Experience -->
-    <section id="experience" class="section scrollspy">
-      <h3 class="page-title white-text teal">Experience</h3>
-      <div class="container">
-
-        <!-- Latest Experience -->
-
-        <div class="card">
-          <div class="card-content">
-            <div class="row">
-              <div class="col s12 m2">
-                <a href="https://www.proofpoint.com/" target="_blank"><img alt="Proofpoint logo"
-                    src="/assets/img/proofpoint-logo.svg" class="responsive-img center-block" /></a>
-              </div>
-              <div class="col s12 m10">
-                <p>
-                  <span class="card-title"><a href="https://www.proofpoint.com/" target="_blank"
-                      class="teal-text hoverline">Proofpoint</a></span>
-                </p>
-              </div>
-            </div>
-            <div class="role brown-text text-darken-2">Senior AI Engineer</div>
-            <ul>
-              <li>
-                Architected and deployed a high-performance <b>Redaction API</b> on <b>Kubernetes</b> using a hybrid of <b>BERT</b> transformers and rule-based patterns, delivering a <b>122×</b> cost reduction vs. AWS Guardrails while maintaining high precision
-              </li>
-              <li>
-                Deployed <b>20+</b> open-weight models on Kubernetes using <b>vLLM</b> for classification and reasoning; enabled <b>KV caching</b> and <b>CPU offloading</b> to achieve <b>10×</b> lower inference costs than AWS Bedrock
-              </li>
-              <li>
-                Optimized <b>AWS Nova</b> models on Bedrock for classification by integrating <b>tool use (function calling)</b> and <b>GEPA</b>, improving overall dataset <b>F1</b> by <b>+40%</b>
-              </li>
-              <li>
-                Developed and fine-tuned <b>Longformer</b> architectures for document classification, achieving <b>90%+</b> F1 and enabling <b>Integrated Gradients</b> for model explainability
-              </li>
-              <li>
-                Engineered lightweight classification pipelines using <b>SentenceBERT</b>, <b>Model2Vec</b>, and <b>MLP</b> classifiers, achieving an <b>82%</b> F1-score on the holdout set for resource-constrained environments
-              </li>
-              <li>
-                <b>Tools:</b> Kubernetes, AWS, Bedrock, vLLM, Transformers, BERT, Longformer, SentenceBERT, Python
-              </li>
-            </ul>
-          </div>
-          <div class="card-action">
-            <span>Jul. 2025 - Present | Toronto, ON, Canada</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-content">
-            <div class="row">
-              <div class="col s12 m2">
-                <a href="https://kpmg.com/ca/en/home.html" target="_blank"><img alt="KPMG logo"
-                    src="/assets/img/kpmg-logo.svg" class="responsive-img center-block" /></a>
-              </div>
-              <!-- <div class="col s12 m10"> -->
-              <div class="col s12 m10">
-                <p>
-                  <span class="card-title"><a href="https://kpmg.com/ca/en/home.html" target="_blank"
-                      class="teal-text hoverline">KPMG Lighthouse</a></span>
-                </p>
-              </div>
-            </div>
-            <div class="role brown-text text-darken-2">Senior Data Scientist</div>
-            <ul>
-              <li>
-                Developed an AI-driven SOC report generator using NLP, Transformers, and local LLMs with instruction fine-tuning and inference acceleration, achieving <b>92%+</b> accuracy in information retrieval on GCP</li>
-              <li>
-                Built and orchestrated <b>9</b> data science pipelines for Bell on <b>Vertex AI</b> (GCP), spanning data ingestion to model deployment using Cloud Composer, Pub/Sub, BigQuery, and more</li>
-              <li>
-                Designed an end-to-end ML pipeline in Python as an accelerator for KPMG Lighthouse on GCP</li>
-              <li>
-                <b>Tools:</b> Python, GCP, Vertex AI, BigQuery, Pub/Sub, Cloud Composer, Hugging Face, Transformers, Git
-              </li>
-            </ul>
-          </div>
-          <div class="card-action">
-            <span>Jun. 2023 - Jul. 2025 | Toronto, ON, Canada</span>
-          </div>
-        </div>
-
-
-        <div class="card">
-          <div class="card-content">
-            <div class="row">
-              <div class="col s12 m2">
-                <a href="https://altaml.com/" target="_blank"><img alt="AltaML logo"
-                    src="/assets/img/altaml-logo.png" class="responsive-img center-block" /></a>
-              </div>
-              <!-- <div class="col s12 m10"> -->
-              <div class="col s12 m10">
-                <p>
-                  <span class="card-title"><a href="https://altaml.com/" target="_blank"
-                      class="teal-text hoverline">Alta<b>ML</b></a></span>
-                </p>
-              </div>
-            </div>
-            <div class="role brown-text text-darken-2">Associate Machine Learning Developer</div>
-            <ul>
-              <li>
-                Developed and deployed a bias and hate speech classifier using OpenAI <b>GPT-3.5 Turbo</b> on <b>Azure</b> to classify hate speech and multiple bias categories from social media posts
-              </li>
-              <li>
-                Implemented and deployed a quick, scalable ML pipeline on Azure for the Government of Alberta to predict over <b>2.6B</b> geospatial satellite imagery data points with <b>88%+</b> accuracy (cross-validation)
-              </li>
-              <li>
-                <b>Tools:</b> Python, Azure, Azure ML Studio, Scikit-learn, Git
-              </li>
-            </ul>
-          </div>
-          <div class="card-action">
-            <span>Sep. 2022 - May 2023 | Edmonton, AB, Canada</span>
-          </div>
-        </div>
-
-        
-        <div class="card">
-          <div class="card-content">
-            <div class="row">
-              <div class="col s12 m2">
-                <a href="https://www.ualberta.ca/computing-science/index.html" target="_blank"><img alt="UoA logo"
-                    src="/assets/img/uoa-logo.png" class="responsive-img center-block" /></a>
-              </div>
-              <!-- <div class="col s12 m10"> -->
-                <div class="col s12 m10">
-                  <p>
-                    <span class="card-title"><a href="https://www.ualberta.ca/computing-science/graduate-studies/index.html" target="_blank"
-                        class="teal-text hoverline">Computer Science Dept.</a></span>
-                  </p>
-                </div>
-              </div>
-            <div class="role brown-text text-darken-2">Data Scientist and NLP Researcher</div>
-            <ul>
-              <li>
-                Developed and fine-tuned language models (n-grams and recurrent neural networks) to identify grammatically incorrect writing from big data resources with an accuracy of <b>97%+</b>
-              </li>
-              <li>
-                Built a data + ML pipeline to predict Airbnb listing prices using <b>XGBoost</b> with a negligible error rate
-              </li>
-              <li>
-                <b>Tools:</b> Python, NLP, XGBoost, Tensorflow, Keras
-              </li>
-            </ul>
-          </div>
-          
-          <div class="card-action">
-            <span>Jan. 2021 - Aug. 2022 | Edmonton, AB, Canada</span>
-          </div>
-        </div>
-
-        <!-- Experience 2 -->
-        <div class="card">
-          <div class="card-content">
-            <div class="row">
-              <div class="col s12 m2">
-                <img alt="Robotics logo" src="/assets/img/ros.png" class="responsive-img center-block" />
-
-              </div>
-
-              <!-- <div class="col s12 m10"> -->
-              <div class="col s12 m10">
-                <p>
-                  <span class="card-title"><a href="https://wrs.nedo.go.jp/en/wrs2018/" class="teal-text hoverline">Iranian National Robotics Team</a></span>
-                </p>
-              </div>
-            </div>
-            <div class="role brown-text text-darken-2">Software Engineer</div>
-            <ul>
-              <li>
-                Implemented a data acquisition pipeline to collect imagery datasets and trained <b>Faster R-CNN</b> for object recognition
-              </li>
-              <li>
-                <b>Tools:</b> Python, C++, ROS, Faster R-CNN, Linux, Bash
-              </li>
-            </ul>
-          </div>
-          <div class="card-action">
-            <span>Sep. 2018 - Jan. 2020 | Tehran, Iran</span>
-          </div>
-        </div>
-
-        <!-- Experience 3 -->
-        <!-- <div class="card">
-          <div class="card-content">
-            <div class="row">
-              <div class="col s12 m2">
-                <a href="https://www.cignex.com" target="_blank"><img alt="Cignex logo"
-                    src="/assets/img/exp-cignex-logo.png" class="responsive-img center-block" /></a>
-              </div>
-              <div class="col s12 m10">
-                <p>
-                  <span class="card-title"><a href="https://www.cignex.com" target="_blank"
-                      class="teal-text hoverline">CIGNEX
-                      Datamatics </a></span>
-                </p>
-              </div>
-            </div>
-            <div class="role brown-text text-darken-2">Project Trainee</div>
-            <ul>
-              <li>
-                Designed a library management system for a local library, where we undertook activities like requirement
-                elicitation, preparing Data Flow
-                and Entity-Relationship diagrams.
-              </li>
-              <li>
-                Delivered a solution for a POC involving Automatic Financial Document Classifier using Natural Language
-                Processing and Support Vector
-                Machines with 96% accuracy on the company’s data.
-              </li>
-              <li>
-                <b>Tools:</b> Python, Scikit-learn, NLTK
-              </li>
-            </ul>
-          </div>
-          <div class="card-action">
-            <span>June 2017 - July 2017 | Ahmedabad, India</span>
-          </div>
-        </div> -->
-
-      </div>
-    </section>
-
-    <!-- Fifth Section: Skills -->
-    <section id="skills" class="section scrollspy">
-      <h3 class="page-title white-text teal">Skills</h3>
-      <div class="container">
-        <!-- Languages and Databases -->
-        <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Languages</h4>
-            <div class="row text-center">
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/Python-Symbol.png" class="responsive-img" height="200" width="200" />Python
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/c++logo1.png" class="responsive-img"  />C++
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/sql-logo.png" class="responsive-img"  />SQL
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/php-logo.png" class="responsive-img"  />PHP
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/javascript-logo.png" class="responsive-img"  />JavaScript
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/html-logo.webp" class="responsive-img"  />HTML
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">NLP</h4>
-            <div class="row text-center">
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/NLTK-logo.png" class="responsive-img" />NLTK
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/Spacy-logo.jpeg" class="responsive-img" />Spacy
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/gensim-logo.png" class="responsive-img" />Gensim
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/Hugging-Face-logo.png" class="responsive-img"  />Hugging Face
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/stanza-card.png" class="responsive-img" />Stanza
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/textblob-logo.webp" class="responsive-img" />TextBlob
-              </div>
-
-            </div>
-            <div class="row text-center">
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/vllm.svg" class="responsive-img" />vLLM
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/langchain.svg" class="responsive-img" />LangChain
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/dspy.svg" class="responsive-img" />DSPy
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/unsloth.svg" class="responsive-img" />Unsloth
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/model2vec.svg" class="responsive-img" />Model2Vec
-              </div>
-            </div>
-          </div>
-        </div>
-
-           <!-- Frameworks -->
-           <div class="card">
-            <div class="card-content">
-              <h4 class="brown-text light">Computer Vision</h4>
-              <div class="row text-center">
-                <div class="col s4 m2">
-                  <img alt="" src="/assets/img/opencv.svg" class="responsive-img"  />OpenCV
-                </div>
-                <div class="col s4 m2">
-                  <img alt="" src="/assets/img/yolo.png" class="responsive-img"  />YOLO
-                </div>
-                <div class="col s4 m2">
-                  <img alt="" src="/assets/img/azurecustom.png" class="responsive-img"  />Azure Custom Vision
-                </div>
-                <div class="col s4 m2">
-                  <img alt="" src="/assets/img/GoogleEarthEngine.png" class="responsive-img"  />Google Earth Engine
-                </div>
-                <div class="col s4 m2">
-                  <img alt="" src="/assets/img/Google-Street-View.jpg" class="responsive-img"  />Google Street View
-                </div>
-              </div>
-            </div>
-          </div>
-
-        <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Libraries</h4>
-            <div class="row text-center">
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/tensorflow-logo-1.png" class="responsive-img" />Tensorflow
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/pytorch-logo.png" class="responsive-img" />Pytorch
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/keras-logo.png" class="responsive-img" />Keras
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/sk-learn-logo-1-500x500.jpg" class="responsive-img"  />Sklearn
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/numpy-logo-1-500x500.jpg" class="responsive-img"  />Numpy
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/pandas-logo-1.png" class="responsive-img"  />Pandas
-              </div>
-            </div>
-          </div>
-        </div>
-
-     
-        <!-- /assets/img/matplotlib-logo-1-500x500.jpg -->
-        <!-- Other -->
-        <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Tools</h4>
-            <div class="row text-center">
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/Azure-ML-Studio-logo.jpeg" class="responsive-img"  />Azure ML Studio
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/Linux-logo.jpeg" class="responsive-img"  />Linux
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/git.png" class="responsive-img"  />Git
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/WordPress-logo.png" class="responsive-img"  />WordPress
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/Docker-logo.png" class="responsive-img"  />Docker
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/Bash-logo.jpeg" class="responsive-img"  />Bash
-              </div>
-            </div>
-            <div class="row text-center">
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/aws.svg" class="responsive-img"  />AWS
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/gcp.svg" class="responsive-img"  />GCP
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/kubernetes.svg" class="responsive-img"  />Kubernetes
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/airflow.svg" class="responsive-img"  />Airflow
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Visualizations</h4>
-            <div class="row text-center">
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/streamlit.webp" class="responsive-img"  />Streamlit
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/Tableau-logo.png" class="responsive-img"  />Tableau
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/matplotlib-logo-1-500x500.jpg" class="responsive-img"  />Matplotlib
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/Seaborn-logo.svg" class="responsive-img"  />Seaborn
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/Plotly-logo.png" class="responsive-img"  />Plotly
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/Microsoft-Power-BI-logo.png" class="responsive-img"  />Microsoft Power BI
-              </div>
-            </div>
-          </div>
-        </div>
-    
-
-        <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Soft Skills</h4>
-            <div class="row text-center">
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/Communication-logo.jpeg" class="responsive-img"  />Communication
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/teamworknew.png" class="responsive-img"  />Teamwork
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/Leadership-logo.jpeg" class="responsive-img"  />Leadership
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/ethicnew.png" class="responsive-img"  />Work Ethic
-              </div>
-              <div class="col s4 m2">
-                <img alt="" src="/assets/img/Time-Management-logo.webp" class="responsive-img"  />Time Management
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- certifications -->
-        <!-- <div class="card">
-          <div class="card-content">
-            <h4 class="brown-text light">Certificates</h4>
-            <div class="row text-left">
-              <div class="container">
-                <div class="row">
-                  <div class="col s12 m6 l6">
-                    <div class="card">
-                      <div class="card-image">
-                        <img src="/assets/img/mooc-machine-learning-coursera-800x500.jpg">
-                      </div>
-                      <div class="card-content">
-                        <span class="card-title teal-text">Machine Learning (Stanford)</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col s12 m6 l6">
-                    <div class="card">
-                      <div class="card-image">
-                        <img src="/assets/img/mooc-algorithms-stanford-2-800x500.jpg">
-                      </div>
-                      <div class="card-content">
-                        <span class="card-title teal-text">Algorithms (Stanford)</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-      </div>
-    </section>
-
-    <!-- Seventh Section: Education -->
-    <section id="education" class="section scrollspy">
-      <h3 class="page-title white-text teal">Education</h3>
-      <div class="container">
-        <div class="row">
-          <!-- Education -->
-          <div class="col s12 m6 l6">
-            <div class="card">
-              <div class="card-content">
-                <p>
-                  <span class="card-title"><a href="https://www.ualberta.ca/index.html" target="_blank" class="teal-text hoverline">University of Alberta</a></span>
-                </p>
-                <p class="brown-text">Edmonton, AB, Canada</p>
-                <p>
-                  <b>Degree: </b>Master of Science in Computer Science      
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col s12 m6 l6">
-            <div class="card">
-              <div class="card-content">
-                <p>
-                  <span class="card-title"><a href="http://mazust.ac.ir/" target="_blank" class="teal-text hoverline">MAZUST</a></span>
-                </p>
-                <p class="brown-text">Behshahr, Mazandaran, Iran</p>
-                <p>
-                  <b>Degree: </b>Bachelor of Science in Software Engineering
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Eight Section: Contact -->
-    <section id="contact" class="section scrollspy full-height">
-      <h3 class="page-title white-text teal">Contact</h3>
-      <div class="container">
-        <p>
-          <a aria-label="Call Mohammad" data-position="top" data-tooltip="Call Mohammad"
-            class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i class="fa fa-phone"></i><a
-              aria-label="Call Mohammad">+18254405744</a></a>
-        </p>
-        <p>
-          <a aria-label="Email Mohammad" href="mailto:mmdkarimi96@gmail.com" target="_blank" data-position="top"
-            data-tooltip="Email Mohammad" class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-              class="fa fa-envelope"></i><a aria-label="Email Mohammad" href="mailto:mmdkarimi96@gmail.com"
-              class="hoverline">mmdkarimi96@gmail.com</a></a>
-        </p>
-        <p>
-          <a aria-label="View Mohammad's profile on GitHub" href="http://github.com/mmdpy" target="_blank"
-            data-position="top" data-tooltip="View Mohammad's profile on GitHub"
-            class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i class="fa fa-github"></i><a
-              aria-label="Mohammad on Github" href="http://github.com/mmdpy" class="hoverline"
-              target="_blank">github.com/mmdpy</a></a>
-        </p>
-        <p>
-          <a aria-label="View Mohammad's profile on LinkedIn" href="http://linkedin.com/in/mohammad-karimi-abdolmaleki" target="_blank"
-            data-position="top" data-tooltip="View Mohammad's profile on LinkedIn"
-            class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
-              class="fa fa-linkedin"></i><a aria-label="Mohammad on LinkedIn" href="http://linkedin.com/in/mohammad-karimi-abdolmaleki"
-              class="hoverline" target="_blank">linkedin.com/in/mohammad-karimi-abdolmaleki</a></a>
-        </p>
-        
-      </div>
-    </section>
-  </main>
-
-  <!-- typed.js -->
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script type="text/javascript">
-    var typed = new Typed('.typing',{
-      strings: ["Senior AI Engineer", "LLM Systems", "Applied Machine Learning"],
-      loop: true,
-      typeSpeed: 80,
-      backSpeed: 40
-    });
-  </script>
-
-
-  <!-- jQuery-->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-  <!-- Materialize - Compiled and minified JavaScript-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"></script>
   <script>
-    // Materialize - Initializers
-    $(document).ready(function () {
-      $(".scrollspy").scrollSpy()
-      // Initialize collapse button
-      $(".button-collapse").sideNav({
-        menuWidth: 190, // Default is 240
-        edge: "left", // Choose the horizontal origin
-        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-      })
-    })
+  (() => {
+    const RESUME = "/assets/resume/MohammadKarimi_Resume.pdf";
+    const EMAIL = "mmdkarimi96@gmail.com";
+    const LINKS = {
+      github: "https://github.com/mmdpy",
+      linkedin: "https://www.linkedin.com/in/mohammad-karimi-abdolmaleki/",
+      paper: "https://doi.org/10.1007/s40593-025-00468-8",
+    };
+
+    const out = document.getElementById("out");
+    const screen = document.getElementById("screen");
+    const row = document.getElementById("input-row");
+    const input = document.getElementById("cmd");
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const sleep = ms => new Promise(r => setTimeout(r, reduced ? 0 : ms));
+    const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const scroll = () => { screen.scrollTop = screen.scrollHeight; };
+
+    function print(html = "", cls = "ln") {
+      const d = document.createElement("div");
+      d.className = cls;
+      d.innerHTML = html;
+      out.appendChild(d);
+      scroll();
+      return d;
+    }
+    async function type(html, speed = 12, cls = "ln") {
+      const d = print("", cls);
+      if (reduced) { d.innerHTML = html; return d; }
+      const tmp = document.createElement("div");
+      tmp.innerHTML = html;
+      const text = tmp.textContent;
+      for (let i = 1; i <= text.length; i++) {
+        d.textContent = text.slice(0, i);
+        if (i % 2 === 0) await sleep(speed);
+        scroll();
+      }
+      d.innerHTML = html;
+      return d;
+    }
+    function echoCmd(c) {
+      return print(`<span class="ps1"><span class="u">mohammad</span><span class="dim">@</span><span class="h">toronto</span> <span class="p">~</span> <span class="ac">❯</span></span> <span class="b">${esc(c)}</span>`);
+    }
+
+    const BANNER = String.raw`
+ ███╗   ███╗ ██████╗ ██╗  ██╗ █████╗ ███╗   ███╗███╗   ███╗ █████╗ ██████╗
+ ████╗ ████║██╔═══██╗██║  ██║██╔══██╗████╗ ████║████╗ ████║██╔══██╗██╔══██╗
+ ██╔████╔██║██║   ██║███████║███████║██╔████╔██║██╔████╔██║███████║██║  ██║
+ ██║╚██╔╝██║██║   ██║██╔══██║██╔══██║██║╚██╔╝██║██║╚██╔╝██║██╔══██║██║  ██║
+ ██║ ╚═╝ ██║╚██████╔╝██║  ██║██║  ██║██║ ╚═╝ ██║██║ ╚═╝ ██║██║  ██║██████╔╝
+ ╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═════╝
+                          K  A  R  I  M  I`;
+
+    const EXPERIENCE = [
+      {
+        role: "Staff AI Engineer", where: "Proofpoint", loc: "Toronto, ON", when: "Jul 2025 — present",
+        items: [
+          `Own <span class="ac">Proofpoint Automate</span> ML + LLM models across multiple enterprise customers — <span class="b">20M+ messages/day</span> in production`,
+          `Architected a <span class="b">sub-second speech-to-speech agent</span> for Compliance Investigator; context layer fuses messages, documents, entities, context graphs, classifier outputs, and LLM subagent reasoning`,
+          `Built an <span class="ac">agentic decisioning layer</span> for Supervision — LLM reasoning + classical models + tool use + human-in-the-loop — <span class="b">~15× cheaper</span> than AWS Bedrock`,
+          `Single LLM-based classifier that beats a commercial vendor model on the golden compliance set at <span class="b">10× lower cost</span>; +40% F1 on AWS Nova via function calling + GEPA`,
+          `RAG over email archives in plain English — semantic chunking, embeddings, LLM re-ranker — <span class="b">94% top-5 recall</span>, <span class="b">−65%</span> search time`,
+          `Serve <span class="b">20+ open-weight models</span> on Kubernetes with vLLM (10× cheaper) and a BERT + rules Redaction API (<span class="b">122× cheaper</span> than AWS Guardrail)`,
+          `Fine-tuned Longformer for long documents (90%+ F1) with Integrated Gradients for auditable decisions`,
+        ],
+        tags: ["agents", "speech", "RAG", "vLLM", "Kubernetes", "AWS", "PyTorch"],
+      },
+      {
+        role: "Senior Data Scientist", where: "KPMG Lighthouse", loc: "Toronto, ON", when: "Jun 2023 — Jul 2025",
+        items: [
+          `Migrated a global insurer from on-prem to <span class="ac">GCP</span>, adding agentic LLMs + RAG for context-aware database queries`,
+          `Generative SOC-report system with instruction-tuned local LLMs — <span class="b">92%+</span> retrieval accuracy`,
+          `Nine production churn pipelines for Bell on Vertex AI, orchestrated with Cloud Composer, Pub/Sub, BigQuery`,
+        ],
+        tags: ["GCP", "Vertex AI", "LLMs", "RAG"],
+      },
+      {
+        role: "Associate ML Developer", where: "AltaML", loc: "Edmonton, AB", when: "Sep 2022 — May 2023",
+        items: [
+          `Production bias + hate-speech classifier on Azure with GPT-3.5`,
+          `Government of Alberta pipeline scoring <span class="b">2.6B+</span> geospatial points at 88%+ accuracy`,
+        ],
+        tags: ["Azure", "OpenAI", "geospatial"],
+      },
+      {
+        role: "Data Scientist & NLP Researcher", where: "University of Alberta", loc: "Edmonton, AB", when: "Jan 2021 — Aug 2022",
+        items: [`Neural language models detecting ungrammatical writing at <span class="b">97%+</span> accuracy — published in IJAIED (2025)`],
+        tags: ["NLP", "research"],
+      },
+      {
+        role: "Software Engineer", where: "Iranian National Robotics Team", loc: "Tehran", when: "Sep 2018 — Jan 2020",
+        items: [`Imagery data pipeline + Faster R-CNN object recognition for robots`],
+        tags: ["CV", "ROS", "C++"],
+      },
+    ];
+
+    const SYSTEMS = [
+      { k: "production · proofpoint", t: "voice-investigator", m: "< 1s", d: "Speech-to-speech compliance agent. Real-time context layer over messages, docs, entities, graphs, classifiers, and LLM subagents." },
+      { k: "production · proofpoint", t: "agentic-decisioning", m: "~15× cheaper", d: "LLM reasoning + classical models + tools + human feedback, routing high-precision supervision decisions." },
+      { k: "production · proofpoint", t: "automate-models", m: "20M+ msgs/day", d: "ML + LLM classification models I develop, deploy, and keep healthy across enterprise customers." },
+      { k: "production · proofpoint", t: "archive-rag", m: "94% recall@5", d: "Ask millions of archived emails in plain English. Semantic chunking, embeddings, LLM re-ranking. −65% search time." },
+      { k: "production · proofpoint", t: "llm-serving", m: "10× cheaper", d: "20+ open-weight models on Kubernetes with vLLM, KV caching, quantization, and CPU offload." },
+      { k: "production · proofpoint", t: "redaction-api", m: "122× cheaper", d: "Hybrid BERT + rules PII masking on Kubernetes vs. AWS Guardrail, at high precision." },
+    ];
+    const OSS = [
+      { t: "Commonsense-Validation-and-Explanation", m: "SemEval 2020", d: "Task 4 — can a model tell sense from nonsense, and explain why?", u: "Commonsense-Validation-and-Explanation" },
+      { t: "bert_fine_tuning_review_analysis", m: "BERT", d: "Fine-tuning BERT for review analysis.", u: "bert_fine_tuning_review_analysis" },
+      { t: "booking_probability_prediction", m: "end-to-end", d: "Predicting whether a hotel gets booked from user search sessions.", u: "booking_probability_prediction" },
+      { t: "Neural-Representation-of-Words-within-Phrases", m: "MEG", d: "Decoding how color adjectives and nouns compose in the brain over time.", u: "Neural-Representation-of-Words-within-Phrases" },
+      { t: "Relation-Extraction-and-Classification", m: "from scratch", d: "Naive Bayes relation extraction, no libraries.", u: "Relation-Extraction-and-Classification" },
+      { t: "Language-Identification", m: "char n-grams", d: "Language ID with character-level n-gram language models.", u: "Language-Identification" },
+    ];
+
+    const SKILLS = [
+      ["LLM systems", 98, "agents · subagents · tool use · RAG · evals"],
+      ["Inference", 96, "vLLM · KV cache · batching · quantization"],
+      ["Python / PyTorch", 97, "HF Transformers · Unsloth · DSPy · LangChain"],
+      ["NLP / doc-intel", 95, "Longformer · BERT · classification · redaction"],
+      ["Speech agents", 88, "speech-to-speech · sub-second latency"],
+      ["MLOps", 92, "Kubernetes · Docker · Airflow · CI/CD"],
+      ["Cloud", 92, "AWS (Bedrock) · GCP (Vertex) · Azure"],
+      ["Classical ML", 90, "XGBoost · sklearn · time series"],
+    ];
+
+    const FILES = {
+      "about.txt": () => cmds.about(),
+      "experience.log": () => cmds.experience(),
+      "projects/": () => cmds.projects(),
+      "skills.json": () => cmds.skills(),
+      "research.bib": () => cmds.research(),
+      "resume.pdf": () => cmds.resume(),
+      "contact.vcf": () => cmds.contact(),
+      ".secrets": () => print(`<span class="err">permission denied:</span> nice try. try <span class="ac">sudo hire-me</span>`),
+    };
+
+    const cmds = {
+      help() {
+        const rows = [
+          ["about", "who I am, in 20 seconds"],
+          ["experience", "where I've shipped things"],
+          ["projects", "production systems + open source"],
+          ["skills", "what I'm dangerous at"],
+          ["research", "publication + teaching"],
+          ["neofetch", "system info, but it's me"],
+          ["resume", "open the PDF"],
+          ["contact", "email, LinkedIn, GitHub"],
+          ["ls / cat", "poke around the filesystem"],
+          ["theme", "green | amber | ice | mono"],
+          ["clear", "wipe the screen"],
+        ];
+        print(`<div class="kv">${rows.map(([a, b]) => `<span>${a}</span><span class="dim">${b}</span>`).join("")}</div>`, "");
+        print(`<span class="dim">psst — there are a few easter eggs.</span>`);
+      },
+      about() {
+        print(`<span class="b">Mohammad Karimi</span> <span class="dim">—</span> <span class="ac">Staff AI Engineer @ Proofpoint</span> <span class="dim">· Toronto</span>`);
+        print(``);
+        print(`I build AI systems that hold up in production: <span class="ac">agents</span> that reason and use tools,`);
+        print(`a <span class="ac">speech agent</span> that answers in under a second, <span class="ac">RAG</span> over millions of messages,`);
+        print(`and inference stacks that run <span class="b">10–122× cheaper</span> than managed cloud services.`);
+        print(``);
+        print(`<div class="metrics">
+          <div class="metric"><div class="n">20M+</div><div class="l">messages / day in prod</div></div>
+          <div class="metric"><div class="n">&lt;1s</div><div class="l">speech-to-speech latency</div></div>
+          <div class="metric"><div class="n">122×</div><div class="l">cheaper than AWS Guardrail</div></div>
+          <div class="metric"><div class="n">94%</div><div class="l">top-5 recall, archive RAG</div></div>
+        </div>`, "");
+        print(`<span class="dim">8+ years · M.Sc. CS (UAlberta) · published NLP researcher · ML instructor · GCP ML Engineer + Azure AI Engineer certified</span>`);
+      },
+      whoami() { cmds.about(); },
+      experience() {
+        EXPERIENCE.forEach(e => print(`<div class="card">
+          <div class="hd"><span><span class="role">${e.role}</span> <span class="dim">@</span> <span class="where">${e.where}</span> <span class="dim">· ${e.loc}</span></span><span class="when">${e.when}</span></div>
+          <ul>${e.items.map(i => `<li>${i}</li>`).join("")}</ul>
+          <div>${e.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+        </div>`, ""));
+      },
+      projects() {
+        print(`<span class="ac">❯</span> <span class="b">production systems</span> <span class="dim">— built at work; descriptions only, code is proprietary</span>`);
+        print(`<div class="proj">${SYSTEMS.map(p => `<div class="pc"><div class="k">${p.k}</div><div class="t">${p.t}</div><div class="m">${p.m}</div><div class="d">${p.d}</div></div>`).join("")}</div>`, "");
+        print(`<span class="ac">❯</span> <span class="b">open source</span> <span class="dim">— github.com/mmdpy</span>`);
+        print(`<div class="proj">${OSS.map(p => `<a class="pc" style="border-bottom:1px solid var(--line);display:block;color:inherit" href="${LINKS.github}/${p.u}" target="_blank" rel="noopener"><div class="k">repo ↗</div><div class="t">${p.t}</div><div class="m">${p.m}</div><div class="d">${p.d}</div></a>`).join("")}</div>`, "");
+      },
+      skills() {
+        const bar = n => { const w = 28, f = Math.round(n / 100 * w); return "█".repeat(f) + `<span class="dim">${"░".repeat(w - f)}</span>`; };
+        print(`<div class="bars">${SKILLS.map(([k, n, d]) => `<span class="ac2">${k}</span><span><span class="bar-v">${bar(n)}</span> <span class="dim">${d}</span></span>`).join("")}</div>`, "");
+      },
+      research() {
+        print(`<span class="b">Publication</span>`);
+        print(`Karimi Abdolmaleki, M., Farias Wanderley, L., Cutumisu, M., et al. <span class="ac">Negative Language Transfer Identification in the English Writing of Chinese and Farsi Native Speakers.</span> <i>Int. J. AI in Education</i> (2025). <a href="${LINKS.paper}" target="_blank" rel="noopener">doi ↗</a>`);
+        print(``);
+        print(`<span class="b">Teaching</span>`);
+        print(`ML Instructor, Alberta AI Association — advanced ML course (NLP + MLOps) for 15+ students.`);
+        print(`Guest speaker on ML for Action for Healthy Communities.`);
+      },
+      neofetch() {
+        const logo = String.raw`      ▄▄▄▄▄▄▄
+    ▄█▀▀   ▀▀█▄
+   ██  ▄█ █▄  ██
+   ██  ██▀██  ██
+   ██  ▀▀ ▀▀  ██
+    ▀█▄▄   ▄▄█▀
+      ▀▀▀▀▀▀▀`;
+        const up = Math.floor((Date.now() - new Date("2018-09-01")) / (365.25 * 864e5));
+        const info = [
+          [`<span class="ac b">mohammad</span><span class="dim">@</span><span class="ac2 b">toronto</span>`],
+          [`<span class="dim">─────────────────</span>`],
+          ["OS", "Human 1.0 (Toronto, ON)"],
+          ["Host", "Proofpoint · Staff AI Engineer"],
+          ["Uptime", `${up}+ years shipping ML`],
+          ["Kernel", "PyTorch · vLLM · Transformers"],
+          ["Shell", "agents + subagents + tools"],
+          ["Throughput", "20M+ messages/day"],
+          ["Latency", "< 1s speech-to-speech"],
+          ["Cost", "10–122× under managed cloud"],
+          ["Memory", "RAG · 94% recall@5"],
+          ["Locale", "en_CA · fa_IR"],
+        ];
+        const sw = ["#ff5f57", "#febc2e", "#28c840", "var(--accent)", "var(--accent-2)", "#c3a6ff", "#fff"].map(c => `<span class="swatch" style="background:${c}"></span>`).join("");
+        print(`<div class="neo"><pre>${logo}</pre><div>${info.map(r => r.length === 1 ? `<div>${r[0]}</div>` : `<div><span class="ac">${r[0]}</span>: ${r[1]}</div>`).join("")}<div style="margin-top:6px">${sw}</div></div></div>`, "");
+      },
+      resume() {
+        print(`opening <span class="ac">resume.pdf</span> in a new tab… <span class="dim">(if nothing happens: <a href="${RESUME}" target="_blank" rel="noopener">click here</a>)</span>`);
+        window.open(RESUME, "_blank", "noopener");
+      },
+      contact() {
+        print(`<div class="kv">
+          <span>email</span><span><a href="mailto:${EMAIL}">${EMAIL}</a></span>
+          <span>linkedin</span><span><a href="${LINKS.linkedin}" target="_blank" rel="noopener">in/mohammad-karimi-abdolmaleki</a></span>
+          <span>github</span><span><a href="${LINKS.github}" target="_blank" rel="noopener">github.com/mmdpy</a></span>
+          <span>location</span><span>Toronto, ON · open to the right AI problem</span>
+        </div>`, "");
+      },
+      email() { location.href = `mailto:${EMAIL}`; print(`opening mail client → <span class="ac">${EMAIL}</span>`); },
+      github() { window.open(LINKS.github, "_blank", "noopener"); print(`→ <a href="${LINKS.github}" target="_blank">github.com/mmdpy</a>`); },
+      linkedin() { window.open(LINKS.linkedin, "_blank", "noopener"); print(`→ <a href="${LINKS.linkedin}" target="_blank">LinkedIn</a>`); },
+      ls(arg) {
+        if (arg && arg.startsWith("-a")) return print(Object.keys(FILES).map(f => f.endsWith("/") ? `<span class="ac2">${f}</span>` : f.startsWith(".") ? `<span class="dim">${f}</span>` : f).join("   "));
+        print(Object.keys(FILES).filter(f => !f.startsWith(".")).map(f => f.endsWith("/") ? `<span class="ac2">${f}</span>` : f).join("   "));
+      },
+      cat(arg) {
+        if (!arg) return print(`<span class="err">cat:</span> missing file. try <span class="ac">ls</span>`);
+        const f = FILES[arg] || FILES[arg + "/"];
+        f ? f() : print(`<span class="err">cat: ${esc(arg)}: No such file or directory</span>`);
+      },
+      cd(arg) { arg && FILES[arg.replace(/\/?$/, "/")] ? cmds.projects() : print(`<span class="dim">you're already home.</span>`); },
+      pwd() { print("/home/mohammad"); },
+      date() { print(new Date().toString()); },
+      echo(...a) { print(esc(a.join(" "))); },
+      history() { hist.forEach((h, i) => print(`<span class="dim">${String(i + 1).padStart(4)}</span>  ${esc(h)}`)); },
+      theme(arg) {
+        const t = ["green", "amber", "ice", "mono"];
+        if (!t.includes(arg)) return print(`usage: theme <span class="ac">${t.join(" | ")}</span>`);
+        document.body.className = arg === "green" ? "" : arg;
+        localStorage.setItem("theme", arg);
+        print(`theme → <span class="ac">${arg}</span>`);
+      },
+      clear() { out.innerHTML = ""; },
+      sudo(...a) {
+        if (a.join(" ") === "hire-me" || a.join(" ") === "hire mohammad") {
+          print(`<span class="dim">[sudo] password for recruiter: ********</span>`);
+          setTimeout(() => {
+            print(`<span class="ac glow b">✓ access granted.</span> excellent judgment.`);
+            print(`→ <a href="mailto:${EMAIL}?subject=Let's%20talk">${EMAIL}</a>  ·  <a href="${RESUME}" target="_blank">resume.pdf</a>`);
+            matrix(2600);
+          }, reduced ? 0 : 700);
+          return;
+        }
+        print(`<span class="err">mohammad is not in the sudoers file.</span> this incident will be reported. <span class="dim">(try: sudo hire-me)</span>`);
+      },
+      "hire-me"() { cmds.sudo("hire-me"); },
+      matrix() { matrix(4000); print(`<span class="ac">wake up, neo…</span>`); },
+      vim() { print(`<span class="warn">you are now trapped in vim.</span> <span class="dim">just kidding — type :q</span>`); },
+      ":q"() { print(`<span class="dim">phew.</span>`); },
+      exit() { print(`<span class="dim">there is no exit. only</span> <span class="ac">contact</span><span class="dim">.</span>`); },
+      rm(...a) { print(a.join(" ").includes("-rf") ? `<span class="err">nope.</span> production systems are protected by humans-in-the-loop.` : `rm: permission denied`); },
+      coffee() { print(`☕ brewing… throughput +12%`); },
+      ping() { print(`PONG — latency <span class="ac">&lt; 1s</span>, as promised.`); },
+    };
+    cmds.exp = cmds.experience;
+    cmds.work = cmds.experience;
+    cmds.proj = cmds.projects;
+    cmds.cv = cmds.resume;
+    cmds.man = cmds.help;
+    cmds["?"] = cmds.help;
+
+    const VISIBLE = ["help", "about", "experience", "projects", "skills", "research", "neofetch", "resume", "contact", "email", "github", "linkedin", "ls", "cat", "theme", "clear", "history", "sudo"];
+
+    const hist = [];
+    let hIdx = 0;
+
+    function run(raw) {
+      const line = raw.trim();
+      const head = echoCmd(line);
+      if (!line) return;
+      requestAnimationFrame(() => {
+        const top = head.getBoundingClientRect().top - screen.getBoundingClientRect().top + screen.scrollTop - 12;
+        if (screen.scrollHeight - top > screen.clientHeight) screen.scrollTop = top;
+      });
+      hist.push(line); hIdx = hist.length;
+      gtag && gtag("event", "terminal_command", { command: line.split(/\s+/)[0] });
+      const [name, ...args] = line.split(/\s+/);
+      const fn = cmds[name.toLowerCase()];
+      if (fn) fn(...args);
+      else {
+        const guess = VISIBLE.find(c => c.startsWith(name.toLowerCase().slice(0, 2)));
+        print(`<span class="err">zsh: command not found:</span> ${esc(name)}${guess ? ` <span class="dim">— did you mean</span> <span class="ac">${guess}</span><span class="dim">?</span>` : ""}`);
+      }
+      print("");
+    }
+
+    input.addEventListener("keydown", e => {
+      if (e.key === "Enter") { run(input.value); input.value = ""; scroll(); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); if (hIdx > 0) input.value = hist[--hIdx]; }
+      else if (e.key === "ArrowDown") { e.preventDefault(); hIdx < hist.length - 1 ? input.value = hist[++hIdx] : (hIdx = hist.length, input.value = ""); }
+      else if (e.key === "Tab") {
+        e.preventDefault();
+        const [first, ...rest] = input.value.split(" ");
+        if (rest.length && (first === "cat" || first === "theme")) {
+          const pool = first === "cat" ? Object.keys(FILES) : ["green", "amber", "ice", "mono"];
+          const m = pool.filter(f => f.startsWith(rest.join(" ")));
+          if (m.length === 1) input.value = `${first} ${m[0]}`;
+          else if (m.length) print(m.join("   "), "ln dim");
+          return;
+        }
+        const m = VISIBLE.filter(c => c.startsWith(input.value));
+        if (m.length === 1) input.value = m[0] + " ";
+        else if (m.length > 1) { echoCmd(input.value); print(m.join("   "), "ln dim"); }
+      }
+      else if (e.key === "l" && e.ctrlKey) { e.preventDefault(); cmds.clear(); }
+    });
+
+    document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => { run(b.dataset.cmd); input.focus({ preventScroll: true }); }));
+    screen.addEventListener("click", () => { if (!getSelection().toString()) input.focus({ preventScroll: true }); });
+    document.addEventListener("keydown", e => {
+      if (document.activeElement !== input && !e.metaKey && !e.ctrlKey && e.key.length === 1 && !row.hidden) input.focus();
+    });
+
+    const clock = document.getElementById("clock");
+    const tick = () => clock.textContent = new Date().toLocaleTimeString("en-CA", { hour: "2-digit", minute: "2-digit", timeZone: "America/Toronto" }) + " ET";
+    tick(); setInterval(tick, 30000);
+
+    const saved = localStorage.getItem("theme");
+    if (saved && saved !== "green") document.body.className = saved;
+
+    function matrix(ms) {
+      if (reduced) return;
+      const c = document.getElementById("matrix"), x = c.getContext("2d");
+      c.width = innerWidth; c.height = innerHeight;
+      const fs = 16, cols = Math.ceil(c.width / fs), drops = Array(cols).fill(0).map(() => Math.random() * -40);
+      const chars = "01アイウエオカキクケコサシスセソタチツテトAIMLLLMRAGvLLM";
+      const color = getComputedStyle(document.body).getPropertyValue("--accent").trim();
+      c.classList.add("on");
+      let raf, start = performance.now();
+      (function draw(t) {
+        x.fillStyle = "rgba(7,9,12,.12)"; x.fillRect(0, 0, c.width, c.height);
+        x.fillStyle = color; x.font = `${fs}px JetBrains Mono, monospace`;
+        drops.forEach((y, i) => {
+          x.fillText(chars[Math.floor(Math.random() * chars.length)], i * fs, y * fs);
+          drops[i] = y * fs > c.height && Math.random() > .975 ? 0 : y + 1;
+        });
+        if (t - start < ms) raf = requestAnimationFrame(draw);
+        else { c.classList.remove("on"); setTimeout(() => x.clearRect(0, 0, c.width, c.height), 700); }
+      })(start);
+    }
+
+    async function boot() {
+      const steps = [
+        ["loading kernel modules", "pytorch vllm transformers"],
+        ["mounting context layer", "messages · docs · entities · graphs"],
+        ["spawning subagents", "4/4 ready"],
+        ["warming KV cache", "hit-rate 0.97"],
+        ["checking latency budget", "&lt; 1s ✓"],
+      ];
+      for (const [a, b] of steps) {
+        await type(`<span class="dim">[</span><span class="ac">  ok  </span><span class="dim">]</span> ${a} <span class="dim">… ${b}</span>`, 4);
+        await sleep(70);
+      }
+      await sleep(150);
+      print(BANNER, "ascii");
+      await type(`<span class="b">Staff AI Engineer @ Proofpoint</span> <span class="dim">·</span> agentic systems <span class="dim">·</span> speech agents <span class="dim">·</span> RAG <span class="dim">·</span> production LLM inference`, 8);
+      print(`<span class="dim">type</span> <span class="ac">help</span> <span class="dim">or click a command above. try</span> <span class="ac">neofetch</span><span class="dim">.</span>`);
+      print("");
+      await sleep(250);
+      echoCmd("about");
+      cmds.about();
+      print("");
+      row.hidden = false;
+      if (matchMedia("(pointer: fine)").matches) input.focus({ preventScroll: true });
+      scroll();
+    }
+    boot();
+  })();
   </script>
 </body>
-
 </html>
