@@ -12,15 +12,15 @@
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mohammad Karimi (mmdpy) — Staff AI Engineer</title>
-  <meta name="description" content="Mohammad Karimi, Staff AI Engineer at Proofpoint. Agentic systems, speech agents, RAG, and cost-efficient LLM inference in production at 20M+ messages per day." />
-  <meta name="theme-color" content="#06080b" />
+  <title>Mohammad Karimi (mmdpy)</title>
+  <meta name="description" content="Mohammad Karimi, Staff AI Engineer at Proofpoint. Multi-agent systems, speech agents, RAG, and LLM inference in production at 20M+ messages per day." />
+  <meta name="theme-color" content="#0e0e0d" />
   <link rel="icon" href="/assets/img/profile.jpeg" />
 
   <meta property="og:locale" content="en_US" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Mohammad Karimi — Staff AI Engineer" />
-  <meta property="og:description" content="Agentic systems · Speech agents · RAG · Production LLM inference" />
+  <meta property="og:title" content="Mohammad Karimi, Staff AI Engineer" />
+  <meta property="og:description" content="Multi-agent systems, speech agents, RAG, and production LLM inference." />
   <meta property="og:url" content="https://mmdpy.github.io/" />
   <meta property="og:site_name" content="mmdpy" />
   <meta property="og:image" content="https://mmdpy.github.io/examples/preview.png" />
@@ -29,357 +29,176 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
   <style>
-    @property --a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
-
     :root {
-      --bg: #06080b;
-      --panel: rgba(12, 16, 22, .72);
-      --line: rgba(255, 255, 255, .07);
-      --line-2: rgba(255, 255, 255, .12);
-      --fg: #c9d1d9;
-      --dim: #6b7684;
-      --accent: #3ddc97;
-      --accent-2: #5fb3ff;
-      --hot: #ff8a3d;
-      --warn: #ffb454;
-      --err: #ff6b6b;
-      --glow: rgba(61, 220, 151, .35);
-      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --bg: #0e0e0d;
+      --fg: #d9d5ca;
+      --hi: #f4f1e8;
+      --dim: #7d796f;
+      --rule: #2a2926;
+      --ink: #ff6a3d;
+      --link: #d9d5ca;
+      --sel: #ff6a3d;
+      --bar: #d9d5ca;
+      --bar-fg: #0e0e0d;
+      --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
     }
-    body.amber { --accent: #ffb000; --accent-2: #ff7a59; --glow: rgba(255,176,0,.35); }
-    body.ice   { --accent: #7cc7ff; --accent-2: #c3a6ff; --glow: rgba(124,199,255,.35); }
-    body.mono  { --accent: #f2f2f2; --accent-2: #9aa0a6; --glow: rgba(255,255,255,.18); }
+    body.green { --ink: #8fd16a; --sel: #8fd16a; }
+    body.amber { --ink: #ffb000; --sel: #ffb000; --fg: #e8c88a; --hi: #ffe3a8; --dim: #8a7550; --link: #e8c88a; --bar: #ffb000; }
+    body.paper { --bg: #efebe1; --fg: #26241f; --hi: #000; --dim: #858073; --rule: #d3cdbf; --ink: #c2410c; --link: #26241f; --sel: #c2410c; --bar: #26241f; --bar-fg: #efebe1; }
 
     * { box-sizing: border-box; }
     html, body { height: 100%; }
     body {
       margin: 0; background: var(--bg); color: var(--fg);
-      font: 14px/1.65 var(--mono);
+      font: 14px/1.6 var(--mono);
       -webkit-font-smoothing: antialiased;
+      display: grid; grid-template-rows: minmax(0, 1fr) auto;
       overflow: hidden;
     }
-    ::selection { background: var(--accent); color: var(--bg); }
-    a { color: var(--accent-2); text-decoration: none; }
-    a:hover { color: var(--accent); }
+    ::selection { background: var(--sel); color: var(--bg); }
+    a { color: var(--link); text-decoration: underline; text-decoration-color: var(--dim); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    a:hover { color: var(--bg); background: var(--ink); text-decoration: none; }
+    b, .hi { color: var(--hi); font-weight: 600; }
+    .dim { color: var(--dim); }
+    .ink { color: var(--ink); }
+    .err { color: var(--ink); }
 
-    /* ---------- background ---------- */
-    .aurora { position: fixed; inset: -20%; z-index: 0; pointer-events: none; filter: blur(80px) saturate(140%); opacity: .55; }
-    .aurora i { position: absolute; border-radius: 50%; mix-blend-mode: screen; animation: drift 26s ease-in-out infinite alternate; }
-    .aurora i:nth-child(1) { width: 46vw; height: 46vw; left: 55%; top: 0%;  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 55%, transparent), transparent 65%); }
-    .aurora i:nth-child(2) { width: 40vw; height: 40vw; left: 0%;  top: 55%; background: radial-gradient(circle, color-mix(in srgb, var(--accent-2) 50%, transparent), transparent 65%); animation-duration: 32s; }
-    .aurora i:nth-child(3) { width: 30vw; height: 30vw; left: 20%; top: 5%;  background: radial-gradient(circle, rgba(255, 138, 61, .35), transparent 65%); animation-duration: 38s; }
-    @keyframes drift { to { transform: translate(-8vw, 6vh) scale(1.15); } }
-    #grid {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .6;
-      background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 56px 56px;
-      mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 10%, transparent 80%);
-    }
-    #noise {
-      position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: .05;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    }
-    #scan { position: fixed; inset: 0; z-index: 61; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(255,255,255,.016) 0 1px, transparent 1px 3px); }
-    #matrix { position: fixed; inset: 0; z-index: 40; pointer-events: none; opacity: 0; transition: opacity .6s; }
-    #matrix.on { opacity: .55; }
+    main { display: grid; grid-template-columns: 252px minmax(0, 1fr); min-height: 0; }
 
-    /* ---------- layout ---------- */
-    .wrap {
-      position: relative; z-index: 1;
-      height: 100%; max-width: 1400px; margin: 0 auto;
-      display: grid; grid-template-columns: 330px minmax(0, 1fr); gap: 22px;
-      padding: 26px;
-    }
-    .glass {
-      background: var(--panel);
-      border: 1px solid var(--line-2);
-      border-radius: 18px;
-      backdrop-filter: blur(18px) saturate(140%);
-      -webkit-backdrop-filter: blur(18px) saturate(140%);
-      box-shadow: 0 30px 80px -20px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.05);
-    }
-    .glow-border { position: relative; }
-    .glow-border::before {
-      content: ""; position: absolute; inset: -1px; border-radius: inherit; padding: 1px; pointer-events: none;
-      background: conic-gradient(from var(--a), transparent 0 60%, var(--accent) 75%, var(--accent-2) 85%, transparent 95%);
-      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude;
-      animation: spin 7s linear infinite; opacity: .8;
-    }
-    @keyframes spin { to { --a: 360deg; } }
-
-    /* ---------- identity card ---------- */
-    .id { display: flex; flex-direction: column; padding: 22px; gap: 18px; overflow-y: auto; scrollbar-width: none; animation: rise .8s cubic-bezier(.2,.8,.2,1) both; }
-    .id::-webkit-scrollbar { display: none; }
-    @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
-
-    .ph { position: relative; aspect-ratio: 1; border-radius: 16px; padding: 2px; isolation: isolate; }
-    .ph::before {
-      content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1;
-      background: conic-gradient(from var(--a), var(--accent), var(--accent-2), var(--hot), var(--accent));
-      animation: spin 6s linear infinite; filter: drop-shadow(0 0 18px var(--glow));
-    }
-    .ph .frame { position: relative; width: 100%; height: 100%; border-radius: 14px; overflow: hidden; background: #000; }
-    .ph img, .ph .ch { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .ph img { transition: transform .6s cubic-bezier(.2,.8,.2,1), filter .6s; filter: saturate(1.05) contrast(1.05); }
-    .ph .ch { background: var(--src) center/cover; mix-blend-mode: screen; opacity: 0; }
-    .ph .ch.r { filter: url(#r); }
-    .ph .ch.c { filter: url(#c); }
-    .ph .lines { position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0,0,0,.22) 0 1px, transparent 1px 3px); pointer-events: none; }
-    .ph .vig { position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55)); pointer-events: none; }
-    .ph:hover img { transform: scale(1.04); }
-    .ph:hover .ch { opacity: .9; }
-    .ph:hover .ch.r { animation: gl1 1.2s steps(2) infinite; }
-    .ph:hover .ch.c { animation: gl2 1.2s steps(2) infinite; }
-    @keyframes gl1 { 0% { transform: translate(-3px,0); clip-path: inset(10% 0 70% 0); } 25% { transform: translate(3px,1px); clip-path: inset(55% 0 20% 0); } 50% { transform: translate(-2px,-1px); clip-path: inset(30% 0 45% 0); } 75% { transform: translate(4px,0); clip-path: inset(80% 0 5% 0); } 100% { transform: translate(-3px,0); clip-path: inset(10% 0 70% 0); } }
-    @keyframes gl2 { 0% { transform: translate(3px,0); clip-path: inset(60% 0 15% 0); } 25% { transform: translate(-3px,-1px); clip-path: inset(5% 0 80% 0); } 50% { transform: translate(2px,1px); clip-path: inset(40% 0 35% 0); } 75% { transform: translate(-4px,0); clip-path: inset(20% 0 60% 0); } 100% { transform: translate(3px,0); clip-path: inset(60% 0 15% 0); } }
-    .ph .tag-live {
-      position: absolute; left: 12px; top: 12px; z-index: 2;
-      font-size: 10.5px; letter-spacing: .12em; color: #fff;
-      background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.15); border-radius: 999px;
-      padding: 2px 9px 2px 8px; backdrop-filter: blur(6px); display: flex; align-items: center; gap: 6px;
-    }
-    .ph .tag-live i { width: 6px; height: 6px; border-radius: 50%; background: #ff4d4d; box-shadow: 0 0 8px #ff4d4d; animation: pulse 1.6s infinite; }
-    .ph .handle { position: absolute; right: 12px; bottom: 10px; z-index: 2; font-size: 11px; color: rgba(255,255,255,.85); text-shadow: 0 1px 6px rgba(0,0,0,.8); }
-
-    .who h1 { margin: 0; font-size: 22px; line-height: 1.2; font-weight: 800; letter-spacing: -.02em; color: #fff; }
-    .who h1 .grad { background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .who .role { margin-top: 6px; color: var(--fg); }
-    .who .role b { color: var(--accent); font-weight: 500; }
-    .who .loc { color: var(--dim); font-size: 12.5px; margin-top: 2px; }
-
-    .status-pill {
-      display: flex; align-items: center; gap: 10px; font-size: 12.5px;
-      border: 1px solid var(--line-2); border-radius: 12px; padding: 9px 12px;
-      background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 10%, transparent), transparent);
-    }
-    .status-pill .dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px var(--accent); animation: pulse 2s infinite; }
-    .status-pill .rot { color: #fff; }
-    @keyframes pulse { 50% { opacity: .35; } }
-
-    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-    .stat { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; background: rgba(255,255,255,.02); transition: border-color .2s, transform .2s; }
-    .stat:hover { border-color: color-mix(in srgb, var(--accent) 60%, transparent); transform: translateY(-2px); }
-    .stat .n { font-size: 20px; font-weight: 800; color: #fff; line-height: 1.15; letter-spacing: -.02em; }
-    .stat .n em { font-style: normal; color: var(--accent); text-shadow: 0 0 14px var(--glow); }
-    .stat .l { font-size: 11px; color: var(--dim); line-height: 1.35; margin-top: 2px; }
-
-    .links { display: flex; gap: 8px; }
-    .links a {
-      flex: 1; display: grid; place-items: center; height: 40px; border-radius: 11px;
-      border: 1px solid var(--line-2); color: var(--fg); background: rgba(255,255,255,.02); transition: .2s;
-    }
-    .links a:hover { color: var(--bg); background: var(--accent); border-color: var(--accent); box-shadow: 0 8px 24px -8px var(--glow); transform: translateY(-2px); }
-    .links svg { width: 18px; height: 18px; fill: currentColor; }
-    .cta {
-      display: flex; align-items: center; justify-content: center; gap: 8px; height: 44px; border-radius: 12px;
-      color: var(--bg); font-weight: 700; letter-spacing: .02em;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2)); box-shadow: 0 10px 30px -10px var(--glow); transition: .2s;
-    }
-    .cta:hover { color: var(--bg); transform: translateY(-2px); filter: brightness(1.08); }
-    .id .foot { margin-top: auto; color: var(--dim); font-size: 11px; display: flex; justify-content: space-between; }
+    /* ---------- left column ---------- */
+    .side { padding: 28px 24px 20px 28px; border-right: 1px solid var(--rule); overflow-y: auto; display: flex; flex-direction: column; gap: 18px; }
+    .me { position: relative; margin: 0; width: 196px; aspect-ratio: 540 / 620; cursor: crosshair; }
+    .me img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 8%; opacity: 0; filter: grayscale(.15) contrast(1.05); }
+    .me .dith { position: absolute; inset: 0; background: var(--ink); -webkit-mask: var(--m) 0 0 / 100% 100% no-repeat; mask: var(--m) 0 0 / 100% 100% no-repeat; }
+    .me:hover img, .me.real img { opacity: 1; }
+    .me:hover .dith, .me.real .dith { opacity: 0; }
+    .me figcaption { position: absolute; left: 0; bottom: -20px; font-size: 11px; color: var(--dim); }
+    .side h1 { margin: 10px 0 0; font-size: 15px; font-weight: 600; color: var(--hi); letter-spacing: 0; }
+    .side p { margin: 0; }
+    .side .links { list-style: none; margin: 0; padding: 0; max-width: 30ch; }
+    .side .links li { display: flex; justify-content: space-between; }
+    .side .links span { color: var(--dim); }
+    .side .foot { margin-top: auto; font-size: 11.5px; color: var(--dim); }
 
     /* ---------- terminal ---------- */
-    .term { display: flex; flex-direction: column; min-height: 0; overflow: hidden; animation: rise .8s .12s cubic-bezier(.2,.8,.2,1) both; }
-    .bar { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border-bottom: 1px solid var(--line); user-select: none; }
-    .dots { display: flex; gap: 8px; }
-    .dots i { width: 12px; height: 12px; border-radius: 50%; display: block; }
-    .dots i:nth-child(1) { background: #ff5f57; } .dots i:nth-child(2) { background: #febc2e; } .dots i:nth-child(3) { background: #28c840; }
-    .title { flex: 1; text-align: center; color: var(--dim); font-size: 12px; }
-    .status { color: var(--dim); font-size: 12px; display: flex; gap: 10px; align-items: center; }
-    .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); animation: pulse 2s infinite; }
-
-    .chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 16px; border-bottom: 1px solid var(--line); }
-    .chip { font: 12px var(--mono); color: var(--dim); background: rgba(255,255,255,.02); border: 1px solid var(--line-2); border-radius: 8px; padding: 4px 10px; cursor: pointer; transition: .15s; }
-    .chip::before { content: "./"; opacity: .5; }
-    .chip:hover, .chip:focus-visible { color: var(--bg); background: var(--accent); border-color: var(--accent); outline: none; box-shadow: 0 6px 18px -6px var(--glow); }
-
-    #screen { flex: 1; overflow-y: auto; padding: 20px 24px 12px; scrollbar-width: thin; scrollbar-color: var(--line-2) transparent; }
+    #screen { overflow-y: auto; padding: 24px 32px 16px; scrollbar-width: thin; scrollbar-color: var(--rule) transparent; }
     #screen:focus { outline: none; }
-    .ln { white-space: pre-wrap; word-break: break-word; min-height: 1.65em; }
-    .dim { color: var(--dim); } .ac { color: var(--accent); } .ac2 { color: var(--accent-2); }
-    .warn { color: var(--warn); } .err { color: var(--err); } .b { font-weight: 700; color: #fff; }
-    .glow { text-shadow: 0 0 12px var(--glow); }
-
-    .ascii {
-      font-size: clamp(7px, 1.15vw, 14px); line-height: 1.12; white-space: pre; overflow: hidden; margin: 6px 0 12px; font-weight: 700;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2) 60%, var(--hot));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-      filter: drop-shadow(0 0 14px var(--glow));
-    }
-
-    .ps1 { white-space: nowrap; }
-    .ps1 .u { color: var(--accent); font-weight: 700; }
-    .ps1 .p { color: var(--accent-2); }
-    #input-row { display: flex; align-items: baseline; }
+    #out { max-width: 96ch; }
+    .ln { white-space: pre-wrap; word-break: break-word; min-height: 1.6em; }
+    .ps1 .u { color: var(--ink); }
+    #input-row { display: flex; align-items: baseline; max-width: 96ch; }
     #input-row[hidden] { display: none; }
-    #cmd { flex: 1; background: transparent; border: 0; outline: 0; color: #fff; font: inherit; caret-color: var(--accent); padding: 0 0 0 .6ch; min-width: 0; }
+    #cmd { flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; color: var(--hi); font: inherit; padding: 0 0 0 1ch; caret-color: var(--ink); }
 
-    .kv { display: grid; grid-template-columns: 16ch 1fr; gap: 0 2ch; }
-    .kv > :nth-child(odd) { color: var(--accent); }
+    .man-hd { display: flex; justify-content: space-between; color: var(--dim); margin-bottom: 1.6em; }
+    .sec { color: var(--hi); font-weight: 600; }
+    .ind { padding-left: 7ch; }
+    .ind p { margin: 0 0 .9em; }
 
-    .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 12px 0 8px; }
-    .metric { border: 1px solid var(--line-2); border-radius: 12px; padding: 12px 14px; background: linear-gradient(180deg, rgba(255,255,255,.03), transparent); }
-    .metric .n { font-size: 24px; font-weight: 800; color: var(--accent); text-shadow: 0 0 16px var(--glow); line-height: 1.15; letter-spacing: -.02em; }
-    .metric .l { color: var(--dim); font-size: 11.5px; }
+    .job { margin: 0 0 1.4em; }
+    .job .hd { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 2ch; }
+    .job ul { margin: .2em 0 0; padding: 0; list-style: none; }
+    .job li { padding-left: 2ch; text-indent: -2ch; }
+    .job li::before { content: "- "; color: var(--dim); }
 
-    .card { border-left: 2px solid var(--accent); padding: 2px 0 2px 16px; margin: 12px 0 16px; }
-    .card .hd { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px; }
-    .card .role { color: #fff; font-weight: 700; }
-    .card .where { color: var(--accent-2); }
-    .card .when { color: var(--dim); }
-    .card ul { margin: 6px 0 0; padding: 0; list-style: none; }
-    .card li { padding-left: 2.2ch; text-indent: -2.2ch; }
-    .card li::before { content: "› "; color: var(--accent); }
-    .tag { display: inline-block; font-size: 11px; color: var(--dim); border: 1px solid var(--line-2); border-radius: 6px; padding: 0 7px; margin: 6px 4px 0 0; }
+    .sys { display: grid; grid-template-columns: 28ch 16ch 1fr; gap: 0 2ch; }
+    .sys > div { padding-bottom: .7em; }
+    .sys .h { color: var(--dim); border-bottom: 1px solid var(--rule); margin-bottom: .5em; padding-bottom: .15em; }
+    .sys .n { color: var(--hi); }
+    .sys .m { color: var(--ink); }
+    .ls { display: grid; grid-template-columns: auto auto 1fr; gap: 0 2ch; }
+    .kv { display: grid; grid-template-columns: 12ch 1fr; gap: 0 2ch; }
+    .kv > :nth-child(odd) { color: var(--dim); }
 
-    .proj { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; margin: 10px 0 14px; }
-    .pc {
-      position: relative; display: block; color: inherit; overflow: hidden;
-      border: 1px solid var(--line-2); border-radius: 14px; padding: 14px 16px;
-      background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.01));
-      transition: border-color .25s, transform .25s, box-shadow .25s;
+    .neo { display: flex; gap: 4ch; align-items: flex-start; flex-wrap: wrap; }
+    .print { display: block; background: var(--ink); -webkit-mask: var(--m) 0 0 / 100% 100% no-repeat; mask: var(--m) 0 0 / 100% 100% no-repeat; }
+    .blocks span { display: inline-block; width: 3ch; height: 1.1em; vertical-align: middle; }
+
+    /* ---------- tmux-ish status line ---------- */
+    .status { display: flex; gap: 0; background: var(--bar); color: var(--bar-fg); font-size: 12.5px; line-height: 22px; white-space: nowrap; overflow-x: auto; scrollbar-width: none; user-select: none; }
+    .status::-webkit-scrollbar { display: none; }
+    .status .sess { padding: 0 1.2ch; font-weight: 600; }
+    .status button { font: inherit; color: inherit; background: none; border: 0; padding: 0 1ch; cursor: pointer; }
+    .status button:hover, .status button.on { background: var(--bar-fg); color: var(--bar); }
+    .status .r { margin-left: auto; padding: 0 1.2ch; }
+
+    @media (max-width: 860px) {
+      body { overflow: auto; display: block; }
+      main { display: block; }
+      .side { border-right: 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 104px 1fr; gap: 4px 18px; padding: 18px; overflow: visible; }
+      .me { width: 104px; grid-row: span 4; }
+      .me figcaption, .side .foot { display: none; }
+      .side h1 { margin: 0; }
+      #screen { height: auto; min-height: 70vh; overflow: visible; padding: 18px; }
+      .status { position: sticky; bottom: 0; }
+      .sys { grid-template-columns: 1fr auto; }
+      .sys .d { grid-column: 1 / -1; padding-top: 0; margin-top: -.6em; }
+      .sys .h:nth-child(3) { display: none; }
+      .ind { padding-left: 3ch; }
     }
-    .pc::after { content: ""; position: absolute; inset: 0; background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--accent) 14%, transparent), transparent 40%); opacity: 0; transition: opacity .3s; pointer-events: none; }
-    .pc:hover { border-color: color-mix(in srgb, var(--accent) 70%, transparent); transform: translateY(-3px); box-shadow: 0 16px 40px -18px var(--glow); color: inherit; }
-    .pc:hover::after { opacity: 1; }
-    .pc .k { color: var(--dim); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; }
-    .pc .t { color: #fff; font-weight: 700; margin-top: 2px; }
-    .pc .m { display: inline-block; margin-top: 6px; font-weight: 800; font-size: 15px; color: var(--accent); text-shadow: 0 0 14px var(--glow); }
-    .pc .d { color: var(--fg); opacity: .85; margin-top: 6px; font-size: 13px; }
-
-    .bars { display: grid; grid-template-columns: 20ch 1fr; gap: 3px 2ch; }
-    .bars .bar-v { color: var(--accent); letter-spacing: -1px; }
-
-    .neo { display: grid; grid-template-columns: auto 1fr; gap: 0 4ch; align-items: center; margin: 6px 0; }
-    .neo .art, .portrait { position: relative; line-height: 0; }
-    .portrait { margin: 8px 0; display: inline-block; }
-    .led { display: block; filter: saturate(1.15) drop-shadow(0 0 18px rgba(255, 138, 61, .18)); }
-    .swatch { display: inline-block; width: 2.4ch; height: 1em; vertical-align: middle; }
-
-    footer.mini { padding: 8px 16px; border-top: 1px solid var(--line); color: var(--dim); font-size: 11px; display: flex; justify-content: space-between; gap: 10px; }
-    kbd { font: inherit; color: var(--fg); border: 1px solid var(--line-2); border-bottom-width: 2px; border-radius: 4px; padding: 0 4px; }
-
-    @media (max-width: 960px) {
-      body { overflow: auto; }
-      .wrap { grid-template-columns: 1fr; height: auto; padding: 14px; gap: 14px; }
-      .id { display: grid; grid-template-columns: 112px 1fr; gap: 14px 16px; padding: 16px; overflow: visible; }
-      .id .ph { grid-row: span 2; }
-      .id .who h1 { font-size: 19px; }
-      .id .stats { grid-column: 1 / -1; grid-template-columns: repeat(4, 1fr); }
-      .id .links, .id .cta, .id .status-pill { grid-column: 1 / -1; }
-      .id .foot { display: none; }
-      .ph .tag-live, .ph .handle { display: none; }
-      .term { height: 82vh; }
-    }
-    @media (max-width: 560px) {
+    @media (max-width: 520px) {
       body { font-size: 12.5px; }
-      .id .stats { grid-template-columns: 1fr 1fr; }
-      .title, .status .hide-sm { display: none; }
-      .kv { grid-template-columns: 11ch 1fr; }
-      .bars { grid-template-columns: 1fr; }
-      .neo { grid-template-columns: 1fr; }
-      .neo .art { display: none; }
-      #screen { padding: 14px; }
+      .ls { grid-template-columns: 1fr; }
+      .ls .perm { display: none; }
+      .kv { grid-template-columns: 9ch 1fr; }
     }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; }
-    }
-    noscript .static { position: relative; z-index: 2; padding: 24px; max-width: 860px; margin: auto; }
+    noscript .static { padding: 28px; max-width: 80ch; }
   </style>
 </head>
 
 <body>
-  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
-  <div id="grid"></div>
-  <div id="noise"></div>
-  <div id="scan"></div>
-  <canvas id="matrix"></canvas>
-
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <filter id="r"><feColorMatrix type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"/></filter>
-    <filter id="c"><feColorMatrix type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/></filter>
-  </svg>
-
-  <div class="wrap">
-    <!-- identity -->
-    <aside class="id glass glow-border" aria-label="About Mohammad Karimi">
-      <div class="ph" style="--src:url('/assets/img/profile.jpeg')">
-        <div class="frame">
-          <img src="/assets/img/profile.jpeg" alt="Mohammad Karimi" width="800" height="800" />
-          <div class="ch r"></div><div class="ch c"></div>
-          <div class="lines"></div><div class="vig"></div>
-          <span class="tag-live"><i></i>LIVE · TORONTO</span>
-          <span class="handle">@mmdpy</span>
-        </div>
+  <main>
+    <aside class="side" aria-label="Mohammad Karimi">
+      <figure class="me" id="me" title="hover for the real one">
+        <img src="/assets/img/profile.jpeg" alt="Mohammad Karimi" width="800" height="800" />
+        <div class="dith" aria-hidden="true"></div>
+        <figcaption>fig. 1: me, in 1 bit</figcaption>
+      </figure>
+      <div>
+        <h1>Mohammad Karimi</h1>
+        <p>Staff AI Engineer<br>at Proofpoint</p>
+        <p class="dim">Toronto, ON</p>
       </div>
-
-      <div class="who">
-        <h1>Mohammad <span class="grad">Karimi</span></h1>
-        <div class="role"><b>Staff AI Engineer</b> @ Proofpoint</div>
-        <div class="loc">Toronto, ON · M.Sc. CS, UAlberta</div>
-      </div>
-
-      <div class="status-pill"><span class="dot"></span><span>now: <span class="rot" id="rot">sub-second speech agents</span></span></div>
-
-      <div class="stats">
-        <div class="stat"><div class="n"><em>20M+</em></div><div class="l">messages / day in production</div></div>
-        <div class="stat"><div class="n">&lt;<em>1s</em></div><div class="l">speech-to-speech latency</div></div>
-        <div class="stat"><div class="n"><em>122×</em></div><div class="l">cheaper than AWS Guardrails</div></div>
-        <div class="stat"><div class="n"><em>94%</em></div><div class="l">top-5 recall, archive RAG</div></div>
-      </div>
-
-      <div class="links">
-        <a href="https://github.com/mmdpy" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
-        <a href="https://www.linkedin.com/in/mohammad-karimi-abdolmaleki/" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></a>
-        <a href="mailto:mmdkarimi96@gmail.com" aria-label="Email" title="Email"><svg viewBox="0 0 24 24"><path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13Zm2.3-.5 7.7 6.3L19.7 5H4.3ZM20 6.6l-7.37 6.03a1 1 0 0 1-1.26 0L4 6.6v11.9c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V6.6Z"/></svg></a>
-        <a href="https://doi.org/10.1007/s40593-025-00468-8" target="_blank" rel="noopener" aria-label="Publication" title="Publication (IJAIED 2025)"><svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm8 1.5V8h4.5L14 3.5ZM7 12v1.5h10V12H7Zm0 3.5V17h10v-1.5H7Zm0-7V10h5V8.5H7Z"/></svg></a>
-      </div>
-
-      <a class="cta" href="/assets/resume/MohammadKarimi_Resume.pdf" target="_blank" rel="noopener">↓ resume.pdf</a>
-
-      <div class="foot"><span>© <span id="yr"></span> mmdpy</span><span id="clock"></span></div>
+      <ul class="links">
+        <li><a href="https://github.com/mmdpy" target="_blank" rel="noopener">github</a><span>mmdpy</span></li>
+        <li><a href="https://www.linkedin.com/in/mohammad-karimi-abdolmaleki/" target="_blank" rel="noopener">linkedin</a><span>in/</span></li>
+        <li><a href="mailto:mmdkarimi96@gmail.com">email</a><span>gmail</span></li>
+        <li><a href="https://doi.org/10.1007/s40593-025-00468-8" target="_blank" rel="noopener">paper</a><span>IJAIED '25</span></li>
+        <li><a href="/assets/resume/MohammadKarimi_Resume.pdf" target="_blank" rel="noopener">resume.pdf</a><span>2pp</span></li>
+      </ul>
+      <p class="foot">rev. 2026-10<br>hand-written html, no framework.</p>
     </aside>
 
-    <!-- terminal -->
-    <section class="term glass" role="application" aria-label="Interactive terminal">
-      <div class="bar">
-        <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="title">mmdpy — zsh — ~/portfolio</div>
-        <div class="status"><span class="pulse" aria-hidden="true"></span><span>online</span></div>
+    <section id="screen" tabindex="0" aria-label="Interactive terminal" aria-live="polite">
+      <div id="out"></div>
+      <div id="input-row" hidden>
+        <span class="ps1"><span class="u">mmdpy</span>:~$</span>
+        <input id="cmd" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Type a command, or help" />
       </div>
-      <nav class="chips" aria-label="Quick commands">
-        <button class="chip" data-cmd="about">about</button>
-        <button class="chip" data-cmd="experience">experience</button>
-        <button class="chip" data-cmd="projects">projects</button>
-        <button class="chip" data-cmd="skills">skills</button>
-        <button class="chip" data-cmd="research">research</button>
-        <button class="chip" data-cmd="neofetch">neofetch</button>
-        <button class="chip" data-cmd="contact">contact</button>
-        <button class="chip" data-cmd="help">help</button>
-      </nav>
-      <div id="screen" tabindex="0" aria-live="polite">
-        <div id="out"></div>
-        <div id="input-row" hidden>
-          <span class="ps1"><span class="u">mmdpy</span> <span class="p">~</span> <span class="ac">❯</span></span>
-          <input id="cmd" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Type a command, or type help" />
-        </div>
-      </div>
-      <footer class="mini">
-        <span><kbd>tab</kbd> complete · <kbd>↑</kbd><kbd>↓</kbd> history · <kbd>ctrl</kbd>+<kbd>l</kbd> clear</span>
-        <span class="hide-sm">try <span class="ac">sudo hire-me</span></span>
-      </footer>
     </section>
-  </div>
+  </main>
+
+  <nav class="status" aria-label="Sections">
+    <span class="sess">[mmdpy]</span>
+    <button data-cmd="man mmdpy">0:man</button>
+    <button data-cmd="work">1:work</button>
+    <button data-cmd="systems">2:systems</button>
+    <button data-cmd="oss">3:oss</button>
+    <button data-cmd="skills">4:skills</button>
+    <button data-cmd="paper">5:paper</button>
+    <button data-cmd="contact">6:contact</button>
+    <button data-cmd="neofetch">7:neofetch</button>
+    <span class="r" id="clock"></span>
+  </nav>
 
   <noscript>
     <div class="static">
-      <h1>Mohammad Karimi — Staff AI Engineer, Proofpoint (Toronto)</h1>
-      <p>I architect and ship multi-agent, RAG, and document-intelligence systems end to end — from research prototype to Kubernetes services handling 20M+ messages per day — with LLM inference 10–122× cheaper than managed AWS services.</p>
-      <p>Email <a href="mailto:mmdkarimi96@gmail.com">mmdkarimi96@gmail.com</a> · <a href="https://www.linkedin.com/in/mohammad-karimi-abdolmaleki/">LinkedIn</a> · <a href="https://github.com/mmdpy">GitHub</a> · <a href="/assets/resume/MohammadKarimi_Resume.pdf">Resume (PDF)</a></p>
+      <h1>Mohammad Karimi, Staff AI Engineer at Proofpoint (Toronto)</h1>
+      <p>12+ years. I architect and ship multi-agent, RAG, and document-intelligence systems end to end, from research prototype to Kubernetes services handling 20M+ messages per day, with LLM inference 10&ndash;122&times; cheaper than managed AWS services.</p>
+      <p><a href="mailto:mmdkarimi96@gmail.com">mmdkarimi96@gmail.com</a> / <a href="https://www.linkedin.com/in/mohammad-karimi-abdolmaleki/">LinkedIn</a> / <a href="https://github.com/mmdpy">GitHub</a> / <a href="/assets/resume/MohammadKarimi_Resume.pdf">resume (PDF)</a></p>
     </div>
   </noscript>
 
@@ -388,11 +207,9 @@
     const RESUME = "/assets/resume/MohammadKarimi_Resume.pdf";
     const PHOTO = "/assets/img/profile.jpeg";
     const EMAIL = "mmdkarimi96@gmail.com";
-    const LINKS = {
-      github: "https://github.com/mmdpy",
-      linkedin: "https://www.linkedin.com/in/mohammad-karimi-abdolmaleki/",
-      paper: "https://doi.org/10.1007/s40593-025-00468-8",
-    };
+    const GH = "https://github.com/mmdpy";
+    const LI = "https://www.linkedin.com/in/mohammad-karimi-abdolmaleki/";
+    const DOI = "https://doi.org/10.1007/s40593-025-00468-8";
 
     const out = document.getElementById("out");
     const screen = document.getElementById("screen");
@@ -401,8 +218,10 @@
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const sleep = ms => new Promise(r => setTimeout(r, reduced ? 0 : ms));
     const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-    const scroll = () => { screen.scrollTop = screen.scrollHeight; };
-    const PS1 = `<span class="ps1"><span class="u">mmdpy</span> <span class="p">~</span> <span class="ac">❯</span></span>`;
+    const paneScrolls = () => getComputedStyle(screen).overflowY !== "visible";
+    const scroll = () => { if (paneScrolls()) screen.scrollTop = screen.scrollHeight; };
+    const PS1 = `<span class="ps1"><span class="u">mmdpy</span>:~$</span>`;
+    const cmdLink = (c, label = c) => `<a href="#${c}" data-run="${c}">${label}</a>`;
 
     function print(html = "", cls = "ln") {
       const d = document.createElement("div");
@@ -412,327 +231,304 @@
       scroll();
       return d;
     }
-    async function type(html, speed = 12, cls = "ln") {
-      const d = print("", cls);
-      if (reduced) { d.innerHTML = html; return d; }
-      const tmp = document.createElement("div");
-      tmp.innerHTML = html;
-      const text = tmp.textContent;
-      for (let i = 1; i <= text.length; i++) {
-        d.textContent = text.slice(0, i);
-        if (i % 2 === 0) await sleep(speed);
-        scroll();
-      }
-      d.innerHTML = html;
-      return d;
-    }
-    const echoCmd = c => print(`${PS1} <span class="b">${esc(c)}</span>`);
 
-    // ---- LED-matrix portrait from the real photo ----
+    // ---------- 1-bit portrait (Atkinson dither) ----------
     const photo = new Image();
     photo.src = PHOTO;
     const photoReady = new Promise(r => { photo.onload = r; photo.onerror = r; });
-    async function portrait(cols, cell) {
+    async function dither(cols, px) {
       await photoReady;
-      const canvas = document.createElement("canvas");
-      canvas.className = "led";
-      if (!photo.naturalWidth) return canvas;
+      if (!photo.naturalWidth) return null;
       const s = photo.naturalWidth / 800;
       const [sx, sy, sw, sh] = [130 * s, 10 * s, 540 * s, 620 * s];
       const rows = Math.round(cols * sh / sw);
-      const src = document.createElement("canvas");
-      src.width = cols; src.height = rows;
-      const sctx = src.getContext("2d", { willReadFrequently: true });
-      sctx.drawImage(photo, sx, sy, sw, sh, 0, 0, cols, rows);
-      const px = sctx.getImageData(0, 0, cols, rows).data;
-      const dpr = Math.min(2, devicePixelRatio || 1);
-      canvas.width = cols * cell * dpr; canvas.height = rows * cell * dpr;
-      canvas.style.width = `${cols * cell}px`; canvas.style.height = `${rows * cell}px`;
-      const x = canvas.getContext("2d");
-      x.scale(dpr, dpr);
-      const gap = Math.max(1, cell * 0.18), r = cell * 0.22;
-      const drawRow = j => {
-        for (let i = 0; i < cols; i++) {
-          const k = (j * cols + i) * 4;
-          const dx = (i / (cols - 1) - .5) / .5, dy = (j / (rows - 1) - .5) / .5;
-          const a = Math.max(0, Math.min(1, (1.05 - Math.hypot(dx * .95, dy)) / .28));
-          if (!a) continue;
-          x.fillStyle = `rgba(${px[k]},${px[k + 1]},${px[k + 2]},${a})`;
-          x.beginPath();
-          x.roundRect(i * cell + gap / 2, j * cell + gap / 2, cell - gap, cell - gap, r);
-          x.fill();
+      const c = document.createElement("canvas");
+      c.width = cols; c.height = rows;
+      const x = c.getContext("2d", { willReadFrequently: true });
+      x.drawImage(photo, sx, sy, sw, sh, 0, 0, cols, rows);
+      const img = x.getImageData(0, 0, cols, rows), d = img.data;
+      const g = new Float32Array(cols * rows);
+      for (let i = 0; i < g.length; i++) {
+        const v = .299 * d[i * 4] + .587 * d[i * 4 + 1] + .114 * d[i * 4 + 2];
+        g[i] = Math.max(0, Math.min(255, (v - 118) * 1.35 + 128));
+      }
+      const spread = [[1, 0], [2, 0], [-1, 1], [0, 1], [1, 1], [0, 2]];
+      for (let y = 0; y < rows; y++) for (let xx = 0; xx < cols; xx++) {
+        const i = y * cols + xx, o = g[i] < 128 ? 0 : 255, e = (g[i] - o) / 8;
+        g[i] = o;
+        for (const [dx, dy] of spread) {
+          const nx = xx + dx, ny = y + dy;
+          if (nx >= 0 && nx < cols && ny < rows) g[ny * cols + nx] += e;
         }
-      };
-      if (reduced) { for (let j = 0; j < rows; j++) drawRow(j); }
-      else (async () => { for (let j = 0; j < rows; j++) { drawRow(j); if (j % 2) await sleep(12); } })();
-      return canvas;
+      }
+      const dpr = Math.min(2, devicePixelRatio || 1), k = px * dpr;
+      const big = document.createElement("canvas");
+      big.width = cols * k; big.height = rows * k;
+      const bx = big.getContext("2d");
+      bx.fillStyle = "#000";
+      for (let y = 0; y < rows; y++) for (let xx = 0; xx < cols; xx++) if (g[y * cols + xx]) bx.fillRect(xx * k, y * k, k, k);
+      return { url: big.toDataURL(), w: cols * px, h: rows * px };
     }
+    async function printed(cols, px) {
+      const p = await dither(cols, px);
+      if (!p) return `<span class="dim">(couldn't load the photo)</span>`;
+      return `<span class="print" role="img" aria-label="dithered portrait of Mohammad" style="--m:url(${p.url});width:${p.w}px;height:${p.h}px"></span>`;
+    }
+    dither(98, 2).then(p => { if (p) document.querySelector(".me .dith").style.setProperty("--m", `url(${p.url})`); });
+    document.getElementById("me").addEventListener("click", e => e.currentTarget.classList.toggle("real"));
 
-    const BANNER = String.raw`
- ███╗   ███╗███╗   ███╗██████╗ ██████╗ ██╗   ██╗
- ████╗ ████║████╗ ████║██╔══██╗██╔══██╗╚██╗ ██╔╝
- ██╔████╔██║██╔████╔██║██║  ██║██████╔╝ ╚████╔╝
- ██║╚██╔╝██║██║╚██╔╝██║██║  ██║██╔═══╝   ╚██╔╝
- ██║ ╚═╝ ██║██║ ╚═╝ ██║██████╔╝██║        ██║
- ╚═╝     ╚═╝╚═╝     ╚═╝╚═════╝ ╚═╝        ╚═╝`;
-
-    const EXPERIENCE = [
+    // ---------- content (all from the résumé) ----------
+    const WORK = [
       {
-        role: "Staff AI Engineer", where: "Proofpoint", loc: "Toronto, ON", when: "Jul 2025 — present",
+        role: "Staff AI Engineer", where: "Proofpoint", loc: "Toronto", when: "Jul 2025 - now",
         items: [
-          `Architected <span class="ac">Proofpoint Automate</span>'s production LLM inference platform on Kubernetes (<span class="b">20M+ messages/day</span>) — 20+ open-weight models on vLLM with AWQ, prefix/KV caching, and continuous batching at <span class="b">10–15×</span> lower cost than AWS Bedrock`,
-          `Built a <span class="b">sub-second speech-to-speech multi-agent system</span> for Compliance Investigator — a unified context layer over knowledge graphs, entity resolution, and parallel LLM subagents for real-time investigative Q&amp;A`,
-          `Engineered a cascaded <span class="ac">agentic decisioning pipeline</span> for Supervision — classical ML filters → tool-calling LLMs → human-in-the-loop active learning — cutting false-positive escalations <span class="b">45%</span>`,
-          `Distilled frontier-model reasoning into a <span class="ac">QLoRA</span>-tuned open-weight LLM that beat commercial compliance baselines on golden evals; <span class="b">+40%</span> AWS Nova F1 via structured function calling + DSPy/GEPA`,
-          `Designed a petabyte-scale <span class="ac">hybrid RAG</span> engine over millions of archived emails — dense embeddings + BM25 + cross-encoder re-ranker — <span class="b">94% top-5 recall</span>, <span class="b">−65%</span> query latency`,
-          `Fine-tuned Longformer in PyTorch for regulated long documents (<span class="b">90%+ F1</span>) with token-level Integrated Gradients for audit trails, plus a hybrid BERT PII Redaction API <span class="b">122× cheaper</span> than AWS Guardrails`,
+          `Own architecture, deployment and scaling of the <b>Proofpoint Automate</b> ML and LLM services across enterprise customers: <b>20M+ messages a day</b> in production.`,
+          `Architected a <b>sub-second speech-to-speech multi-agent system</b> for Compliance Investigator. One context layer over knowledge graphs, entity resolution and parallel LLM subagents, for real-time investigative Q&amp;A.`,
+          `Built a cascaded agentic decisioning pipeline for Supervision (classical ML filters, then tool-calling LLMs, then human-in-the-loop active learning). Inference cost <b>~15x lower</b> than AWS Bedrock.`,
+          `Distilled frontier-model reasoning into a QLoRA-tuned open-weight LLM that beat commercial compliance baselines on golden evals at <b>10x lower cost</b>. Took AWS Nova F1 up <b>40%</b> with structured function calling and GEPA.`,
+          `Designed a petabyte-scale hybrid RAG engine over millions of archived emails (dense + BM25 + cross-encoder re-ranker): <b>94% top-5 recall</b>, search latency down <b>65%</b>.`,
+          `Serve <b>20+ open-weight models</b> on Kubernetes with vLLM, AWQ, KV caching and continuous batching, <b>10x</b> cheaper than Bedrock. Also a BERT + rules PII redaction API, <b>122x</b> cheaper than AWS Guardrails.`,
+          `Fine-tuned Longformer for regulated long documents (<b>90%+ F1</b>) with token-level Integrated Gradients, so reviewers can audit every call.`,
         ],
-        tags: ["multi-agent", "speech", "hybrid RAG", "vLLM", "QLoRA", "Kubernetes", "AWS", "PyTorch"],
       },
       {
-        role: "Senior Data Scientist", where: "KPMG Lighthouse", loc: "Toronto, ON", when: "Jun 2023 — Jul 2025",
+        role: "Senior Data Scientist", where: "KPMG Lighthouse", loc: "Toronto", when: "Jun 2023 - Jul 2025",
         items: [
-          `Migrated <span class="b">Prudential Financial</span> from on-prem to <span class="ac">GCP</span>, adding agentic LLMs + RAG for context-aware database queries`,
-          `Generative SOC-report system with instruction-tuned local LLMs — <span class="b">92%+</span> retrieval accuracy`,
-          `Nine production churn pipelines for Bell on Vertex AI, orchestrated with Cloud Composer, Pub/Sub, BigQuery`,
+          `Moved <b>Prudential Financial</b> from on-prem to GCP and added agentic LLMs + RAG for context-aware database queries.`,
+          `Generative SOC-report system on GCP with instruction-tuned local LLMs, <b>92%+</b> accuracy on retrieval from unstructured reports.`,
+          `Nine production churn pipelines for <b>Bell</b> on Vertex AI, ingestion to batch deployment (Cloud Composer, Pub/Sub, BigQuery).`,
         ],
-        tags: ["GCP", "Vertex AI", "LLMs", "RAG"],
       },
       {
-        role: "Associate ML Developer", where: "AltaML", loc: "Edmonton, AB", when: "Sep 2022 — May 2023",
+        role: "Associate ML Developer", where: "AltaML", loc: "Edmonton", when: "Sep 2022 - May 2023",
         items: [
-          `Production bias + hate-speech classifier on Azure with GPT-3.5`,
-          `Government of Alberta pipeline scoring <span class="b">2.6B+</span> geospatial points at 88%+ accuracy`,
+          `Shipped a bias and hate-speech classifier on Azure with GPT-3.5.`,
+          `Azure ML pipeline for the Government of Alberta that scored <b>2.6B+</b> geospatial points at 88%+ accuracy.`,
         ],
-        tags: ["Azure", "OpenAI", "geospatial"],
       },
       {
-        role: "Data Scientist & NLP Researcher", where: "University of Alberta", loc: "Edmonton, AB", when: "Jan 2021 — Aug 2022",
-        items: [`Neural language models detecting ungrammatical writing at <span class="b">97%+</span> accuracy — published in IJAIED (2025)`],
-        tags: ["NLP", "research"],
+        role: "Data Scientist, NLP Researcher", where: "University of Alberta", loc: "Edmonton", when: "Jan 2021 - Aug 2022",
+        items: [`Language models that catch ungrammatical learner writing at <b>97%+</b> accuracy. Published in IJAIED (2025).`],
       },
       {
-        role: "Software Engineer", where: "Iranian National Robotics Team", loc: "Tehran", when: "Sep 2018 — Jan 2020",
-        items: [`Imagery data pipeline + Faster R-CNN object recognition for robots`],
-        tags: ["computer vision", "Faster R-CNN"],
+        role: "Software Engineer", where: "Iranian National Robotics Team", loc: "Tehran", when: "Sep 2018 - Jan 2020",
+        items: [`Imagery pipeline and a Faster R-CNN detector for object recognition.`],
       },
     ];
 
     const SYSTEMS = [
-      { k: "prod · proofpoint", t: "voice-investigator", m: "< 1s", d: "Speech-to-speech multi-agent system. Unified context layer over knowledge graphs, entity resolution, and parallel LLM subagents." },
-      { k: "prod · proofpoint", t: "automate-inference", m: "20M+ msgs/day", d: "20+ open-weight models on Kubernetes · vLLM · AWQ · prefix/KV caching · continuous batching. 10–15× cheaper than Bedrock." },
-      { k: "prod · proofpoint", t: "agentic-decisioning", m: "−45% false positives", d: "Cascade: classical ML filters → tool-calling LLMs → human-in-the-loop active learning." },
-      { k: "prod · proofpoint", t: "hybrid-rag", m: "94% recall@5", d: "Petabyte-scale search over millions of archived emails. Dense + BM25 + cross-encoder re-ranker. −65% query latency." },
-      { k: "prod · proofpoint", t: "distilled-compliance-llm", m: "beats commercial baselines", d: "Frontier-model reasoning distilled into a QLoRA-tuned open-weight LLM, measured on golden evals." },
-      { k: "prod · proofpoint", t: "redaction-api", m: "122× cheaper", d: "Hybrid BERT PII redaction vs. AWS Guardrails, alongside Longformer classification with Integrated Gradients." },
+      ["voice-investigator", "< 1 s", "speech-to-speech multi-agent system for Compliance Investigator"],
+      ["automate", "20M+ msg/day", "Proofpoint Automate ML + LLM services, end to end"],
+      ["agentic-decisioning", "~15x cheaper", "ML filters, then tool-calling LLMs, then human review (vs. Bedrock)"],
+      ["hybrid-rag", "94% recall@5", "petabyte-scale email search, dense + BM25 + re-ranker, -65% latency"],
+      ["distilled-compliance-llm", "10x cheaper", "QLoRA open-weight model, beat commercial baselines on golden evals"],
+      ["llm-serving", "10x cheaper", "20+ open-weight models on vLLM, AWQ, KV cache, continuous batching"],
+      ["pii-redaction", "122x cheaper", "BERT + rules, vs. AWS Guardrails"],
     ];
+
     const OSS = [
-      { t: "Commonsense-Validation-and-Explanation", m: "SemEval 2020", d: "Task 4 — can a model tell sense from nonsense, and explain why?", u: "Commonsense-Validation-and-Explanation" },
-      { t: "bert_fine_tuning_review_analysis", m: "BERT", d: "Fine-tuning BERT for review analysis.", u: "bert_fine_tuning_review_analysis" },
-      { t: "booking_probability_prediction", m: "end-to-end", d: "Predicting whether a hotel gets booked from user search sessions.", u: "booking_probability_prediction" },
-      { t: "Neural-Representation-of-Words-within-Phrases", m: "MEG", d: "Decoding how color adjectives and nouns compose in the brain over time.", u: "Neural-Representation-of-Words-within-Phrases" },
-      { t: "Relation-Extraction-and-Classification", m: "from scratch", d: "Naive Bayes relation extraction, no libraries.", u: "Relation-Extraction-and-Classification" },
-      { t: "Language-Identification", m: "char n-grams", d: "Language ID with character-level n-gram language models.", u: "Language-Identification" },
+      ["Commonsense-Validation-and-Explanation", "SemEval 2020 task 4: tell sense from nonsense, and explain why"],
+      ["bert_fine_tuning_review_analysis", "fine-tuning BERT on reviews"],
+      ["booking_probability_prediction", "will this hotel get booked, from search sessions"],
+      ["Neural-Representation-of-Words-within-Phrases", "MEG: how adjectives and nouns compose in the brain"],
+      ["Relation-Extraction-and-Classification", "naive bayes relation extraction, no libraries"],
+      ["Language-Identification", "language ID with character n-gram models"],
     ];
 
     const SKILLS = [
-      ["LLM systems", 98, "multi-agent · LangGraph · tool use · hybrid RAG"],
-      ["Inference", 96, "vLLM · AWQ · prefix/KV cache · continuous batching"],
-      ["Fine-tuning", 95, "PyTorch · QLoRA · Unsloth · distillation · DSPy"],
-      ["NLP / doc-intel", 95, "Longformer · BERT · Integrated Gradients · PII"],
-      ["Speech agents", 90, "speech-to-speech · sub-second latency"],
-      ["MLOps", 92, "Kubernetes · Docker · Airflow · CI/CD"],
-      ["Cloud", 92, "AWS (Bedrock) · GCP (Vertex) · Azure"],
-      ["Classical ML", 90, "XGBoost · scikit-learn · spaCy"],
+      ["languages", "Python, SQL, C++, Java, JavaScript"],
+      ["ml / genai", "PyTorch, Hugging Face, vLLM, LangChain, DSPy, Unsloth, scikit-learn, XGBoost, spaCy"],
+      ["mlops", "Kubernetes, Docker, AWS, GCP, Azure, Airflow, Cloud Composer, Vertex AI, BigQuery, Git, Linux"],
+      ["data", "PostgreSQL, MySQL, SQL Server, SQLite"],
+      ["certs", "GCP Professional ML Engineer, Azure AI Engineer, 20+ other cloud certs"],
     ];
 
     const FILES = {
       "about.txt": () => cmds.about(),
-      "experience.log": () => cmds.experience(),
-      "projects/": () => cmds.projects(),
-      "skills.json": () => cmds.skills(),
-      "research.bib": () => cmds.research(),
-      "selfie.jpg": () => cmds.selfie(),
+      "work.log": () => cmds.work(),
+      "systems/": () => cmds.systems(),
+      "oss/": () => cmds.oss(),
+      "skills.txt": () => cmds.skills(),
+      "paper.bib": () => cmds.paper(),
+      "me.jpg": () => cmds.selfie(),
       "resume.pdf": () => cmds.resume(),
-      "contact.vcf": () => cmds.contact(),
-      ".secrets": () => print(`<span class="err">permission denied:</span> nice try. try <span class="ac">sudo hire-me</span>`),
+      ".plan": () => print(`still working on the voice agent. ask me about latency budgets.`),
     };
 
     const cmds = {
-      help() {
-        const rows = [
-          ["about", "who I am, in 20 seconds"],
-          ["experience", "where I've shipped things"],
-          ["projects", "production systems + open source"],
-          ["skills", "what I'm dangerous at"],
-          ["research", "publication + teaching"],
-          ["neofetch", "system info, but it's me"],
-          ["selfie", "my face on an LED matrix, rendered live"],
-          ["resume", "open the PDF"],
-          ["contact", "email, LinkedIn, GitHub"],
-          ["ls / cat", "poke around the filesystem"],
-          ["theme", "green | amber | ice | mono"],
-          ["clear", "wipe the screen"],
-        ];
-        print(`<div class="kv">${rows.map(([a, b]) => `<span>${a}</span><span class="dim">${b}</span>`).join("")}</div>`, "");
-        print(`<span class="dim">psst — there are a few easter eggs.</span>`);
-      },
-      about() {
-        print(`<span class="b">Mohammad Karimi</span> <span class="dim">(mmdpy) —</span> <span class="ac">Staff AI Engineer @ Proofpoint</span> <span class="dim">· Toronto</span>`);
+      man(arg) {
+        if (arg && arg !== "mmdpy") return print(`No manual entry for ${esc(arg)}`);
+        print(`<div class="man-hd"><span>MMDPY(1)</span><span>General Commands Manual</span><span>MMDPY(1)</span></div>`, "");
+        print(`<span class="sec">NAME</span>`);
+        print(`<div class="ind">mmdpy - Mohammad Karimi, Staff AI Engineer at Proofpoint</div>`, "ln");
         print(``);
-        print(`I build AI systems that hold up in production: <span class="ac">agents</span> that reason and use tools,`);
-        print(`a <span class="ac">speech agent</span> that answers in under a second, <span class="ac">RAG</span> over millions of messages,`);
-        print(`and inference stacks that run <span class="b">10–122× cheaper</span> than managed cloud services.`);
-        print(`<div class="metrics">
-          <div class="metric"><div class="n">20M+</div><div class="l">messages / day in prod</div></div>
-          <div class="metric"><div class="n">&lt;1s</div><div class="l">speech-to-speech latency</div></div>
-          <div class="metric"><div class="n">−45%</div><div class="l">false-positive escalations</div></div>
-          <div class="metric"><div class="n">20+</div><div class="l">open-weight models served</div></div>
-        </div>`, "");
-        print(`<span class="dim">M.Sc. CS (UAlberta) · published NLP researcher · ML instructor · GCP ML Engineer + Azure AI Engineer certified</span>`);
+        print(`<span class="sec">SYNOPSIS</span>`);
+        print(`<div class="ind syn">mmdpy [${["about", "work", "systems", "oss", "skills", "paper", "contact", "resume"].map(c => cmdLink(c)).join(" ")}]</div>`, "ln");
+        print(``);
+        print(`<span class="sec">DESCRIPTION</span>`);
+        cmds.about(true);
+        print(`<span class="sec">SEE ALSO</span>`);
+        print(`<div class="ind">${cmdLink("neofetch", "neofetch(1)")}, ${cmdLink("selfie", "selfie(1)")}, ${cmdLink("help", "help(1)")}, <a href="${RESUME}" target="_blank" rel="noopener">resume.pdf</a></div>`, "ln");
+        print(``);
+        print(`<div class="man-hd"><span>mmdpy</span><span>October 2026</span><span>MMDPY(1)</span></div>`, "");
       },
-      whoami() { cmds.about(); },
-      experience() {
-        EXPERIENCE.forEach(e => print(`<div class="card">
-          <div class="hd"><span><span class="role">${e.role}</span> <span class="dim">@</span> <span class="where">${e.where}</span> <span class="dim">· ${e.loc}</span></span><span class="when">${e.when}</span></div>
-          <ul>${e.items.map(i => `<li>${i}</li>`).join("")}</ul>
-          <div>${e.tags.map(t => `<span class="tag">${t}</span>`).join("")}</div>
+      about(inMan) {
+        const body = `<div class="ind">
+          <p>I build AI systems that have to work on a Tuesday at 3am, not just in a demo. Right now that's at <b>Proofpoint</b>: a voice agent that answers compliance investigators in under a second, search over millions of archived emails, and the open-weight LLM serving stack under all of it, which handles <b>20M+ messages a day</b>.</p>
+          <p>Most of my work is making these things cheap enough to run. Serving our own models has come out <b>10x to 122x</b> cheaper than the managed AWS equivalents.</p>
+          <p class="dim">Before Proofpoint: KPMG Lighthouse, AltaML, NLP research at the University of Alberta (M.Sc. CS), and the Iranian national robotics team. 12+ years in. Published in IJAIED, taught ML to 15+ students, certified GCP ML Engineer and Azure AI Engineer.</p>
+        </div>`;
+        print(body, "");
+      },
+      whoami() { print("mmdpy"); },
+      work() {
+        WORK.forEach(j => print(`<div class="job">
+          <div class="hd"><span><b>${j.role}</b>, ${j.where} <span class="dim">(${j.loc})</span></span><span class="dim">${j.when}</span></div>
+          <ul>${j.items.map(i => `<li>${i}</li>`).join("")}</ul>
         </div>`, ""));
       },
-      projects() {
-        print(`<span class="ac">❯</span> <span class="b">production systems</span> <span class="dim">— built at work; descriptions only, code is proprietary</span>`);
-        print(`<div class="proj">${SYSTEMS.map(p => `<div class="pc"><div class="k">${p.k}</div><div class="t">${p.t}</div><div class="m">${p.m}</div><div class="d">${p.d}</div></div>`).join("")}</div>`, "");
-        print(`<span class="ac">❯</span> <span class="b">open source</span> <span class="dim">— github.com/mmdpy</span>`);
-        print(`<div class="proj">${OSS.map(p => `<a class="pc" href="${LINKS.github}/${p.u}" target="_blank" rel="noopener"><div class="k">repo ↗</div><div class="t">${p.t}</div><div class="m">${p.m}</div><div class="d">${p.d}</div></a>`).join("")}</div>`, "");
+      systems() {
+        print(`<span class="dim"># things I built at work. code is proprietary, numbers are real.</span>`);
+        print(`<div class="sys"><div class="h">name</div><div class="h">number</div><div class="h">what</div>${SYSTEMS.map(([n, m, d]) => `<div class="n">${n}</div><div class="m">${esc(m)}</div><div class="d">${d}</div>`).join("")}</div>`, "");
       },
+      oss() {
+        print(`<span class="dim">total ${OSS.length}  (older, public, github.com/mmdpy)</span>`);
+        print(`<div class="ls">${OSS.map(([n, d]) => `<span class="perm dim">drwxr-xr-x</span><a href="${GH}/${n}" target="_blank" rel="noopener">${n}/</a><span class="dim">${d}</span>`).join("")}</div>`, "");
+      },
+      projects() { cmds.systems(); print(""); cmds.oss(); },
       skills() {
-        const bar = n => { const w = 26, f = Math.round(n / 100 * w); return "█".repeat(f) + `<span class="dim">${"░".repeat(w - f)}</span>`; };
-        print(`<div class="bars">${SKILLS.map(([k, n, d]) => `<span class="ac2">${k}</span><span><span class="bar-v">${bar(n)}</span> <span class="dim">${d}</span></span>`).join("")}</div>`, "");
+        print(`<div class="kv">${SKILLS.map(([k, v]) => `<span>${k}</span><span>${v}</span>`).join("")}</div>`, "");
       },
-      research() {
-        print(`<span class="b">Publication</span>`);
-        print(`Karimi Abdolmaleki, M., Farias Wanderley, L., Cutumisu, M., et al. <span class="ac">Negative Language Transfer Identification in the English Writing of Chinese and Farsi Native Speakers.</span> <i>Int. J. AI in Education</i> (2025). <a href="${LINKS.paper}" target="_blank" rel="noopener">doi ↗</a>`);
+      paper() {
+        print(`Karimi Abdolmaleki, M., Farias Wanderley, L., Cutumisu, M., et al.`);
+        print(`<b>Negative Language Transfer Identification in the English Writing of Chinese and Farsi Native Speakers.</b>`);
+        print(`<i>International Journal of Artificial Intelligence in Education</i>, 2025.  <a href="${DOI}" target="_blank" rel="noopener">doi:10.1007/s40593-025-00468-8</a>`);
         print(``);
-        print(`<span class="b">Teaching</span>`);
-        print(`ML Instructor, Alberta AI Association — advanced ML course (NLP + MLOps) for 15+ students.`);
-      },
-      async neofetch() {
-        const holder = print(`<span class="dim">rendering…</span>`, "");
-        const art = await portrait(44, 6);
-        const info = [
-          [`<span class="ac b">mmdpy</span><span class="dim">@</span><span class="ac2 b">proofpoint</span>`],
-          [`<span class="dim">──────────────────</span>`],
-          ["Name", "Mohammad Karimi"],
-          ["OS", "Human 1.0 · Toronto, ON"],
-          ["Host", "Proofpoint · Staff AI Engineer"],
-          ["Uptime", "Jul 2025 — present @ Proofpoint"],
-          ["Kernel", "PyTorch · vLLM · Transformers"],
-          ["Shell", "multi-agent · parallel subagents"],
-          ["Throughput", "20M+ messages/day"],
-          ["Latency", "< 1s speech-to-speech"],
-          ["Cost", "10–122× under managed cloud"],
-          ["Memory", "hybrid RAG · 94% recall@5"],
-          ["Certs", "GCP ML Engineer · Azure AI Engineer"],
-        ];
-        const sw = ["#ff5f57", "#febc2e", "#28c840", "var(--accent)", "var(--accent-2)", "var(--hot)", "#c3a6ff", "#fff"].map(c => `<span class="swatch" style="background:${c}"></span>`).join("");
-        holder.innerHTML = `<div class="neo"><div class="art"></div><div>${info.map(r => r.length === 1 ? `<div>${r[0]}</div>` : `<div><span class="ac">${r[0]}</span>: ${r[1]}</div>`).join("")}<div style="margin-top:8px">${sw}</div></div></div>`;
-        holder.querySelector(".art").appendChild(art);
-        scroll();
-      },
-      async selfie() {
-        const holder = print(`<span class="dim">pointing webcam at a jpeg…</span>`, "");
-        const cell = innerWidth < 560 ? 4 : 6;
-        const cols = Math.max(48, Math.min(96, Math.floor((screen.clientWidth - 60) / cell)));
-        const art = await portrait(cols, cell);
-        holder.innerHTML = `<div class="portrait"></div><span class="dim">rendered client-side from </span><a href="${PHOTO}" target="_blank">selfie.jpg</a><span class="dim"> · ${cols}×${Math.round(cols * 620 / 540)} px matrix</span>`;
-        holder.querySelector(".portrait").appendChild(art);
-        scroll();
-      },
-      resume() {
-        print(`opening <span class="ac">resume.pdf</span> in a new tab… <span class="dim">(if nothing happens: <a href="${RESUME}" target="_blank" rel="noopener">click here</a>)</span>`);
-        window.open(RESUME, "_blank", "noopener");
+        print(`<span class="dim">also: taught an advanced ML course (NLP + MLOps) to 15+ students at the Alberta AI Association.</span>`);
       },
       contact() {
         print(`<div class="kv">
           <span>email</span><span><a href="mailto:${EMAIL}">${EMAIL}</a></span>
-          <span>linkedin</span><span><a href="${LINKS.linkedin}" target="_blank" rel="noopener">in/mohammad-karimi-abdolmaleki</a></span>
-          <span>github</span><span><a href="${LINKS.github}" target="_blank" rel="noopener">github.com/mmdpy</a></span>
-          <span>location</span><span>Toronto, ON · open to the right AI problem</span>
+          <span>linkedin</span><span><a href="${LI}" target="_blank" rel="noopener">in/mohammad-karimi-abdolmaleki</a></span>
+          <span>github</span><span><a href="${GH}" target="_blank" rel="noopener">github.com/mmdpy</a></span>
+          <span>where</span><span>Toronto, ON</span>
         </div>`, "");
+        print(`<span class="dim">email is fastest. I read everything.</span>`);
       },
-      email() { location.href = `mailto:${EMAIL}`; print(`opening mail client → <span class="ac">${EMAIL}</span>`); },
-      github() { window.open(LINKS.github, "_blank", "noopener"); print(`→ <a href="${LINKS.github}" target="_blank">github.com/mmdpy</a>`); },
-      linkedin() { window.open(LINKS.linkedin, "_blank", "noopener"); print(`→ <a href="${LINKS.linkedin}" target="_blank">LinkedIn</a>`); },
+      resume() {
+        print(`opening resume.pdf <span class="dim">(blocked? <a href="${RESUME}" target="_blank" rel="noopener">here</a>)</span>`);
+        window.open(RESUME, "_blank", "noopener");
+      },
+      async neofetch() {
+        const hold = print(`<span class="dim">...</span>`, "");
+        const art = await printed(64, 2);
+        const info = [
+          ["", `<b>mmdpy</b>@<b>proofpoint</b>`],
+          ["", `<span class="dim">----------------</span>`],
+          ["name", "Mohammad Karimi"],
+          ["role", "Staff AI Engineer"],
+          ["since", "Jul 2025"],
+          ["home", "Toronto, ON"],
+          ["edu", "M.Sc. CS, UAlberta"],
+          ["load", "20M+ messages/day"],
+          ["latency", "< 1 s speech-to-speech"],
+          ["recall@5", "94%"],
+          ["certs", "GCP ML Eng, Azure AI Eng"],
+        ];
+        const pal = ["#3a3935", "#ff6a3d", "#8fd16a", "#ffb000", "#6aa9ff", "#c792ea", "#5fd7d7", "#d9d5ca"];
+        hold.innerHTML = `<div class="neo">${art}<div>${info.map(([k, v]) => k ? `<div><span class="ink">${k}</span>: ${v}</div>` : `<div>${v}</div>`).join("")}<div class="blocks" style="margin-top:.8em">${pal.map(c => `<span style="background:${c}"></span>`).join("")}</div></div></div>`;
+        scroll();
+      },
+      async selfie() {
+        const hold = print(`<span class="dim">...</span>`, "");
+        const px = innerWidth < 520 ? 2 : 3;
+        const cols = Math.max(80, Math.min(150, Math.floor((screen.clientWidth - 64) / px)));
+        hold.innerHTML = `${await printed(cols, px)}<div class="dim" style="margin-top:.4em">${cols} columns, Atkinson dither, done in your browser from <a href="${PHOTO}" target="_blank">me.jpg</a></div>`;
+        scroll();
+      },
+      help() {
+        const rows = [
+          ["man mmdpy", "the overview"], ["work", "where I've worked"], ["systems", "what I built at Proofpoint"],
+          ["oss", "public repos"], ["skills", "the stack"], ["paper", "publication + teaching"],
+          ["contact", "how to reach me"], ["resume", "the pdf"], ["neofetch", "you know"], ["selfie", "1-bit portrait"],
+          ["ls, cat", "poke around"], ["theme", "default | green | amber | paper"], ["clear", "ctrl+l works too"],
+        ];
+        print(`<div class="kv" style="grid-template-columns:14ch 1fr">${rows.map(([a, b]) => `<span>${cmdLink(a.split(",")[0].split(" ")[0] === "man" ? "man mmdpy" : a.split(",")[0], a)}</span><span class="dim">${b}</span>`).join("")}</div>`, "");
+      },
       ls(arg) {
-        const show = Object.keys(FILES).filter(f => arg && arg.startsWith("-a") || !f.startsWith("."));
-        print(show.map(f => f.endsWith("/") ? `<span class="ac2">${f}</span>` : f.startsWith(".") ? `<span class="dim">${f}</span>` : f).join("   "));
+        const all = arg && arg.startsWith("-a");
+        print(Object.keys(FILES).filter(f => all || !f.startsWith(".")).map(f => f.startsWith(".") ? `<span class="dim">${f}</span>` : f.endsWith("/") ? `<b>${f}</b>` : f).join("  "));
       },
       cat(arg) {
-        if (!arg) return print(`<span class="err">cat:</span> missing file. try <span class="ac">ls</span>`);
+        if (!arg) return print(`usage: cat &lt;file&gt;`);
         const f = FILES[arg] || FILES[arg + "/"];
-        f ? f() : print(`<span class="err">cat: ${esc(arg)}: No such file or directory</span>`);
+        f ? f() : print(`cat: ${esc(arg)}: No such file or directory`);
       },
-      open(arg) { arg === "selfie.jpg" ? cmds.selfie() : arg === "resume.pdf" ? cmds.resume() : print(`<span class="dim">usage: open selfie.jpg | resume.pdf</span>`); },
-      cd(arg) { arg && FILES[arg.replace(/\/?$/, "/")] ? cmds.projects() : print(`<span class="dim">you're already home.</span>`); },
-      pwd() { print("/home/mmdpy/portfolio"); },
+      open(arg) { FILES[arg] ? FILES[arg]() : print(`usage: open me.jpg | resume.pdf`); },
+      cd(arg) { arg && FILES[arg.replace(/\/?$/, "/")] ? FILES[arg.replace(/\/?$/, "/")]() : print(``); },
+      pwd() { print("/home/mmdpy"); },
       date() { print(new Date().toString()); },
       echo(...a) { print(esc(a.join(" "))); },
-      history() { hist.forEach((h, i) => print(`<span class="dim">${String(i + 1).padStart(4)}</span>  ${esc(h)}`)); },
+      history() { hist.forEach((h, i) => print(`<span class="dim">${String(i + 1).padStart(5)}</span>  ${esc(h)}`)); },
       theme(arg) {
-        const t = ["green", "amber", "ice", "mono"];
-        if (!t.includes(arg)) return print(`usage: theme <span class="ac">${t.join(" | ")}</span>`);
-        document.body.className = arg === "green" ? "" : arg;
+        const t = ["default", "green", "amber", "paper"];
+        if (!t.includes(arg)) return print(`usage: theme ${t.join(" | ")}`);
+        document.body.className = arg === "default" ? "" : arg;
         localStorage.setItem("theme", arg);
-        print(`theme → <span class="ac">${arg}</span>`);
       },
       clear() { out.innerHTML = ""; },
       sudo(...a) {
-        if (a.join(" ") === "hire-me" || a.join(" ") === "hire mohammad") {
-          print(`<span class="dim">[sudo] password for recruiter: ********</span>`);
-          setTimeout(() => {
-            print(`<span class="ac glow b">✓ access granted.</span> excellent judgment.`);
-            print(`→ <a href="mailto:${EMAIL}?subject=Let's%20talk">${EMAIL}</a>  ·  <a href="${RESUME}" target="_blank">resume.pdf</a>`);
-            matrix(2600);
-          }, reduced ? 0 : 700);
+        if (/^hire/.test(a.join(" "))) {
+          print(`[sudo] password for recruiter: `);
+          setTimeout(() => print(`ok. <a href="mailto:${EMAIL}?subject=Hi%20Mohammad">${EMAIL}</a>`), reduced ? 0 : 900);
           return;
         }
-        print(`<span class="err">mmdpy is not in the sudoers file.</span> this incident will be reported. <span class="dim">(try: sudo hire-me)</span>`);
+        print(`mmdpy is not in the sudoers file. This incident will be reported.`);
       },
-      "hire-me"() { cmds.sudo("hire-me"); },
-      matrix() { matrix(4000); print(`<span class="ac">wake up, neo…</span>`); },
-      vim() { print(`<span class="warn">you are now trapped in vim.</span> <span class="dim">just kidding — type :q</span>`); },
-      ":q"() { print(`<span class="dim">phew.</span>`); },
-      exit() { print(`<span class="dim">there is no exit. only</span> <span class="ac">contact</span><span class="dim">.</span>`); },
-      rm(...a) { print(a.join(" ").includes("-rf") ? `<span class="err">nope.</span> production systems are protected by humans-in-the-loop.` : `rm: permission denied`); },
-      coffee() { print(`☕ brewing… throughput +12%`); },
-      ping() { print(`PONG — latency <span class="ac">&lt; 1s</span>, as promised.`); },
+      vim() { print(`<span class="dim">~<br>~<br>~</span><br>"portfolio" [readonly]  type :q`); },
+      ":q"() { print(``); },
+      exit() { print(`logout<br><span class="dim">(you're still here though)</span>`); },
+      rm(...a) { print(a.includes("-rf") ? `rm: refusing. there's a human in the loop.` : `rm: permission denied`); },
     };
-    Object.assign(cmds, { exp: cmds.experience, work: cmds.experience, proj: cmds.projects, cv: cmds.resume, man: cmds.help, "?": cmds.help, ascii: cmds.selfie });
+    Object.assign(cmds, { experience: cmds.work, exp: cmds.work, proj: cmds.projects, research: cmds.paper, cv: cmds.resume, "?": cmds.help, ascii: cmds.selfie });
 
-    const VISIBLE = ["help", "about", "experience", "projects", "skills", "research", "neofetch", "selfie", "resume", "contact", "email", "github", "linkedin", "ls", "cat", "open", "theme", "clear", "history", "sudo"];
-
+    const VISIBLE = ["man", "about", "work", "systems", "oss", "projects", "skills", "paper", "contact", "resume", "neofetch", "selfie", "help", "ls", "cat", "open", "theme", "clear", "history"];
     const hist = [];
     let hIdx = 0;
 
     function run(raw) {
       const line = raw.trim();
-      const head = echoCmd(line);
+      const head = print(`${PS1} ${esc(line)}`);
       if (!line) return;
       hist.push(line); hIdx = hist.length;
       if (window.gtag) gtag("event", "terminal_command", { command: line.split(/\s+/)[0] });
       const [name, ...args] = line.split(/\s+/);
       const fn = cmds[name.toLowerCase()];
       const pin = () => requestAnimationFrame(() => {
-        const top = head.getBoundingClientRect().top - screen.getBoundingClientRect().top + screen.scrollTop - 12;
+        if (!paneScrolls()) return head.scrollIntoView({ block: "start", behavior: reduced ? "auto" : "smooth" });
+        const top = head.getBoundingClientRect().top - screen.getBoundingClientRect().top + screen.scrollTop - 16;
         if (screen.scrollHeight - top > screen.clientHeight) screen.scrollTop = top;
       });
+      document.querySelectorAll(".status button").forEach(b => b.classList.toggle("on", b.dataset.cmd.split(" ")[0] === name));
       if (fn) Promise.resolve(fn(...args)).then(() => { print(""); pin(); });
       else {
         const guess = VISIBLE.find(c => c.startsWith(name.toLowerCase().slice(0, 2)));
-        print(`<span class="err">zsh: command not found:</span> ${esc(name)}${guess ? ` <span class="dim">— did you mean</span> <span class="ac">${guess}</span><span class="dim">?</span>` : ""}`);
+        print(`zsh: command not found: ${esc(name)}${guess ? `<span class="dim">. did you mean ${cmdLink(guess)}?</span>` : ""}`);
         print("");
       }
       pin();
+    }
+
+    // types like a person: uneven, a little faster mid-word
+    async function typeCmd(c) {
+      const d = print(`${PS1} `);
+      for (const ch of c) {
+        d.insertAdjacentText("beforeend", ch);
+        await sleep(ch === " " ? 120 : 45 + Math.random() * 70);
+      }
+      await sleep(260);
+      d.remove();
+      run(c);
     }
 
     input.addEventListener("keydown", e => {
@@ -743,97 +539,51 @@
         e.preventDefault();
         const [first, ...rest] = input.value.split(" ");
         if (rest.length && ["cat", "open", "theme"].includes(first)) {
-          const pool = first === "theme" ? ["green", "amber", "ice", "mono"] : Object.keys(FILES);
+          const pool = first === "theme" ? ["default", "green", "amber", "paper"] : Object.keys(FILES);
           const m = pool.filter(f => f.startsWith(rest.join(" ")));
           if (m.length === 1) input.value = `${first} ${m[0]}`;
-          else if (m.length) print(m.join("   "), "ln dim");
+          else if (m.length) print(m.join("  "), "ln dim");
           return;
         }
         const m = VISIBLE.filter(c => c.startsWith(input.value));
         if (m.length === 1) input.value = m[0] + " ";
-        else if (m.length > 1) { echoCmd(input.value); print(m.join("   "), "ln dim"); }
+        else if (m.length > 1) print(m.join("  "), "ln dim");
       }
       else if (e.key === "l" && e.ctrlKey) { e.preventDefault(); cmds.clear(); }
     });
 
-    document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => { run(b.dataset.cmd); if (matchMedia("(pointer: fine)").matches) input.focus({ preventScroll: true }); }));
-    screen.addEventListener("click", () => { if (!getSelection().toString()) input.focus({ preventScroll: true }); });
-    document.addEventListener("keydown", e => {
-      if (document.activeElement !== input && !e.metaKey && !e.ctrlKey && !e.altKey && e.key.length === 1 && !row.hidden) input.focus();
+    const fine = matchMedia("(pointer: fine)").matches;
+    const go = c => { run(c); if (fine) input.focus({ preventScroll: true }); };
+    document.querySelectorAll(".status button").forEach(b => b.addEventListener("click", () => go(b.dataset.cmd)));
+    out.addEventListener("click", e => {
+      const a = e.target.closest("[data-run]");
+      if (a) { e.preventDefault(); go(a.dataset.run); }
     });
-    screen.addEventListener("pointermove", e => {
-      const card = e.target.closest(".pc");
-      if (!card) return;
-      const r = card.getBoundingClientRect();
-      card.style.setProperty("--mx", `${e.clientX - r.left}px`);
-      card.style.setProperty("--my", `${e.clientY - r.top}px`);
+    screen.addEventListener("click", e => { if (!e.target.closest("a") && !getSelection().toString() && !row.hidden) input.focus({ preventScroll: true }); });
+    document.addEventListener("keydown", e => {
+      if (row.hidden || e.metaKey || e.ctrlKey || e.altKey) return;
+      if (document.activeElement !== input && /^[0-7]$/.test(e.key)) { e.preventDefault(); go(document.querySelectorAll(".status button")[+e.key].dataset.cmd); return; }
+      if (document.activeElement !== input && e.key.length === 1) input.focus();
     });
 
     const clock = document.getElementById("clock");
-    const tick = () => clock.textContent = new Date().toLocaleTimeString("en-CA", { hour: "2-digit", minute: "2-digit", timeZone: "America/Toronto" }) + " ET";
-    tick(); setInterval(tick, 30000);
-    document.getElementById("yr").textContent = new Date().getFullYear();
-
-    const rot = document.getElementById("rot");
-    const NOW = ["sub-second speech agents", "multi-agent context layers", "inference at 20M+ msgs/day", "petabyte-scale hybrid RAG"];
-    let ri = 0;
-    if (!reduced) setInterval(async () => {
-      ri = (ri + 1) % NOW.length;
-      const s = NOW[ri];
-      for (let i = rot.textContent.length; i >= 0; i--) { rot.textContent = rot.textContent.slice(0, i); await sleep(14); }
-      for (let i = 1; i <= s.length; i++) { rot.textContent = s.slice(0, i); await sleep(28); }
-    }, 4200);
+    const tick = () => {
+      const t = new Date();
+      clock.textContent = `"toronto" ${t.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit", timeZone: "America/Toronto" })} ${t.toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "2-digit", timeZone: "America/Toronto" }).replace(/ /g, "-")}`;
+    };
+    tick(); setInterval(tick, 20000);
 
     const saved = localStorage.getItem("theme");
-    if (saved && saved !== "green") document.body.className = saved;
+    if (saved && saved !== "default") document.body.className = saved;
 
-    function matrix(ms) {
-      if (reduced) return;
-      const c = document.getElementById("matrix"), x = c.getContext("2d");
-      c.width = innerWidth; c.height = innerHeight;
-      const fs = 16, cols = Math.ceil(c.width / fs), drops = Array(cols).fill(0).map(() => Math.random() * -40);
-      const chars = "01アイウエオカキクケコサシスセソタチツテトAIMLLLMRAGvLLMmmdpy";
-      const color = getComputedStyle(document.body).getPropertyValue("--accent").trim();
-      c.classList.add("on");
-      const start = performance.now();
-      (function draw(t) {
-        x.fillStyle = "rgba(6,8,11,.12)"; x.fillRect(0, 0, c.width, c.height);
-        x.fillStyle = color; x.font = `${fs}px JetBrains Mono, monospace`;
-        drops.forEach((y, i) => {
-          x.fillText(chars[Math.floor(Math.random() * chars.length)], i * fs, y * fs);
-          drops[i] = y * fs > c.height && Math.random() > .975 ? 0 : y + 1;
-        });
-        if (t - start < ms) requestAnimationFrame(draw);
-        else { c.classList.remove("on"); setTimeout(() => x.clearRect(0, 0, c.width, c.height), 700); }
-      })(start);
-    }
-
-    async function boot() {
-      const steps = [
-        ["loading kernel modules", "pytorch vllm transformers"],
-        ["mounting context layer", "knowledge graphs · entity resolution"],
-        ["spawning subagents", "parallel"],
-        ["warming prefix/KV cache", "AWQ · continuous batching"],
-        ["checking latency budget", "&lt; 1s ✓"],
-      ];
-      for (const [a, b] of steps) {
-        await type(`<span class="dim">[</span><span class="ac">  ok  </span><span class="dim">]</span> ${a} <span class="dim">… ${b}</span>`, 4);
-        await sleep(60);
-      }
-      await sleep(120);
-      print(BANNER, "ascii");
-      await type(`<span class="b">Staff AI Engineer @ Proofpoint</span> <span class="dim">·</span> agentic systems <span class="dim">·</span> speech agents <span class="dim">·</span> RAG <span class="dim">·</span> production LLM inference`, 8);
-      print(`<span class="dim">type</span> <span class="ac">help</span> <span class="dim">or click a command above. try</span> <span class="ac">neofetch</span> <span class="dim">or</span> <span class="ac">selfie</span><span class="dim">.</span>`);
-      print("");
-      await sleep(200);
-      echoCmd("about");
-      cmds.about();
-      print("");
+    (async () => {
+      print(`<span class="dim">Last login: ${new Date(Date.now() - 864e5 * 2).toUTCString().slice(0, 22)} on ttys001</span>`);
+      await sleep(400);
+      await typeCmd("man mmdpy");
       row.hidden = false;
-      if (matchMedia("(pointer: fine)").matches) input.focus({ preventScroll: true });
-      scroll();
-    }
-    boot();
+      screen.scrollTop = 0;
+      if (fine) input.focus({ preventScroll: true });
+    })();
   })();
   </script>
 </body>
